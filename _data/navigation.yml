@@ -2,12 +2,12 @@
 main:
   - title: "About"
     url: /
+  - title: "Publications"
+    url: /publications/
+  - title: "Resume"
+    url: /resume/
 
-  - title: ""
-    url: /experience/
 
-  - title: "Blogs"
-    url: /blogs/
 
   #- title: "Style Transfer Demo"
   #  url: http://18.179.12.100/action/
