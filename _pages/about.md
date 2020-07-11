@@ -1,24 +1,14 @@
 ---
+permalink: /about/
 title: "About"
-permalink: /
-header:
-  image: "/images/header_style_transfer.jpg"
 ---
 
-Deep Learning enthusiast with 3 years of working experience in **Computer Vision** and **NLP** projects. Looking for a role where I could use my Deep Learning and python development skills to solve real world Computer Vision and Natural Language Processing problems, further enhancing my skills in the process. 
+I am a Quantitative and Computational Biology PhD Candidate in [Ankit Patel's](https://ankitlab.co/) group at Baylor College of Medicine and Rice University
 
-# Education
-Manipal Institute of Technology, <br>
-B.Tech, Mechanical Engineering (CGPA - 7.8) <br>
-06/2012 – 05/2016 | Manipal, India
+Currently, I am studying how to generate robustness models of visual perception. Particularly, I work on understanding how different model parametrizations can induce different implicit regularizers during training, and if this regularizer produce models that generalize better to random and adversarial noise. In addition, I work on understanding neurally consistent neural networks, which are trained to maximize similarity to neural recordings. This is while been part of the NINAI Team , which is a group of neuroscientists, physicists, computer scientists and mathematicians with a goal of advancing machine intelligence through neuroscience.
 
-# Key Skills 
-Deep Learning Python, PyTorch, Computer Vision, Natural Language Processing, OpenCV, Django, Numpy
+I was previously a research technician at Harvard University. I obtained my undergraduate degree from Universidad Peruana Cayetano Heredia in Lima, Peru. I am very grateful to have worked under some excellent mentors:
 
-# Publication
-[Reading Industrial Inspection Sheets by Inferring Visual Relations](https://arxiv.org/pdf/1812.07104.pdf) <br>
-IWRR Asian Conference on Computer Vision (ACCV) 2018  
+- [Gabriel Kreiman](http://klab.tch.harvard.edu/), Harvard University
 
-# Patent
-Digitization of Industrial Inspection Sheets by Inferring Visual Relations <br>
-(India Patent Application 201821044939, filed November 2018. Patent pending)
+- [Andreas Tolias](https://toliaslab.org/), Baylor College of Medicine

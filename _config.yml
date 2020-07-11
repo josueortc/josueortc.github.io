@@ -5,14 +5,14 @@
 # For technical reasons, this file is *NOT* reloaded automatically when you use
 # `jekyll serve`. If you change this file, please restart the server process.
 
-minimal_mistakes_skin    : "aqua" # "default", "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
+minimal_mistakes_skin    : "default" #, "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise","aqua" #
 
 # Site Settings
 locale                   : "en-US"
-title                    : "n0obcoder: a misnomer"
+title                    : "Josue Ortega Caro"
 title_separator          : "-"
-name                     : "Animesh"
-description              : "Machine Learning Portfolio"
+name                     : "Josue Ortega Caro"
+description              : "Computational Neuroscience + Deep Learning"
 url                      : # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
@@ -84,11 +84,11 @@ analytics:
 
 # Site Author
 author:
-  name             : "Animesh"
-  avatar           : "/images/dp.jpeg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "Machine Learning Engineer"
-  location         : "Gurgaon, India"
-  email            : "animesh0794@gmail.com"
+  name             : "Josue Ortega"
+  avatar           : "/images/josue_pic.jpg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
+  bio              : "Quantitative and Computational Biosciences PhD Candidate"
+  location         : "Houston, TX"
+  email            : "josueortc@gmailcom"
   uri              :
   home             : # null (default), "absolute or relative url to link to author home"
   bitbucket        :
@@ -97,23 +97,23 @@ author:
   flickr           :
   facebook         :
   foursquare       :
-  github           : "n0obcoder"
+  github           : "josueortc"
   gitlab           :
   google_plus      :
   keybase          :
   instagram        :
   lastfm           :
-  linkedin         : "animesh-animesh-b9a297b6" # "john-doe-12345678" (the last part of your profile url, e.g. https://www.linkedin.com/in/john-doe-12345678)
+  linkedin         : "josue-ortega-caro-652a1a56" # "john-doe-12345678" (the last part of your profile url, e.g. https://www.linkedin.com/in/john-doe-12345678)
   pinterest        :
   soundcloud       :
   stackoverflow    : # "123456/username" (the last part of your profile url, e.g. https://stackoverflow.com/users/123456/username)
   steam            : # "steamId" (the last part of your profile url, e.g. https://steamcommunity.com/id/steamId/)
   tumblr           :
-  twitter          :
+  twitter          : "josueortc"
   vine             :
   weibo            :
   xing             :
-  youtube          : "https://youtube.com/8thFloorHarmony" # "https://youtube.com/c/MichaelRoseDesign"
+  youtube          :
 
 
 # Reading Files
@@ -242,7 +242,7 @@ compress_html:
 
 # Defaults
 defaults:
-      
+
   # _posts
   - scope:
       path: ""
