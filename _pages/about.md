@@ -1,6 +1,8 @@
 ---
-permalink: /about/
 title: "About"
+permalink: /
+header:
+  image: "/images/cajal.jpg"
 ---
 
 I am a Quantitative and Computational Biology PhD Candidate in [Ankit Patel's](https://ankitlab.co/) group at Baylor College of Medicine and Rice University
