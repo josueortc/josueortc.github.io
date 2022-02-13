@@ -5,9 +5,9 @@ header:
   image: "/images/cajal.png"
 ---
 
-I am a Quantitative and Computational Biology PhD Candidate in [Ankit Patel's](https://ankitlab.co/) group at Baylor College of Medicine and Rice University
+I am a Computational Neuroscientist. I did my PhD in Quantitative and Computational Biology in the lab of [Ankit Patel's](https://ankitlab.co/) group at Baylor College of Medicine and Rice University
 
-Currently, I am studying how to generate robustness models of visual perception. Particularly, I work on understanding how different model parametrizations can induce different implicit regularizers during training, and if this regularizer produce models that generalize better to random and adversarial noise. In addition, I work on understanding neurally consistent neural networks, which are trained to maximize similarity to neural recordings. This is while been part of the [NINAI Team](https://www.ninai.org/) , which is a group of neuroscientists, physicists, computer scientists and mathematicians with a goal of advancing machine intelligence through neuroscience.
+Currently, I am interested in the problem of OOD generalization and the role of inductive bias. Particularly, I work on understanding how different model parametrizations can induce different implicit regularizers during training, and if this regularizer produce models that generalize better to random and adversarial noise. In addition, I work on understanding neurally consistent neural networks, which are trained to maximize similarity to neural recordings.
 
 I was previously a research technician at Harvard University. I obtained my undergraduate degree from Universidad Peruana Cayetano Heredia in Lima, Peru. I am very grateful to have worked under some excellent mentors:
 

@@ -5,10 +5,19 @@ title: "Resume"
 
 - Email: josueortc@gmail.com
 
+## EDUCATION
+### Baylor College of Medicine
+Quantitative and Computational Biosciences PhD,
+(July 2016 – Jan 2022), Houston TX, USA
+
+### Universidad Peruana Cayetano Heredia
+Bachelors in Science, Biology,
+(March 2010 – December 2014), Lima, Peru
+
 ## RESEARCH EXPERIENCE
 
 ### Patel Lab, Baylor College of Medicine
-**Graduate Research Assistant**, (May 2017 - Currently).
+**Graduate Research Assistant**, (May 2017 - Jan 2022).
 - Training neural regularized model to understand noise and adversarial robustness.
 
 ### Tolias Lab, Baylor College of Medicine
@@ -22,15 +31,6 @@ title: "Resume"
 ### Zimic Lab, Universidad Peruana Cayetano Heredia
 **Research Assistant**, (March 2011 - June 2016).
 - Used Convolutional Neural networks to classify patient/non-patient biomedical images for diagnosis of Pneumonia and Tuberculosis.
-
-## EDUCATION
-### Baylor College of Medicine
-Quantitative and Computational Biosciences PhD,
-(July 2016 – Current), Houston TX, USA
-
-### Universidad Peruana Cayetano Heredia
-Bachelors in Science, Biology,
-(March 2010 – December 2014), Lima, Peru
 
 ## SKILLS & INTERESTS
 ### Languages:
