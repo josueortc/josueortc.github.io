@@ -3,7 +3,7 @@ permalink: /publications/
 title: "Publications"
 ---
 
-- Li, Zhe, **Caro, J. O.**, Rusak E, Brendel W, Bethge M, Anselmi F, Patel A. B., Tolias A., Pitkow X. (2022) [Robust deep learning object recognition models rely on low frequency information in natural images](https://www.biorxiv.org/content/10.1101/2022.01.31.478509v1), biorxiv preprint
+- Li, Zhe \*, **Caro, J. O.** \*, Rusak E, Brendel W, Bethge M, Anselmi F, Patel A. B., Tolias A., Pitkow X. (2022) [Robust deep learning object recognition models rely on low frequency information in natural images](https://www.biorxiv.org/content/10.1101/2022.01.31.478509v1), biorxiv preprint \* Co-first Authors
 
 - **Caro, J. O.**, Ju, Y., Pyle, R., & Patel, A. (2020). [Local Convolutions Cause an Implicit Bias towards High Frequency Adversarial Examples](https://arxiv.org/abs/2006.11440), arXiv preprint arXiv:2006.11440.
 
