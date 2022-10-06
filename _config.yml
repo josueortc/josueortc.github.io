@@ -86,8 +86,8 @@ analytics:
 author:
   name             : "Josue Ortega Caro, PhD"
   avatar           : "/images/josue_pic.jpg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "Quantitative and Computational Biosciences PhD Candidate"
-  location         : "Houston, TX"
+  bio              : "Wu Tsai Postdoctoral Fellow at Yale University"
+  location         : "New Haven, CT"
   email            : "josueortc@gmailcom"
   uri              :
   home             : # null (default), "absolute or relative url to link to author home"
