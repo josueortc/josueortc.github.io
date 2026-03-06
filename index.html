@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Josue Ortega Caro, PhD</title>
-  <meta name="description" content="Wu Tsai Fellow at Yale University. Computational neuroscience, foundation models for brain activity, neural integral equations, and deep learning.">
+  <meta name="description" content="Wu Tsai Fellow at Yale University. Machine learning for neural dynamics — computational neuroscience, foundation models, and neural integral equations.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -15,11 +15,11 @@
   <!-- Navigation -->
   <nav class="nav">
     <div class="nav__inner">
-      <a href="index.html" class="nav__logo">Josue Ortega Caro</a>
+      <a href="index.html" class="nav__logo">JOC</a>
       <ul class="nav__menu">
-        <li><a href="index.html" class="nav__link nav__link--active">Home</a></li>
+        <li><a href="index.html" class="nav__link nav__link--active">Research</a></li>
         <li><a href="publications.html" class="nav__link">Publications</a></li>
-        <li><a href="awards-conferences.html" class="nav__link">Awards &amp; Conferences</a></li>
+        <li><a href="awards-conferences.html" class="nav__link">Talks</a></li>
         <li><a href="cv.html" class="nav__link">CV</a></li>
       </ul>
       <button class="nav__toggle" aria-label="Toggle menu">
@@ -34,34 +34,40 @@
   <section class="hero">
     <div class="container hero__inner">
       <div class="hero__content">
-        <h1 class="hero__title">Josue Ortega Caro, PhD</h1>
-        <p class="hero__role">Wu Tsai Fellow</p>
-        <p class="hero__affiliation">Yale University &middot; <a href="https://cardinlab.org" target="_blank" rel="noopener" style="color:var(--text-secondary);">Cardin Lab</a></p>
-        <p class="hero__tagline">
-          Building computational models and foundation architectures to understand how brains learn, represent, and predict — bridging neuroscience and machine learning.
+        <h1 class="hero__name">Josue Ortega Caro</h1>
+        <p class="hero__tagline">Machine Learning for Neural Dynamics</p>
+        <p class="hero__role">
+          <strong>Wu Tsai Fellow</strong> &middot; Yale University &middot; <a href="https://cardinlab.org" target="_blank" rel="noopener" style="color:var(--text-secondary);">Cardin Lab</a>
         </p>
-        <div class="interests">
-          <span class="interest-tag">Perceptual Representation</span>
-          <span class="interest-tag">Neural Predictive Models</span>
-          <span class="interest-tag">Recurrent Computation</span>
-          <span class="interest-tag">High-Dimensional Neural Data</span>
+
+        <div class="hero__keywords">
+          <span class="hero__keyword">Computational Neuroscience</span>
+          <span class="hero__keyword">Foundation Models</span>
+          <span class="hero__keyword">Generative Models</span>
+          <span class="hero__keyword">Inductive Bias</span>
         </div>
-        <div class="hero__links" style="margin-top: 32px;">
-          <a href="mailto:josue.ortegacaro@yale.edu" class="hero__link">
+
+        <div class="hero__actions">
+          <a href="#research" class="btn btn--primary">
+            View Research
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+          <a href="publications.html" class="btn btn--outline">Publications</a>
+          <a href="cv.html" class="btn btn--outline">CV</a>
+        </div>
+
+        <div class="hero__social">
+          <a href="mailto:josue.ortegacaro@yale.edu" class="hero__social-link" title="Email">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-            Email
           </a>
-          <a href="https://github.com/josueortc" target="_blank" rel="noopener" class="hero__link">
+          <a href="https://github.com/josueortc" target="_blank" rel="noopener" class="hero__social-link" title="GitHub">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
-            GitHub
           </a>
-          <a href="https://scholar.google.com/citations?user=YOUR_ID" target="_blank" rel="noopener" class="hero__link">
+          <a href="https://scholar.google.com/citations?user=YOUR_ID" target="_blank" rel="noopener" class="hero__social-link" title="Google Scholar">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/><path d="m9 10 3-3 3 3"/></svg>
-            Scholar
           </a>
-          <a href="https://twitter.com/josueortc" target="_blank" rel="noopener" class="hero__link">
+          <a href="https://twitter.com/josueortc" target="_blank" rel="noopener" class="hero__social-link" title="Twitter / X">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
-            Twitter
           </a>
         </div>
       </div>
@@ -71,31 +77,67 @@
     </div>
   </section>
 
-  <!-- Vision -->
+  <!-- Research Focus -->
   <section class="section section--alt">
-    <div class="container fade-in">
-      <span class="section-label">Vision</span>
-      <p class="vision__text">
-        I develop <strong>computational models and machine learning methods</strong> to understand how neural circuits in the brain give rise to perception, learning, and decision-making. My work spans building <strong>foundation models for brain activity</strong>, designing novel <strong>neural integral equation architectures</strong> for spatiotemporal data, and uncovering how <strong>cortical neuromodulatory signals</strong> change during learning.
-      </p>
+    <div class="container">
+      <div class="section__header fade-in">
+        <span class="section-label">Research Focus</span>
+        <h2 class="section-title">Understanding Brain Computation Through Machine Learning</h2>
+      </div>
+
+      <div class="research-focus fade-in">
+        <div class="research-focus__text">
+          I develop <strong>computational models and machine learning methods</strong> to understand how neural circuits give rise to perception, learning, and decision-making. My work spans <strong>foundation models for brain activity</strong>, <strong>neural integral equation architectures</strong>, and uncovering how <strong>neuromodulatory signals</strong> change during learning.
+        </div>
+        <div class="research-focus__areas">
+          <div class="focus-area">
+            <div class="focus-area__icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a4 4 0 0 0-4 4v2H6a2 2 0 0 0-2 2v2a8 8 0 0 0 16 0v-2a2 2 0 0 0-2-2h-2V6a4 4 0 0 0-4-4z"/></svg>
+            </div>
+            <div>
+              <div class="focus-area__label">Foundation Models for Neuroscience</div>
+              <div class="focus-area__desc">Self-supervised transformers for fMRI and neural recordings at scale</div>
+            </div>
+          </div>
+          <div class="focus-area">
+            <div class="focus-area__icon focus-area__icon--teal">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h4l3-9 4 18 3-9h4"/></svg>
+            </div>
+            <div>
+              <div class="focus-area__label">Neural Integral Equations</div>
+              <div class="focus-area__desc">Learning integral operators from spatiotemporal biological data</div>
+            </div>
+          </div>
+          <div class="focus-area">
+            <div class="focus-area__icon focus-area__icon--gold">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v4m0 14v4M4.22 4.22l2.83 2.83m9.9 9.9 2.83 2.83M1 12h4m14 0h4M4.22 19.78l2.83-2.83m9.9-9.9 2.83-2.83"/></svg>
+            </div>
+            <div>
+              <div class="focus-area__label">Robustness &amp; Inductive Bias</div>
+              <div class="focus-area__desc">How architectural choices shape generalization in biological and artificial networks</div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- Research Highlights -->
+  <!-- Key Research Areas -->
   <section class="section" id="research">
     <div class="container">
       <div class="section__header fade-in">
-        <span class="section-label">Research</span>
+        <span class="section-label">Projects</span>
         <h2 class="section-title">Key Research Areas</h2>
         <p class="section-subtitle">
-          My research combines deep learning, mathematical modeling, and neuroscience to tackle fundamental questions about brain computation.
+          Combining deep learning, mathematical modeling, and neuroscience to tackle fundamental questions about brain computation.
         </p>
       </div>
 
       <div class="research-grid">
-        <!-- BrainLM -->
-        <a href="https://www.biorxiv.org/content/10.1101/2023.09.12.557460v2" target="_blank" rel="noopener" class="research-card fade-in" style="text-decoration:none;color:inherit;">
-          <img src="images/papers/brainlm_fig1.jpg" alt="BrainLM: Foundation model for brain activity" class="research-card__image">
+        <a href="https://www.biorxiv.org/content/10.1101/2023.09.12.557460v2" target="_blank" rel="noopener" class="research-card fade-in">
+          <div class="research-card__image-wrap">
+            <img src="images/papers/brainlm_fig1.jpg" alt="BrainLM: Foundation model for brain activity" class="research-card__image">
+          </div>
           <div class="research-card__body">
             <span class="research-card__number">01</span>
             <h3 class="research-card__title">Foundation Models for Brain Activity</h3>
@@ -106,9 +148,10 @@
           </div>
         </a>
 
-        <!-- Neural Integral Equations -->
-        <a href="https://www.nature.com/articles/s42256-024-00886-8" target="_blank" rel="noopener" class="research-card fade-in" style="text-decoration:none;color:inherit;">
-          <img src="images/papers/nie_fig1.png" alt="Neural Integral Equations" class="research-card__image">
+        <a href="https://www.nature.com/articles/s42256-024-00886-8" target="_blank" rel="noopener" class="research-card fade-in">
+          <div class="research-card__image-wrap">
+            <img src="images/papers/nie_fig1.png" alt="Neural Integral Equations" class="research-card__image">
+          </div>
           <div class="research-card__body">
             <span class="research-card__number">02</span>
             <h3 class="research-card__title">Neural Integral Equations</h3>
@@ -119,9 +162,10 @@
           </div>
         </a>
 
-        <!-- Cholinergic Signaling -->
-        <a href="https://www.biorxiv.org/content/10.1101/2025.08.29.673096v1" target="_blank" rel="noopener" class="research-card fade-in" style="text-decoration:none;color:inherit;">
-          <img src="images/papers/cholinergic_fig1.jpg" alt="Cortical cholinergic signaling during learning" class="research-card__image">
+        <a href="https://www.biorxiv.org/content/10.1101/2025.08.29.673096v1" target="_blank" rel="noopener" class="research-card fade-in">
+          <div class="research-card__image-wrap">
+            <img src="images/papers/cholinergic_fig1.jpg" alt="Cortical cholinergic signaling during learning" class="research-card__image">
+          </div>
           <div class="research-card__body">
             <span class="research-card__number">03</span>
             <h3 class="research-card__title">Cortical Cholinergic Signaling &amp; Learning</h3>
@@ -132,14 +176,15 @@
           </div>
         </a>
 
-        <!-- Robustness & Adversarial -->
-        <a href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010932" target="_blank" rel="noopener" class="research-card fade-in" style="text-decoration:none;color:inherit;">
-          <img src="images/papers/robust_lowfreq_fig1.png" alt="Robust models rely on low frequency information" class="research-card__image">
+        <a href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010932" target="_blank" rel="noopener" class="research-card fade-in">
+          <div class="research-card__image-wrap">
+            <img src="images/papers/robust_lowfreq_fig1.png" alt="Robust models rely on low frequency information" class="research-card__image">
+          </div>
           <div class="research-card__body">
             <span class="research-card__number">04</span>
-            <h3 class="research-card__title">Robustness &amp; Generalization in Neural Networks</h3>
+            <h3 class="research-card__title">Robustness &amp; Generalization</h3>
             <p class="research-card__desc">
-              Robust deep learning models rely on low-frequency information in natural images. Local convolutions induce an implicit bias toward high-frequency adversarial examples via the Fourier Uncertainty Principle.
+              Robust deep learning models rely on low-frequency information. Local convolutions induce an implicit bias toward high-frequency adversarial examples via the Fourier Uncertainty Principle.
             </p>
             <span class="research-card__venue">PLOS Comp. Bio. 2023 &middot; Frontiers 2024</span>
           </div>
@@ -148,8 +193,8 @@
     </div>
   </section>
 
-  <!-- Featured Publications -->
-  <section class="section section--alt" id="featured-pubs">
+  <!-- Selected Publications -->
+  <section class="section section--alt" id="selected-pubs">
     <div class="container">
       <div class="section__header fade-in">
         <span class="section-label">Selected Publications</span>

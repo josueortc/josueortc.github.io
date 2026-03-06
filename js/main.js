@@ -20,26 +20,29 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  let lastScroll = 0;
   window.addEventListener('scroll', () => {
-    const currentScroll = window.pageYOffset;
-    if (currentScroll > 60) {
+    if (window.pageYOffset > 40) {
       nav.classList.add('nav--scrolled');
     } else {
       nav.classList.remove('nav--scrolled');
     }
-    lastScroll = currentScroll;
   }, { passive: true });
 
   const observerOptions = {
     root: null,
-    rootMargin: '0px 0px -80px 0px',
+    rootMargin: '0px 0px -60px 0px',
     threshold: 0.1
   };
 
+  let animDelay = 0;
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
+        const siblings = entry.target.parentElement.querySelectorAll('.fade-in');
+        let idx = Array.from(siblings).indexOf(entry.target);
+        if (idx < 0) idx = 0;
+        const delay = Math.min(idx * 80, 400);
+        entry.target.style.transitionDelay = delay + 'ms';
         entry.target.classList.add('fade-in--visible');
         observer.unobserve(entry.target);
       }
@@ -56,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (target) {
         e.preventDefault();
         const navHeight = nav.offsetHeight;
-        const targetPos = target.getBoundingClientRect().top + window.pageYOffset - navHeight;
+        const targetPos = target.getBoundingClientRect().top + window.pageYOffset - navHeight - 20;
         window.scrollTo({ top: targetPos, behavior: 'smooth' });
       }
     });
