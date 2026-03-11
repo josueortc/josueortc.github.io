@@ -4,22 +4,25 @@
    ============================================================ */
 
 :root {
-  --bg-primary: #0a0e1a;
-  --bg-secondary: #0f1424;
-  --bg-tertiary: #141a2e;
-  --bg-card: rgba(255, 255, 255, 0.03);
-  --bg-card-hover: rgba(255, 255, 255, 0.06);
-  --border-subtle: rgba(255, 255, 255, 0.07);
-  --border-hover: rgba(255, 255, 255, 0.14);
-  --text-primary: #FFFFFF;
-  --text-secondary: #a0a3b5;
-  --text-tertiary: #636680;
-  --accent-coral: #e06b5e;
-  --accent-coral-light: #f0857a;
-  --accent-teal: #5eb8d4;
-  --accent-teal-light: #7ecde3;
+  /* Light base shared with main site */
+  --bg-primary: #fafaf8;
+  --bg-secondary: #f3f3fb;
+  --bg-tertiary: #ecebfd;
+  --bg-card: rgba(0, 0, 0, 0.03);
+  --bg-card-hover: rgba(0, 0, 0, 0.05);
+  --border-subtle: rgba(0, 0, 0, 0.08);
+  --border-hover: rgba(0, 0, 0, 0.16);
+  --text-primary: #151526;
+  --text-secondary: #52526d;
+  --text-tertiary: #8a8aa3;
+
+  /* BrainLM-specific accents (indigo / violet) */
+  --accent-coral: #5046e5;
+  --accent-coral-light: #7c73f0;
+  --accent-teal: #6f8fc0;
+  --accent-teal-light: #9bb1de;
   --accent-gold: #d4a05e;
-  --accent-gradient: linear-gradient(135deg, var(--accent-coral), var(--accent-teal));
+  --accent-gradient: linear-gradient(135deg, #5046e5, #7c73f0);
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
   --nav-height: 72px;
@@ -43,8 +46,8 @@ body.no-scroll { overflow: hidden; }
 a { color: var(--accent-coral); text-decoration: none; transition: color var(--transition); }
 a:hover { color: var(--accent-coral-light); }
 img { max-width: 100%; height: auto; display: block; }
-strong { color: var(--accent-coral-light); font-weight: 600; }
-code { font-family: var(--font-mono); font-size: 0.88em; background: rgba(255,255,255,0.05); padding: 2px 6px; border-radius: 4px; }
+strong { color: var(--accent-coral); font-weight: 600; }
+code { font-family: var(--font-mono); font-size: 0.88em; background: rgba(0,0,0,0.04); padding: 2px 6px; border-radius: 4px; }
 
 .container { max-width: var(--container-width); margin: 0 auto; padding: 0 40px; }
 
@@ -66,11 +69,16 @@ h4 { font-size: 1.1rem; }
 
 /* ---- NAVIGATION ---- */
 .nav {
-  position: fixed; top: 0; left: 0; right: 0; height: var(--nav-height);
-  z-index: 1000; background: rgba(10, 14, 26, 0.88);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  box-shadow: 0 1px 0 var(--border-subtle);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--nav-height);
+  z-index: 1000;
+  background: rgba(250, 250, 248, 0.96);
+  backdrop-filter: blur(18px) saturate(180%);
+  -webkit-backdrop-filter: blur(18px) saturate(180%);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.04);
 }
 .nav__inner {
   max-width: var(--container-width); margin: 0 auto; padding: 0 40px;
@@ -89,14 +97,20 @@ h4 { font-size: 1.1rem; }
 
 /* ---- HERO ---- */
 .brainlm-hero {
-  min-height: 100vh; display: flex; align-items: center;
-  padding-top: var(--nav-height); position: relative; overflow: hidden;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding-top: var(--nav-height);
+  position: relative;
+  overflow: hidden;
 }
 .brainlm-hero::before {
-  content: ''; position: absolute; inset: 0;
+  content: '';
+  position: absolute;
+  inset: 0;
   background:
-    radial-gradient(ellipse 80% 60% at 70% 20%, rgba(94, 184, 212, 0.08) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 50% at 20% 80%, rgba(224, 107, 94, 0.06) 0%, transparent 60%);
+    radial-gradient(ellipse 75% 55% at 80% 0%, rgba(80, 70, 229, 0.20) 0%, transparent 65%),
+    radial-gradient(ellipse 55% 60% at 0% 90%, rgba(124, 115, 240, 0.14) 0%, transparent 70%);
   pointer-events: none;
 }
 .brainlm-hero__inner {
