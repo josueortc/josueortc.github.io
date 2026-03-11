@@ -22,7 +22,6 @@
         <li><a href="#data" class="nav__link">Data</a></li>
         <li><a href="#tokenization" class="nav__link">Tokenization</a></li>
         <li><a href="#architecture" class="nav__link">Architecture</a></li>
-        <li><a href="#example" class="nav__link">Example</a></li>
         <li><a href="#usage" class="nav__link">Usage</a></li>
       </ul>
       <button class="nav__toggle" aria-label="Toggle menu">
@@ -72,7 +71,10 @@
       </div>
 
       <div class="brainlm-hero__graphic" id="hero-brainlm-schematic">
-        <!-- Optional: static or JS-injected schematic -->
+        <div id="hero-brainlm-viz-3d"></div>
+        <p class="brainlm-hero__viz-caption">
+          Real parcellated fMRI (one subject, 200×400) projected on an anatomical brain mesh.
+        </p>
       </div>
     </div>
   </section>
@@ -84,7 +86,6 @@
       <a href="#data" class="toc-bar__link">Data</a>
       <a href="#tokenization" class="toc-bar__link">Tokenization</a>
       <a href="#architecture" class="toc-bar__link">Architecture</a>
-      <a href="#example" class="toc-bar__link">Example</a>
       <a href="#usage" class="toc-bar__link">Usage</a>
       <a href="#citation" class="toc-bar__link">Cite</a>
     </div>
@@ -200,7 +201,16 @@
         <h3>Token order (timepoint-major)</h3>
         <p>Tokens are arranged as: [CLS, all_parcels_t0, all_parcels_t1, &hellip;, all_parcels_tN]. Parcels at the same timepoint can attend to each other; attention across time is causal.</p>
         <div class="token-order__visual" id="token-order-viz">
-          <p style="color:var(--text-secondary);font-size:0.9rem;">See the embedded example below for a visualization tied to real data.</p>
+          <div id="brainlm-viz-container">
+            <!-- brainlm-viz.js mounts: 3D brain, ROI segmentation, 400 points, tokenization schematic -->
+            <div id="brainlm-viz-3d"></div>
+            <div id="brainlm-viz-points"></div>
+            <div id="brainlm-viz-tokenization"></div>
+          </div>
+          <p id="brainlm-viz-caption" class="demo-block__header" style="margin-top:16px;font-size:0.9rem;"></p>
+          <p style="margin-top:12px;">
+            <a href="data/example_recording.json" download class="btn btn--outline">Download example (JSON)</a>
+          </p>
         </div>
       </div>
     </div>
@@ -278,34 +288,15 @@
     </div>
   </section>
 
-  <!-- Example: Embedded real fMRI + synthetic quickstart -->
+  <!-- Synthetic quickstart -->
   <section class="section" id="example">
     <div class="container">
       <div class="section__header fade-in">
-        <span class="section-label">Example</span>
-        <h2 class="section-title">Embedded real fMRI &amp; quickstart</h2>
-        <p class="section-subtitle">Explore real parcellated fMRI data and run BrainLM with synthetic or real data.</p>
+        <span class="section-label">Synthetic quickstart</span>
+        <h2 class="section-title">Run BrainLM on toy data</h2>
+        <p class="section-subtitle">Generate a small Arrow dataset and run BrainLM end-to-end without needing large fMRI archives.</p>
       </div>
 
-      <!-- Embedded real fMRI visualization (4-part: 3D brain, ROI segmentation, 400 points, tokenization) -->
-      <div class="demo-block fade-in" id="embedded-fmri-viz">
-        <div class="demo-block__header">
-          <h3>Embedded example: real fMRI</h3>
-          <p>Below: 3D brain schematic with ROI segmentation, each brain area as a point (400-D), and tokenization of the recording. Data: one sample from OpenNeuro ds000228 (Schaefer 400). Use <code>num_brain_voxels=400</code> with this format.</p>
-        </div>
-        <div id="brainlm-viz-container">
-          <!-- brainlm-viz.js mounts: 3D brain, ROI segmentation, 400 points, tokenization schematic -->
-          <div id="brainlm-viz-3d"></div>
-          <div id="brainlm-viz-points"></div>
-          <div id="brainlm-viz-tokenization"></div>
-        </div>
-        <p id="brainlm-viz-caption" class="demo-block__header" style="margin-top:16px;font-size:0.9rem;"></p>
-        <p style="margin-top:12px;">
-          <a href="data/example_recording.json" download class="btn btn--outline">Download example (JSON)</a>
-        </p>
-      </div>
-
-      <!-- Synthetic quickstart -->
       <div class="usage-steps fade-in">
         <h3 style="margin-bottom:24px;">Synthetic quickstart (zero dependencies)</h3>
         <div class="usage-step">

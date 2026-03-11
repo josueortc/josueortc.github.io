@@ -48,7 +48,12 @@
         cap.textContent += ' Source: ' + (meta.source || '') + ', atlas: ' + (meta.atlas || '') + '.';
       }
 
-      // 3D brain + ROI points (Three.js)
+      // 3D brain + ROI points (Three.js) in hero and tokenization sections
+      var hero3d = document.getElementById('hero-brainlm-viz-3d');
+      if (hero3d && typeof THREE !== 'undefined' && coords.length >= nParcel) {
+        init3DBrain(hero3d, coords, recording, nParcel);
+      }
+
       var container3d = document.getElementById('brainlm-viz-3d');
       if (container3d && typeof THREE !== 'undefined' && coords.length >= nParcel) {
         init3DBrain(container3d, coords, recording, nParcel);
