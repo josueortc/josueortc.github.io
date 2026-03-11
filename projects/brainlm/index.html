@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BrainLM — A foundation model for brain activity recordings</title>
+  <meta name="description" content="BrainLM is a decoder-only transformer for fMRI that uses self-supervised masked-prediction training. Fine-tune for clinical variables, forecast brain states, or discover functional networks with zero-shot inference.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/brainlm.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav__inner">
+      <a href="../../index.html" class="nav__logo">JOC</a>
+      <ul class="nav__menu">
+        <li><a href="#abstract" class="nav__link">Abstract</a></li>
+        <li><a href="#data" class="nav__link">Data</a></li>
+        <li><a href="#tokenization" class="nav__link">Tokenization</a></li>
+        <li><a href="#architecture" class="nav__link">Architecture</a></li>
+        <li><a href="#example" class="nav__link">Example</a></li>
+        <li><a href="#usage" class="nav__link">Usage</a></li>
+      </ul>
+      <button class="nav__toggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="brainlm-hero">
+    <div class="container brainlm-hero__inner">
+      <div class="brainlm-hero__content">
+        <h1 class="brainlm-hero__title">BrainLM</h1>
+        <p class="brainlm-hero__subtitle">A foundation model for brain activity recordings</p>
+        <p class="brainlm-hero__desc">
+          We introduce the Brain Language Model (BrainLM), a <strong>foundation model for brain activity dynamics</strong> trained on 6,700 hours of fMRI recordings. Utilizing <strong>self-supervised masked-prediction training</strong>, BrainLM demonstrates proficiency in both fine-tuning and zero-shot inference. Fine-tuning allows for the accurate prediction of clinical variables like age, anxiety, and PTSD as well as forecasting of future brain states. In zero-shot mode, BrainLM can identify intrinsic functional networks directly from raw fMRI data.
+        </p>
+
+        <div class="brainlm-hero__authors">
+          <span class="brainlm-hero__author"><strong>Josue Ortega Caro</strong></span>
+          <span class="brainlm-hero__author">Antonio Henrique de Oliveira Fonseca</span>
+          <span class="brainlm-hero__author">Syed A Rizvi</span>
+          <span class="brainlm-hero__author">Matteo Rosati</span>
+          <span class="brainlm-hero__author">Christopher Averill</span>
+          <span class="brainlm-hero__author">James L Cross</span>
+          <span class="brainlm-hero__author">Prateek Mittal</span>
+          <span class="brainlm-hero__author">Emanuele Zappala</span>
+          <span class="brainlm-hero__author">Rahul Madhav Dhodapkar</span>
+          <span class="brainlm-hero__author">Chadi Abdallah</span>
+          <span class="brainlm-hero__author">David van Dijk</span>
+        </div>
+
+        <p class="brainlm-hero__affiliation">
+          Yale University &middot; Wu Tsai Institute &middot; Kavli Institute
+        </p>
+
+        <div class="brainlm-hero__actions">
+          <a href="https://openreview.net/forum?id=RwI7ZEfR27" target="_blank" rel="noopener" class="btn btn--primary">
+            Paper
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+          <a href="https://github.com/josueortc/BrainLM" target="_blank" rel="noopener" class="btn btn--outline">
+            Code
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="brainlm-hero__graphic" id="hero-brainlm-schematic">
+        <!-- Optional: static or JS-injected schematic -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Table of Contents -->
+  <div class="toc-bar">
+    <div class="container toc-bar__inner">
+      <a href="#abstract" class="toc-bar__link">Abstract</a>
+      <a href="#data" class="toc-bar__link">Data</a>
+      <a href="#tokenization" class="toc-bar__link">Tokenization</a>
+      <a href="#architecture" class="toc-bar__link">Architecture</a>
+      <a href="#example" class="toc-bar__link">Example</a>
+      <a href="#usage" class="toc-bar__link">Usage</a>
+      <a href="#citation" class="toc-bar__link">Cite</a>
+    </div>
+  </div>
+
+  <!-- Abstract -->
+  <section class="section" id="abstract">
+    <div class="container">
+      <div class="section__header fade-in">
+        <span class="section-label">Abstract</span>
+        <h2 class="section-title">Foundation model for brain dynamics</h2>
+      </div>
+      <div class="prose fade-in">
+        <p>
+          We introduce the Brain Language Model (BrainLM), a foundation model for brain activity dynamics trained on 6,700 hours of fMRI recordings. Utilizing self-supervised masked-prediction training, BrainLM demonstrates proficiency in both fine-tuning and zero-shot inference tasks. Fine-tuning allows for the accurate prediction of clinical variables like age, anxiety, and PTSD as well as forecasting of future brain states. Critically, the model generalizes well to entirely new external cohorts not seen during training.
+        </p>
+        <p>
+          In zero-shot inference mode, BrainLM can identify intrinsic functional networks directly from raw fMRI data without any network-based supervision during training. The model also generates interpretable latent representations that reveal relationships between brain activity patterns and cognitive states. Overall, BrainLM offers a versatile and interpretable framework for elucidating the complex spatiotemporal dynamics of human brain activity.
+        </p>
+        <p>
+          <strong>Implementation:</strong> The public repository provides a <strong>decoder-only transformer</strong> with <strong>block-causal attention</strong> over timepoint-major tokens, Hugging Face Hub integration, and support for pretraining and finetuning on Arrow-format fMRI data.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Data -->
+  <section class="section section--alt" id="data">
+    <div class="container">
+      <div class="section__header fade-in">
+        <span class="section-label">Data</span>
+        <h2 class="section-title">Parcellated fMRI (BOLD)</h2>
+        <p class="section-subtitle">BrainLM expects fMRI recordings in parcellated form: one time series per brain region (parcel).</p>
+      </div>
+
+      <div class="data-overview fade-in">
+        <div class="data-card">
+          <div class="data-card__icon data-card__icon--coral">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+          </div>
+          <h3 class="data-card__title">Parcellated BOLD</h3>
+          <p class="data-card__value">424 parcels (e.g. AAL)</p>
+          <p class="data-card__desc">Each sample is a matrix of shape (timepoints &times; num_parcels), e.g. 200 &times; 424 or 200 &times; 400 (Schaefer). Each column is one parcel's BOLD time series.</p>
+        </div>
+        <div class="data-card">
+          <div class="data-card__icon data-card__icon--teal">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12h4l3-9 4 18 3-9h4"/></svg>
+          </div>
+          <h3 class="data-card__title">Recording column</h3>
+          <p class="data-card__value">One column per sample</p>
+          <p class="data-card__desc">Default column name: <code>Voxelwise_RobustScaler_Normalized_Recording</code>. Optional metadata columns (age, clinical scores) for finetuning.</p>
+        </div>
+        <div class="data-card">
+          <div class="data-card__icon data-card__icon--gold">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+          </div>
+          <h3 class="data-card__title">Coordinates</h3>
+          <p class="data-card__value">424 &times; (X, Y, Z)</p>
+          <p class="data-card__desc">Separate Arrow dataset: one row per parcel, columns X, Y, Z (e.g. MNI space). Loaded once and broadcast to every sample.</p>
+        </div>
+      </div>
+
+      <div class="data-format fade-in">
+        <h3>Arrow dataset format</h3>
+        <p>Train and validation data are Hugging Face Arrow datasets saved with <code>dataset.save_to_disk(path)</code>. Each example has a recording matrix and optional metadata.</p>
+        <div class="code-block">
+<pre><code># Train/val: each example
+  recording_col:  (num_timepoints, num_parcels)  # e.g. (500, 424)
+  Age.At.MHQ:     float  # optional, for finetuning
+  PHQ9.Severity:  float  # optional
+
+# Coords: one dataset, num_parcels rows
+  X, Y, Z: float  # one row per parcel</code></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tokenization -->
+  <section class="section" id="tokenization">
+    <div class="container">
+      <div class="section__header fade-in">
+        <span class="section-label">Tokenization</span>
+        <h2 class="section-title">From fMRI to tokens</h2>
+        <p class="section-subtitle">Timepoint-major order; patches per parcel; xyz spatial + sinusoidal temporal encodings.</p>
+      </div>
+
+      <div class="token-comparison fade-in">
+        <div class="token-card">
+          <div class="token-card__header token-card__header--teal">
+            <span class="token-card__badge">BrainLM</span>
+            <h3>Patch-based, timepoint-major</h3>
+          </div>
+          <div class="token-card__body">
+            <p>Each parcel's time series (e.g. 200 timepoints) is split into <strong>patches</strong> of size P (e.g. 20) &rarr; 10 tokens per parcel. Each patch is projected to hidden size and receives <strong>xyz spatial</strong> (learned from parcel coordinates) and <strong>sinusoidal temporal</strong> encoding.</p>
+            <div class="token-card__detail">
+              <div class="token-card__label">Token count</div>
+              <div class="token-card__formula">(T/P) &times; num_parcels + 1 (CLS)</div>
+            </div>
+            <div class="token-card__detail">
+              <div class="token-card__label">Order</div>
+              <div class="token-card__formula">All parcels at t=0, then t=1, &hellip;</div>
+            </div>
+            <div class="token-card__detail">
+              <div class="token-card__label">Position</div>
+              <div class="token-card__formula">xyz_emb + temporal_emb</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="token-order fade-in">
+        <h3>Token order (timepoint-major)</h3>
+        <p>Tokens are arranged as: [CLS, all_parcels_t0, all_parcels_t1, &hellip;, all_parcels_tN]. Parcels at the same timepoint can attend to each other; attention across time is causal.</p>
+        <div class="token-order__visual" id="token-order-viz">
+          <p style="color:var(--text-secondary);font-size:0.9rem;">See the embedded example below for a visualization tied to real data.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Architecture -->
+  <section class="section section--alt" id="architecture">
+    <div class="container">
+      <div class="section__header fade-in">
+        <span class="section-label">Architecture</span>
+        <h2 class="section-title">Decoder-only transformer</h2>
+        <p class="section-subtitle">Block-causal attention: within-timepoint bidirectional, across-time causal. Masked reconstruction loss; CLS token for finetuning.</p>
+      </div>
+
+      <div class="arch-diagram fade-in">
+        <svg viewBox="0 0 900 200" class="arch-svg">
+          <g class="arch-node" transform="translate(10, 70)">
+            <rect x="0" y="0" width="100" height="60" rx="10" class="arch-node__box arch-node__box--input"/>
+            <text x="50" y="26" class="arch-node__title">fMRI</text>
+            <text x="50" y="44" class="arch-node__sub">(T, 424)</text>
+          </g>
+          <line x1="114" y1="100" x2="148" y2="100" class="arch-arrow"/>
+          <polygon points="146,95 156,100 146,105" class="arch-arrow-head"/>
+          <g class="arch-node" transform="translate(158, 50)">
+            <rect x="0" y="0" width="120" height="100" rx="10" class="arch-node__box arch-node__box--mask"/>
+            <text x="60" y="24" class="arch-node__title">Mask</text>
+            <text x="60" y="44" class="arch-node__sub">Random %</text>
+            <text x="60" y="64" class="arch-node__sub">or forward</text>
+            <text x="60" y="84" class="arch-node__sub arch-node__sub--accent">[MASK]</text>
+          </g>
+          <line x1="282" y1="100" x2="316" y2="100" class="arch-arrow"/>
+          <polygon points="314,95 324,100 314,105" class="arch-arrow-head"/>
+          <g class="arch-node" transform="translate(326, 55)">
+            <rect x="0" y="0" width="130" height="90" rx="10" class="arch-node__box"/>
+            <text x="65" y="24" class="arch-node__title">Tokenize</text>
+            <text x="65" y="44" class="arch-node__sub">Patch + xyz</text>
+            <text x="65" y="64" class="arch-node__sub">+ temporal</text>
+            <text x="65" y="82" class="arch-node__sub arch-node__sub--accent">+ CLS</text>
+          </g>
+          <line x1="460" y1="100" x2="494" y2="100" class="arch-arrow"/>
+          <polygon points="492,95 502,100 492,105" class="arch-arrow-head"/>
+          <g class="arch-node" transform="translate(504, 40)">
+            <rect x="0" y="0" width="180" height="120" rx="10" class="arch-node__box arch-node__box--main"/>
+            <text x="90" y="26" class="arch-node__title">Transformer</text>
+            <text x="90" y="48" class="arch-node__sub">Block-causal attention</text>
+            <text x="90" y="68" class="arch-node__sub">PreNorm, FFN (GELU)</text>
+            <text x="90" y="88" class="arch-node__sub">&times; L layers</text>
+            <text x="90" y="108" class="arch-node__sub arch-node__sub--accent">t attends to s &le; t</text>
+          </g>
+          <line x1="688" y1="100" x2="722" y2="100" class="arch-arrow"/>
+          <polygon points="720,95 730,100 720,105" class="arch-arrow-head"/>
+          <g class="arch-node" transform="translate(732, 65)">
+            <rect x="0" y="0" width="110" height="70" rx="10" class="arch-node__box arch-node__box--output"/>
+            <text x="55" y="26" class="arch-node__title">Output</text>
+            <text x="55" y="44" class="arch-node__sub">Recon (masked)</text>
+            <text x="55" y="62" class="arch-node__sub">CLS &rarr; MLP</text>
+          </g>
+        </svg>
+      </div>
+
+      <div class="arch-details fade-in">
+        <div class="arch-detail">
+          <h4>Block-causal attention</h4>
+          <p>Parcels at the same timepoint attend to each other (bidirectional). Parcels at time t can attend to all times s &le; t; no look-ahead. Implemented with a block lower-triangular mask.</p>
+        </div>
+        <div class="arch-detail">
+          <h4>Masking</h4>
+          <p>Random: a fraction of tokens (e.g. 75%) replaced with learned [MASK]. Forward: only the last temporal token per parcel masked. Loss is MSE or MAE on masked positions.</p>
+        </div>
+        <div class="arch-detail">
+          <h4>Finetuning</h4>
+          <p>A 3-layer MLP on the CLS token output supports scalar regression (e.g. age, PHQ9, PCL). Same input format as pretraining; optional metadata columns for targets.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Example: Embedded real fMRI + synthetic quickstart -->
+  <section class="section" id="example">
+    <div class="container">
+      <div class="section__header fade-in">
+        <span class="section-label">Example</span>
+        <h2 class="section-title">Embedded real fMRI &amp; quickstart</h2>
+        <p class="section-subtitle">Explore real parcellated fMRI data and run BrainLM with synthetic or real data.</p>
+      </div>
+
+      <!-- Embedded real fMRI visualization (4-part: 3D brain, ROI segmentation, 400 points, tokenization) -->
+      <div class="demo-block fade-in" id="embedded-fmri-viz">
+        <div class="demo-block__header">
+          <h3>Embedded example: real fMRI</h3>
+          <p>Below: 3D brain schematic with ROI segmentation, each brain area as a point (400-D), and tokenization of the recording. Data: one sample from OpenNeuro ds000228 (Schaefer 400). Use <code>num_brain_voxels=400</code> with this format.</p>
+        </div>
+        <div id="brainlm-viz-container">
+          <!-- brainlm-viz.js mounts: 3D brain, ROI segmentation, 400 points, tokenization schematic -->
+          <div id="brainlm-viz-3d"></div>
+          <div id="brainlm-viz-points"></div>
+          <div id="brainlm-viz-tokenization"></div>
+        </div>
+        <p id="brainlm-viz-caption" class="demo-block__header" style="margin-top:16px;font-size:0.9rem;"></p>
+        <p style="margin-top:12px;">
+          <a href="data/example_recording.json" download class="btn btn--outline">Download example (JSON)</a>
+        </p>
+      </div>
+
+      <!-- Synthetic quickstart -->
+      <div class="usage-steps fade-in">
+        <h3 style="margin-bottom:24px;">Synthetic quickstart (zero dependencies)</h3>
+        <div class="usage-step">
+          <div class="usage-step__num">1</div>
+          <div class="usage-step__content">
+            <h3>Generate synthetic data</h3>
+            <p>Create Arrow datasets (train, val, coords) with the expected schema.</p>
+            <div class="code-block">
+<pre><code>python generate_sample_data.py --output_dir ./sample_data --num_train 100 --num_val 20</code></pre>
+            </div>
+          </div>
+        </div>
+        <div class="usage-step">
+          <div class="usage-step__num">2</div>
+          <div class="usage-step__content">
+            <h3>Pretrain</h3>
+            <p>Run pretraining on the synthetic data.</p>
+            <div class="code-block">
+<pre><code>python train.py \
+  --output_dir ./runs/demo \
+  --train_dataset_path ./sample_data/train \
+  --val_dataset_path ./sample_data/val \
+  --coords_dataset_path ./sample_data/coords \
+  --num_timepoints_per_voxel 200 \
+  --timepoint_patching_size 20 \
+  --hidden_size 256 \
+  --num_hidden_layers 4 \
+  --max_train_samples 20</code></pre>
+            </div>
+          </div>
+        </div>
+        <div class="usage-step">
+          <div class="usage-step__num">3</div>
+          <div class="usage-step__content">
+            <h3>Finetune</h3>
+            <p>Finetune on a scalar target (e.g. age) using the same data format.</p>
+            <div class="code-block">
+<pre><code>python finetune.py \
+  --model_name_or_path ./runs/demo \
+  --train_dataset_path ./sample_data/train \
+  --val_dataset_path ./sample_data/val \
+  --coords_dataset_path ./sample_data/coords \
+  --variable_of_interest_col_name Age.At.MHQ \
+  --output_dir ./runs/finetune_demo</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Usage -->
+  <section class="section section--alt" id="usage">
+    <div class="container">
+      <div class="section__header fade-in">
+        <span class="section-label">Getting started</span>
+        <h2 class="section-title">How to use BrainLM</h2>
+      </div>
+
+      <div class="usage-steps fade-in">
+        <div class="usage-step">
+          <div class="usage-step__num">1</div>
+          <div class="usage-step__content">
+            <h3>Install</h3>
+            <p>Clone the repo and install dependencies.</p>
+            <div class="code-block">
+<pre><code>git clone https://github.com/josueortc/BrainLM.git
+cd BrainLM
+pip install -r requirements.txt
+# or: pip install -e .</code></pre>
+            </div>
+          </div>
+        </div>
+        <div class="usage-step">
+          <div class="usage-step__num">2</div>
+          <div class="usage-step__content">
+            <h3>Load from Hugging Face Hub</h3>
+            <p>If a pretrained model is on the Hub (e.g. <code>josueortc/brainlm</code>):</p>
+            <div class="code-block">
+<pre><code>from transformers import AutoConfig, AutoModelForPreTraining
+
+config = AutoConfig.from_pretrained("josueortc/brainlm", trust_remote_code=True)
+model = AutoModelForPreTraining.from_pretrained("josueortc/brainlm", trust_remote_code=True)</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Citation -->
+  <section class="section" id="citation">
+    <div class="container">
+      <div class="section__header fade-in">
+        <span class="section-label">Cite</span>
+        <h2 class="section-title">Cite BrainLM</h2>
+      </div>
+      <div class="citation-block fade-in">
+        <p class="citation-block__note">If you use BrainLM in your research, please consider citing:</p>
+        <div class="code-block code-block--cite">
+<pre><code>@inproceedings{ortegacaro2024brainlm,
+  title={BrainLM: A foundation model for brain activity recordings},
+  author={Ortega Caro, Josue and Oliveira Fonseca, Antonio Henrique and Rizvi, Syed A and Rosati, Matteo and Averill, Christopher and Cross, James L and Mittal, Prateek and Zappala, Emanuele and Dhodapkar, Rahul Madhav and Abdallah, Chadi and van Dijk, David},
+  booktitle={ICLR},
+  year={2024},
+  url={https://openreview.net/forum?id=RwI7ZEfR27}
+}</code></pre>
+        </div>
+        <button class="demo-btn" id="copy-cite-btn">Copy BibTeX</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div class="footer__info">
+          <h4>BrainLM</h4>
+          <p>
+            A foundation model for brain activity recordings.<br>
+            Decoder-only transformer with block-causal attention for fMRI.<br>
+            <a href="https://github.com/josueortc/BrainLM" target="_blank" rel="noopener" class="footer__link">GitHub</a> &middot; Yale University
+          </p>
+        </div>
+        <div class="footer__links">
+          <a href="https://openreview.net/forum?id=RwI7ZEfR27" target="_blank" rel="noopener" class="footer__link">Paper</a>
+          <a href="https://github.com/josueortc/BrainLM" target="_blank" rel="noopener" class="footer__link">GitHub</a>
+          <a href="../../index.html" class="footer__link">Back to Main Site</a>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        &copy; 2025 Josue Ortega Caro &middot; Yale University
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="js/brainlm-viz.js"></script>
+</body>
+</html>
