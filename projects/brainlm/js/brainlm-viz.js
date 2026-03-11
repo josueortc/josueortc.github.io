@@ -83,66 +83,173 @@
     renderer.setClearColor(0x0a0e1a, 0);
     container.appendChild(renderer.domElement);
 
-    // Brain: simple sphere (schematic)
-    var brainGeom = new THREE.SphereGeometry(1, 32, 24);
+    // Brain material (used for fallback mesh and optional loaded mesh)
     var brainMat = new THREE.MeshPhongMaterial({
       color: 0x1a2332,
       transparent: true,
-      opacity: 0.6,
-      wireframe: false
+      opacity: 0.7,
+      wireframe: false,
+      shininess: 40,
+      specular: 0x223344
     });
-    var brain = new THREE.Mesh(brainGeom, brainMat);
-    scene.add(brain);
 
-    // Scale coords to fit in unit sphere (normalize)
-    var scale = 0.8;
+    // Fallback brain: two-hemisphere mesh (left + right lobes)
+    var fallbackBrainGroup = new THREE.Group();
+    (function addFallbackBrain() {
+      var leftGeom = new THREE.SphereGeometry(0.5, 36, 28);
+      leftGeom.scale(0.9, 1.1, 0.95);
+      leftGeom.translate(-0.26, 0, 0);
+      var leftBrain = new THREE.Mesh(leftGeom, brainMat);
+      fallbackBrainGroup.add(leftBrain);
+
+      var rightGeom = new THREE.SphereGeometry(0.5, 36, 28);
+      rightGeom.scale(0.9, 1.1, 0.95);
+      rightGeom.translate(0.26, 0, 0);
+      var rightBrain = new THREE.Mesh(rightGeom, brainMat);
+      fallbackBrainGroup.add(rightBrain);
+    })();
+    scene.add(fallbackBrainGroup);
+
+    // Scale coords to fit inside brain volume (normalize, centered)
+    var scale = 0.75;
     var xs = coords.map(function (c) { return c[0]; });
     var ys = coords.map(function (c) { return c[1]; });
     var zs = coords.map(function (c) { return c[2]; });
-    var maxR = Math.max(
-      Math.max.apply(null, xs.map(Math.abs)),
-      Math.max.apply(null, ys.map(Math.abs)),
-      Math.max.apply(null, zs.map(Math.abs))
-    ) || 1;
+    var minX = Math.min.apply(null, xs);
+    var maxX = Math.max.apply(null, xs);
+    var minY = Math.min.apply(null, ys);
+    var maxY = Math.max.apply(null, ys);
+    var minZ = Math.min.apply(null, zs);
+    var maxZ = Math.max.apply(null, zs);
+    var cx = 0.5 * (minX + maxX);
+    var cy = 0.5 * (minY + maxY);
+    var cz = 0.5 * (minZ + maxZ);
+    var dx = maxX - minX;
+    var dy = maxY - minY;
+    var dz = maxZ - minZ;
+    var maxR = Math.max(dx, dy, dz) * 0.5 || 1;
     var pointsGeom = new THREE.BufferGeometry();
     var positions = new Float32Array(nParcel * 3);
     var colors = new Float32Array(nParcel * 3);
-    var meanSig = recording[0].map(function (_, j) {
-      var s = 0;
-      for (var t = 0; t < recording.length; t++) s += recording[t][j];
-      return s / recording.length;
-    });
-    var minS = Math.min.apply(null, meanSig);
-    var maxS = Math.max.apply(null, meanSig) || 1;
     for (var i = 0; i < nParcel; i++) {
-      positions[i * 3] = (coords[i][0] / maxR) * scale;
-      positions[i * 3 + 1] = (coords[i][1] / maxR) * scale;
-      positions[i * 3 + 2] = (coords[i][2] / maxR) * scale;
-      var t = (meanSig[i] - minS) / (maxS - minS + 1e-6);
-      t = isNaN(t) ? 0.5 : t;
-      colors[i * 3] = 0.2 + 0.6 * t;
-      colors[i * 3 + 1] = 0.5;
-      colors[i * 3 + 2] = 0.8 - 0.3 * t;
+      var px = coords[i][0] - cx;
+      var py = coords[i][1] - cy;
+      var pz = coords[i][2] - cz;
+      positions[i * 3] = (px / maxR) * scale;
+      positions[i * 3 + 1] = (py / maxR) * scale;
+      positions[i * 3 + 2] = (pz / maxR) * scale;
     }
     pointsGeom.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-    pointsGeom.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+    var colorAttr = new THREE.BufferAttribute(colors, 3);
+    pointsGeom.setAttribute('color', colorAttr);
     var pointsMat = new THREE.PointsMaterial({
-      size: 0.03,
+      size: 0.045,
       vertexColors: true,
-      sizeAttenuation: true
+      sizeAttenuation: true,
+      transparent: true,
+      opacity: 0.95
     });
     var points = new THREE.Points(pointsGeom, pointsMat);
     scene.add(points);
 
-    var light = new THREE.DirectionalLight(0xffffff, 0.8);
+    var light = new THREE.DirectionalLight(0xffffff, 0.9);
     light.position.set(2, 2, 2);
     scene.add(light);
-    scene.add(new THREE.AmbientLight(0xffffff, 0.4));
+    scene.add(new THREE.AmbientLight(0xffffff, 0.5));
     camera.position.set(2.2, 1.5, 2.2);
     camera.lookAt(0, 0, 0);
 
+    // Option A: load a real brain mesh if OBJLoader is available and the file exists.
+    if (typeof THREE.OBJLoader === 'function') {
+      try {
+        var objLoader = new THREE.OBJLoader();
+        objLoader.load(
+          'data/brain.obj',
+          function (object) {
+            // Remove fallback once real mesh is available
+            scene.remove(fallbackBrainGroup);
+
+            // Center and scale loaded mesh to roughly match point cloud extent
+            object.traverse(function (child) {
+              if (child.isMesh && child.geometry && child.geometry.attributes && child.geometry.attributes.position) {
+                child.material = brainMat;
+                var geom = child.geometry;
+                var posAttr = geom.attributes.position;
+                var len = posAttr.count;
+                var minBX = Infinity, maxBX = -Infinity;
+                var minBY = Infinity, maxBY = -Infinity;
+                var minBZ = Infinity, maxBZ = -Infinity;
+                for (var vi = 0; vi < len; vi++) {
+                  var vx = posAttr.getX(vi);
+                  var vy = posAttr.getY(vi);
+                  var vz = posAttr.getZ(vi);
+                  if (vx < minBX) minBX = vx;
+                  if (vx > maxBX) maxBX = vx;
+                  if (vy < minBY) minBY = vy;
+                  if (vy > maxBY) maxBY = vy;
+                  if (vz < minBZ) minBZ = vz;
+                  if (vz > maxBZ) maxBZ = vz;
+                }
+                var mCx = 0.5 * (minBX + maxBX);
+                var mCy = 0.5 * (minBY + maxBY);
+                var mCz = 0.5 * (minBZ + maxBZ);
+                var mDx = maxBX - minBX;
+                var mDy = maxBY - minBY;
+                var mDz = maxBZ - minBZ;
+                var mR = Math.max(mDx, mDy, mDz) * 0.5 || 1;
+                var meshScale = scale / 1.0; // keep similar extent to point cloud
+
+                for (var vj = 0; vj < len; vj++) {
+                  var ox = posAttr.getX(vj);
+                  var oy = posAttr.getY(vj);
+                  var oz = posAttr.getZ(vj);
+                  var nx = ((ox - mCx) / mR) * meshScale;
+                  var ny = ((oy - mCy) / mR) * meshScale;
+                  var nz = ((oz - mCz) / mR) * meshScale;
+                  posAttr.setXYZ(vj, nx, ny, nz);
+                }
+                posAttr.needsUpdate = true;
+              }
+            });
+
+            scene.add(object);
+          },
+          undefined,
+          function () {
+            // If load fails, keep fallback brain.
+          }
+        );
+      } catch (e) {
+        // If loader construction fails, keep fallback brain.
+      }
+    }
+
+    var nTime = recording.length;
+    var timeIdx = 0;
+    var frameCount = 0;
+
     function animate() {
       requestAnimationFrame(animate);
+      frameCount++;
+      if (frameCount % 2 === 0) {
+        timeIdx = (timeIdx + 1) % nTime;
+        var row = recording[timeIdx];
+        var minV = row[0];
+        var maxV = row[0];
+        for (var k = 1; k < row.length; k++) {
+          if (row[k] < minV) minV = row[k];
+          if (row[k] > maxV) maxV = row[k];
+        }
+        var range = maxV - minV || 1;
+        for (var i = 0; i < nParcel; i++) {
+          var v = (row[i] - minV) / range;
+          v = Math.max(0, Math.min(1, v));
+          colors[i * 3] = 0.15 + 0.85 * v;
+          colors[i * 3 + 1] = 0.4 + 0.6 * v;
+          colors[i * 3 + 2] = 0.6 + 0.4 * v;
+        }
+        colorAttr.needsUpdate = true;
+      }
       renderer.render(scene, camera);
     }
     animate();
