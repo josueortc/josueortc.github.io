@@ -164,69 +164,41 @@
     camera.position.set(2.2, 1.5, 2.2);
     camera.lookAt(0, 0, 0);
 
-    // Option A: load a real brain mesh if OBJLoader is available and the file exists.
+    // Load real brain mesh (Brainder pial surface) via OBJLoader; keep fallback if unavailable.
     if (typeof THREE.OBJLoader === 'function') {
-      try {
-        var objLoader = new THREE.OBJLoader();
-        objLoader.load(
-          'data/brain.obj',
-          function (object) {
-            // Remove fallback once real mesh is available
-            scene.remove(fallbackBrainGroup);
+      var objLoader = new THREE.OBJLoader();
+      objLoader.load(
+        'data/brain.obj',
+        function (object) {
+          scene.remove(fallbackBrainGroup);
 
-            // Center and scale loaded mesh to roughly match point cloud extent
-            object.traverse(function (child) {
-              if (child.isMesh && child.geometry && child.geometry.attributes && child.geometry.attributes.position) {
-                child.material = brainMat;
-                var geom = child.geometry;
-                var posAttr = geom.attributes.position;
-                var len = posAttr.count;
-                var minBX = Infinity, maxBX = -Infinity;
-                var minBY = Infinity, maxBY = -Infinity;
-                var minBZ = Infinity, maxBZ = -Infinity;
-                for (var vi = 0; vi < len; vi++) {
-                  var vx = posAttr.getX(vi);
-                  var vy = posAttr.getY(vi);
-                  var vz = posAttr.getZ(vi);
-                  if (vx < minBX) minBX = vx;
-                  if (vx > maxBX) maxBX = vx;
-                  if (vy < minBY) minBY = vy;
-                  if (vy > maxBY) maxBY = vy;
-                  if (vz < minBZ) minBZ = vz;
-                  if (vz > maxBZ) maxBZ = vz;
-                }
-                var mCx = 0.5 * (minBX + maxBX);
-                var mCy = 0.5 * (minBY + maxBY);
-                var mCz = 0.5 * (minBZ + maxBZ);
-                var mDx = maxBX - minBX;
-                var mDy = maxBY - minBY;
-                var mDz = maxBZ - minBZ;
-                var mR = Math.max(mDx, mDy, mDz) * 0.5 || 1;
-                var meshScale = scale / 1.0; // keep similar extent to point cloud
+          object.traverse(function (child) {
+            if (child.isMesh) {
+              child.material = brainMat;
+            }
+          });
 
-                for (var vj = 0; vj < len; vj++) {
-                  var ox = posAttr.getX(vj);
-                  var oy = posAttr.getY(vj);
-                  var oz = posAttr.getZ(vj);
-                  var nx = ((ox - mCx) / mR) * meshScale;
-                  var ny = ((oy - mCy) / mR) * meshScale;
-                  var nz = ((oz - mCz) / mR) * meshScale;
-                  posAttr.setXYZ(vj, nx, ny, nz);
-                }
-                posAttr.needsUpdate = true;
-              }
-            });
+          var box = new THREE.Box3().setFromObject(object);
+          var center = new THREE.Vector3();
+          var size = new THREE.Vector3();
+          box.getCenter(center);
+          box.getSize(size);
 
-            scene.add(object);
-          },
-          undefined,
-          function () {
-            // If load fails, keep fallback brain.
-          }
-        );
-      } catch (e) {
-        // If loader construction fails, keep fallback brain.
-      }
+          object.position.sub(center);
+
+          var maxDim = Math.max(size.x, size.y, size.z) || 1;
+          var meshScale = (scale * 2) / maxDim;
+          object.scale.set(meshScale, meshScale, meshScale);
+
+          scene.add(object);
+        },
+        undefined,
+        function (err) {
+          console.error('BrainLM: failed to load brain.obj, using fallback mesh.', err);
+        }
+      );
+    } else {
+      console.warn('BrainLM: THREE.OBJLoader not available, using fallback mesh.');
     }
 
     var nTime = recording.length;
