@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NeuroMIB | Data</title>
-  <meta name="description" content="NeuroMIB data overview with modality coverage and public/hidden benchmark artifact schema.">
+  <title>NeuroMIB | Submission Guide</title>
+  <meta name="description" content="Submission and validation requirements for NeuroMIB benchmark entries.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/neuromib.css">
 </head>
-<body data-page="data">
+<body data-page="docs">
   <nav class="nav">
     <div class="container nav__inner">
       <a class="nav__logo" href="./index.html">NeuroMIB</a>
@@ -27,48 +27,39 @@
   <main>
     <section class="hero">
       <div class="container">
-        <span class="badge">Data and Schema</span>
-        <h1>Observation Models and Instance Format</h1>
-        <p class="lead">Reference for modalities, benchmark artifacts, and hidden metadata used during evaluation.</p>
-        <p class="meta">Version: <strong>v1.0</strong> | Last updated: <strong>2026-03-30</strong></p>
+        <span class="badge">Submission and Validation</span>
+        <h1>Submit to NeuroMIB</h1>
+        <p class="lead">Prepare the required bundle, validate it locally, then run scoring.</p>
       </div>
     </section>
 
     <section class="section">
-      <div class="container">
-        <h2>Observation Modalities</h2>
-        <div id="modalities-grid" class="grid"></div>
-      </div>
-    </section>
-
-    <section class="section section--alt">
-      <div class="container">
-        <h2>Instance Schema</h2>
-<pre><code>instance_003.npz
-  x: [trials, time, channels] or [trials, regions, time, modalities]
-  y: task labels
-  meta_visible: trial condition metadata
-
-instance_003_hidden.npz
-  latent
-  support_mask
-  mechanism_label
-  intervention_targets
-  factor_metadata</code></pre>
-        <p class="muted">
-          Public instance files are used for local development. Hidden metadata files power strict benchmark scoring.
-        </p>
+      <div class="container two-col">
+        <article class="card">
+          <h2>Required Files</h2>
+          <ul>
+            <li><code>metadata.json</code></li>
+            <li><code>latent_predictions.parquet</code></li>
+            <li><code>mechanism_prediction.json</code></li>
+            <li><code>support_predictions.parquet</code></li>
+            <li><code>intervention_predictions.parquet</code></li>
+          </ul>
+        </article>
+        <article class="card">
+          <h2>Validation and Scoring</h2>
+<pre><code>neuromib-validate-submission --submission-dir submissions/example
+neuromib-score --instance data/public/family1/instance_000.npz --hidden data/public/family1/instance_000_hidden.npz --submission-dir submissions/example</code></pre>
+        </article>
       </div>
     </section>
   </main>
 
   <footer class="footer">
     <div class="container footer__inner">
-      <p>NeuroMIB data explorer</p>
+      <p>NeuroMIB submission guide</p>
       <a href="../../index.html">Back to main site</a>
     </div>
   </footer>
   <script src="js/site-shell.js"></script>
-  <script src="js/viz-families.js"></script>
 </body>
 </html>

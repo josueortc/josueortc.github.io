@@ -41,6 +41,7 @@ function renderTable(rows) {
   ];
   wrap.innerHTML = `
     <table>
+      <caption>Sortable leaderboard table. Use column headers to change sort order.</caption>
       <thead>
         <tr>
           ${headers
