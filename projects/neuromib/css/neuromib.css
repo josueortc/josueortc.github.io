@@ -19,6 +19,10 @@ body {
   line-height: 1.65;
 }
 
+p { margin: 0 0 12px; }
+ul { margin: 0 0 12px; padding-left: 20px; }
+li { margin-bottom: 6px; }
+
 .container {
   width: min(1120px, calc(100% - 48px));
   margin: 0 auto;
@@ -69,7 +73,7 @@ body {
 }
 
 .hero {
-  padding: 68px 0 52px;
+  padding: 72px 0 56px;
 }
 
 .badge {
@@ -93,6 +97,12 @@ h1 {
 h2 {
   margin: 0 0 18px;
   font-size: clamp(1.4rem, 3.4vw, 2rem);
+  line-height: 1.2;
+}
+
+h3 {
+  margin: 0 0 8px;
+  font-size: 1.05rem;
 }
 
 .subtitle {
@@ -104,6 +114,7 @@ h2 {
 .lead {
   max-width: 860px;
   color: var(--muted);
+  font-size: 1.05rem;
 }
 
 .actions {
@@ -118,6 +129,15 @@ h2 {
   border-radius: 10px;
   font-weight: 600;
   padding: 10px 16px;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
 }
 
 .btn--primary {
@@ -130,7 +150,7 @@ h2 {
   color: var(--text);
 }
 
-.section { padding: 52px 0; }
+.section { padding: 58px 0; }
 .section--alt { background: var(--bg-alt); }
 
 .grid {
@@ -149,7 +169,8 @@ h2 {
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: 14px;
-  padding: 20px;
+  padding: 22px;
+  box-shadow: 0 8px 28px rgba(25, 25, 35, 0.04);
 }
 
 .card h3 { margin-top: 0; }
@@ -160,6 +181,15 @@ h2 {
 }
 
 .muted { color: var(--muted); }
+.status { color: var(--muted); font-size: 0.92rem; }
+.status--error { color: #a11f1f; }
+.empty-state {
+  border: 1px dashed var(--border);
+  border-radius: 12px;
+  padding: 14px;
+  background: #fff;
+  color: var(--muted);
+}
 
 .bar-chart {
   display: grid;
@@ -191,7 +221,7 @@ h2 {
   border: 1px solid var(--border);
   border-radius: 14px;
   background: #fff;
-  padding: 16px;
+  padding: 18px;
 }
 
 table {
@@ -204,6 +234,7 @@ th, td {
   padding: 10px;
   border-bottom: 1px solid var(--border);
   text-align: left;
+  vertical-align: top;
 }
 
 th button {
@@ -213,6 +244,14 @@ th button {
   color: inherit;
   cursor: pointer;
   padding: 0;
+}
+
+select {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 10px;
+  background: #fff;
+  color: var(--text);
 }
 
 pre {
@@ -241,4 +280,6 @@ pre {
 @media (max-width: 760px) {
   .container { width: min(1120px, calc(100% - 28px)); }
   .bar-row { grid-template-columns: 130px 1fr 45px; }
+  .actions { gap: 8px; }
+  .btn { width: 100%; }
 }

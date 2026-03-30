@@ -45,7 +45,14 @@ async function initTaskViz() {
     renderTaskCards(tasks);
     renderWeights(weights);
   } catch (error) {
-    console.error(error);
+    const chart = document.getElementById("task-weight-chart");
+    const cards = document.getElementById("task-cards");
+    if (chart) {
+      chart.innerHTML = `<div class="empty-state">Task weighting data unavailable.</div>`;
+    }
+    if (cards) {
+      cards.innerHTML = `<div class="empty-state">Task cards unavailable.</div>`;
+    }
   }
 }
 

@@ -50,7 +50,14 @@ async function initFamiliesViz() {
     renderFamilySelector(families);
     renderModalities(families);
   } catch (error) {
-    console.error(error);
+    const details = document.getElementById("family-details");
+    const grid = document.getElementById("modalities-grid");
+    if (details) {
+      details.innerHTML = `<div class="empty-state">Family details unavailable.</div>`;
+    }
+    if (grid) {
+      grid.innerHTML = `<div class="empty-state">Modality data unavailable.</div>`;
+    }
   }
 }
 

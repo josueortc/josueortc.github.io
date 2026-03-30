@@ -26,13 +26,27 @@
   <main>
     <section class="hero">
       <div class="container">
-        <span class="badge">Public Track (Mock Data)</span>
+        <span class="badge">Leaderboard Preview</span>
         <h1>Interactive Leaderboard</h1>
-        <p class="lead">Sortable, data-driven public leaderboard mockup for NeuroMIB challenge operations.</p>
+        <p class="lead">Sortable benchmark rankings with track filters, score breakdowns, and transparent evaluation context.</p>
+        <p class="meta">Benchmark version: <strong>v1.0</strong> | Last updated: <strong>2026-03-30</strong> | Source: <code>leaderboard_public_mock.json</code></p>
       </div>
     </section>
 
     <section class="section">
+      <div class="container">
+        <div class="card">
+          <h2>How to Read This Leaderboard</h2>
+          <ul>
+            <li><strong>Public</strong>: visible resources for local development and iteration.</li>
+            <li><strong>Private</strong>: hidden resources used for robust final ranking.</li>
+            <li><strong>Total</strong>: weighted aggregate across latent, mechanism, support, and intervention tasks.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt">
       <div class="container">
         <div class="viz-panel">
           <label for="track-filter">Track:</label>
@@ -41,7 +55,28 @@
             <option value="public">Public</option>
             <option value="private">Private</option>
           </select>
+          <div id="leaderboard-status" class="muted" style="margin-top: 10px;"></div>
           <div id="leaderboard-table-wrap" style="margin-top: 12px;"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2>Reference Baselines</h2>
+        <div class="grid">
+          <article class="card">
+            <h3>Random Attribution</h3>
+            <p class="muted">Sanity-check floor expected to perform near chance across all tasks.</p>
+          </article>
+          <article class="card">
+            <h3>Linear Probe + Heuristics</h3>
+            <p class="muted">Simple baseline that validates schema and submission pipeline behavior.</p>
+          </article>
+          <article class="card">
+            <h3>Causal Rollout Family</h3>
+            <p class="muted">Higher-capacity mechanistic baseline for competitive public-track performance.</p>
+          </article>
         </div>
       </div>
     </section>
@@ -49,7 +84,7 @@
 
   <footer class="footer">
     <div class="container footer__inner">
-      <p>NeuroMIB leaderboard prototype</p>
+      <p>NeuroMIB leaderboard</p>
       <a href="../../index.html">Back to main site</a>
     </div>
   </footer>

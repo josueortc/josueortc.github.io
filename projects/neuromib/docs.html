@@ -27,27 +27,50 @@
     <section class="hero">
       <div class="container">
         <span class="badge">Submission and CLI</span>
-        <h1>Developer Documentation</h1>
-        <p class="lead">Quick reference for package usage, expected submission artifacts, and scoring commands.</p>
+        <h1>Submission Guide</h1>
+        <p class="lead">Practical submission workflow with required artifacts, validation steps, and common troubleshooting paths.</p>
       </div>
     </section>
 
     <section class="section">
       <div class="container two-col">
         <article class="card">
-          <h2>CLI Workflow</h2>
+          <h2>Step-by-Step CLI Workflow</h2>
 <pre><code>neuromib-generate --config neuromib/configs/public/family1_public.yaml --output data/public/family1
 neuromib-validate-submission --submission-dir submissions/example
 neuromib-score --instance data/public/family1/instance_000.npz --hidden data/public/family1/instance_000_hidden.npz --submission-dir submissions/example</code></pre>
+          <p class="muted">Run validation before scoring to catch schema and file-format issues early.</p>
         </article>
         <article class="card">
-          <h2>Required Submission Files</h2>
+          <h2>Required Submission Bundle</h2>
           <ul>
             <li><code>metadata.json</code></li>
             <li><code>latent_predictions.parquet</code></li>
             <li><code>mechanism_prediction.json</code></li>
             <li><code>support_predictions.parquet</code></li>
             <li><code>intervention_predictions.parquet</code></li>
+          </ul>
+          <p class="muted">All required files must be present and schema-compliant for leaderboard eligibility.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section section--alt">
+      <div class="container two-col">
+        <article class="card">
+          <h2>Artifact Expectations</h2>
+          <ul>
+            <li><code>metadata.json</code>: method identity, track, and benchmark version metadata.</li>
+            <li><code>mechanism_prediction.json</code>: primary mechanism label prediction.</li>
+            <li><code>*.parquet</code>: long-form prediction tables with required columns for latent/support/intervention tasks.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h2>Troubleshooting</h2>
+          <ul>
+            <li>Validation fails: confirm all required filenames and parquet columns exist.</li>
+            <li>Scoring mismatch: verify instance and hidden files are from the same benchmark run.</li>
+            <li>Low intervention score: inspect rank consistency and output-change calibration.</li>
           </ul>
         </article>
       </div>

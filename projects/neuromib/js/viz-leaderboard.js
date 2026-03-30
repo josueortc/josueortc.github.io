@@ -13,13 +13,26 @@ function scoreCell(value) {
   return Number(value).toFixed(3);
 }
 
+function setStatus(message, type = "info") {
+  const status = document.getElementById("leaderboard-status");
+  if (!status) return;
+  status.textContent = message;
+  status.className = type === "error" ? "status status--error" : "status";
+}
+
 function renderTable(rows) {
   const wrap = document.getElementById("leaderboard-table-wrap");
   if (!wrap) return;
+  if (!rows.length) {
+    wrap.innerHTML = `<div class="empty-state">No entries found for the selected track.</div>`;
+    return;
+  }
   const headers = [
     ["team", "Team"],
     ["method", "Method"],
     ["track", "Track"],
+    ["submission_date", "Submission Date"],
+    ["benchmark_version", "Version"],
     ["latent", "Latent"],
     ["mechanism", "Mechanism"],
     ["support", "Support"],
@@ -45,6 +58,8 @@ function renderTable(rows) {
               <td>${row.team}</td>
               <td>${row.method}</td>
               <td>${row.track}</td>
+              <td>${row.submission_date || "-"}</td>
+              <td>${row.benchmark_version || "-"}</td>
               <td>${scoreCell(row.latent)}</td>
               <td>${scoreCell(row.mechanism)}</td>
               <td>${scoreCell(row.support)}</td>
@@ -72,6 +87,7 @@ function renderTable(rows) {
 }
 
 async function initLeaderboard() {
+  setStatus("Loading leaderboard...");
   try {
     const allRows = await loadLeaderboard();
     const filterEl = document.getElementById("track-filter");
@@ -89,11 +105,16 @@ async function initLeaderboard() {
       return descending ? b[sortKey] - a[sortKey] : a[sortKey] - b[sortKey];
     });
     renderTable(rows);
+    setStatus(`Showing ${rows.length} entries (${filter} track filter).`);
     if (filterEl) {
       filterEl.onchange = () => initLeaderboard();
     }
   } catch (error) {
-    console.error(error);
+    setStatus("Could not load leaderboard data. Please refresh or verify data files.", "error");
+    const wrap = document.getElementById("leaderboard-table-wrap");
+    if (wrap) {
+      wrap.innerHTML = `<div class="empty-state">Leaderboard unavailable.</div>`;
+    }
   }
 }
 
