@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NeuroMIB | Benchmark</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/neuromib.css">
+</head>
+<body data-page="benchmark">
+  <nav class="nav">
+    <div class="container nav__inner">
+      <a class="nav__logo" href="./index.html">NeuroMIB</a>
+      <div class="nav__links">
+        <a data-nav="index" href="./index.html">Overview</a>
+        <a data-nav="benchmark" href="./benchmark.html">Benchmark</a>
+        <a data-nav="data" href="./data.html">Data</a>
+        <a data-nav="leaderboard" href="./leaderboard.html">Leaderboard</a>
+        <a data-nav="docs" href="./docs.html">Docs</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <span class="badge">Benchmark Design</span>
+        <h1>Tasks, Families, and Scoring</h1>
+        <p class="lead">Interactive summaries of NeuroMIB tasks and synthetic mechanism families.</p>
+      </div>
+    </section>
+
+    <section class="section section--alt">
+      <div class="container">
+        <h2>Task Weighting</h2>
+        <div class="viz-panel">
+          <div id="task-weight-chart" class="bar-chart"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2>Benchmark Tasks</h2>
+        <div id="task-cards" class="grid"></div>
+      </div>
+    </section>
+
+    <section class="section section--alt">
+      <div class="container">
+        <h2>Mechanism Family Explorer</h2>
+        <div class="card">
+          <label for="family-select">Choose family:</label>
+          <select id="family-select"></select>
+          <div id="family-details" style="margin-top: 12px;"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p>NeuroMIB benchmark explorer</p>
+      <a href="../../index.html">Back to main site</a>
+    </div>
+  </footer>
+  <script src="js/site-shell.js"></script>
+  <script src="js/viz-tasks.js"></script>
+  <script src="js/viz-families.js"></script>
+</body>
+</html>

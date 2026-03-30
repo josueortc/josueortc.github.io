@@ -3,112 +3,78 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NeuroMIB — Mechanistic Interpretability Benchmark</title>
-  <meta name="description" content="NeuroMIB is a mechanistic interpretability benchmark for systems neuroscience using synthetic neural population dynamics.">
+  <title>NeuroMIB | Standalone Mini-Site</title>
+  <meta name="description" content="NeuroMIB standalone mini-site: benchmark overview, tasks, data, leaderboard, and docs.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/neuromib.css">
 </head>
-<body>
+<body data-page="index">
   <nav class="nav">
     <div class="container nav__inner">
-      <a class="nav__logo" href="../../index.html">JOC</a>
+      <a class="nav__logo" href="./index.html">NeuroMIB</a>
       <div class="nav__links">
-        <a href="#overview">Overview</a>
-        <a href="#tasks">Tasks</a>
-        <a href="#tracks">Tracks</a>
-        <a href="#package">Package</a>
+        <a data-nav="index" href="./index.html">Overview</a>
+        <a data-nav="benchmark" href="./benchmark.html">Benchmark</a>
+        <a data-nav="data" href="./data.html">Data</a>
+        <a data-nav="leaderboard" href="./leaderboard.html">Leaderboard</a>
+        <a data-nav="docs" href="./docs.html">Docs</a>
       </div>
     </div>
   </nav>
 
-  <header class="hero" id="overview">
+  <header class="hero">
     <div class="container">
-      <span class="badge">Benchmark</span>
-      <h1>NeuroMIB</h1>
-      <p class="subtitle">A mechanistic interpretability benchmark for systems neuroscience through neural dynamics.</p>
+      <span class="badge">Mechanistic Interpretability Benchmark</span>
+      <h1>Recovering Neural Computation Through Dynamics</h1>
+      <p class="subtitle">A standalone NeuroMIB mini-site hosted inside josueortc.github.io</p>
       <p class="lead">
-        NeuroMIB evaluates whether an interpretability method can recover latent variables, mechanism class,
-        computational support, and intervention effects from models trained on synthetic population dynamics.
+        NeuroMIB evaluates whether interpretability methods recover causal latent variables, mechanism classes,
+        computational support, and intervention effects from synthetic neural population dynamics with known ground truth.
       </p>
       <div class="actions">
-        <a class="btn btn--primary" href="https://github.com/josueortc/NeuroMIB" target="_blank" rel="noopener">GitHub Repository</a>
-        <a class="btn btn--outline" href="../../publications.html">Back to Main Site</a>
+        <a class="btn btn--primary" href="./benchmark.html">Explore Benchmark</a>
+        <a class="btn btn--outline" href="https://github.com/josueortc/NeuroMIB" target="_blank" rel="noopener">Repository</a>
       </div>
     </div>
   </header>
 
   <main>
-    <section class="section" id="tasks">
-      <div class="container">
-        <h2>Core Benchmark Tasks</h2>
-        <div class="grid">
-          <article class="card">
-            <h3>Task A: Latent Recovery</h3>
-            <p>Recover hidden trajectories such as ring angle, evidence state, context, and communication state.</p>
-            <p class="meta">Metrics: R2, circular correlation, mutual information, subspace correlation.</p>
-          </article>
-          <article class="card">
-            <h3>Task B: Mechanism Classification</h3>
-            <p>Predict mechanism class across ring, rotation, decision, switching, low-rank, communication, or mixed.</p>
-            <p class="meta">Metrics: exact accuracy, top-2 accuracy, mixed-case partial credit.</p>
-          </article>
-          <article class="card">
-            <h3>Task C: Support Recovery</h3>
-            <p>Identify where computation lives across channels, time, regions, and model-internal components.</p>
-            <p class="meta">Metrics: AUROC, AUPRC, IoU, top-k precision, sparse-support F1.</p>
-          </article>
-          <article class="card">
-            <h3>Task D: Intervention Prediction</h3>
-            <p>Predict effects of lesioning, shuffling, clamping, modality silencing, and pathway/subspace disruptions.</p>
-            <p class="meta">Metrics: effect correlation, MAE, rank consistency.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section--alt" id="tracks">
-      <div class="container">
-        <h2>Public and Private Tracks</h2>
-        <div class="two-col">
-          <div class="card">
-            <h3>Public Track</h3>
-            <ul>
-              <li>Released generators, configurations, and scoring code</li>
-              <li>Public train/validation and visible test split</li>
-              <li>Local iteration and public leaderboard submission</li>
-            </ul>
-          </div>
-          <div class="card">
-            <h3>Private Track</h3>
-            <ul>
-              <li>Hidden generator combinations and noise regimes</li>
-              <li>Hidden interventions and labels</li>
-              <li>Final ranking based on private evaluation only</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="package">
-      <div class="container">
-        <h2>Python Package and CLI</h2>
-        <p>NeuroMIB ships as a Python package with reproducible generation and scoring commands.</p>
-<pre><code>neuromib-generate --config neuromib/configs/public/family1_public.yaml --output data/public/family1
-neuromib-validate-submission --submission-dir submissions/example
-neuromib-score --instance data/public/family1/instance_000.npz --hidden data/public/family1/instance_000_hidden.npz --submission-dir submissions/example</code></pre>
+    <section class="section">
+      <div class="container two-col">
+        <article class="card">
+          <h2>What Makes NeuroMIB Different</h2>
+          <p>
+            This benchmark is not saliency-only and not decoder-only. It measures whether explanations are causally
+            faithful to hidden mechanisms in synthetic systems neuroscience.
+          </p>
+          <ul>
+            <li>Mechanism-aware synthetic generators with hidden causal metadata</li>
+            <li>Public and private split for anti-overfitting evaluation</li>
+            <li>Intervention-heavy scoring to reward causal validity</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h2>Mini-Site Sections</h2>
+          <ul>
+            <li><strong>Benchmark</strong>: task and mechanism family explorer</li>
+            <li><strong>Data</strong>: modality and schema views</li>
+            <li><strong>Leaderboard</strong>: interactive mock rankings</li>
+            <li><strong>Docs</strong>: CLI and submission format</li>
+          </ul>
+          <p class="muted">All pages use embedded JSON data and local JS modules.</p>
+        </article>
       </div>
     </section>
   </main>
 
   <footer class="footer">
     <div class="container footer__inner">
-      <p>NeuroMIB — recovering neural computation through dynamics.</p>
-      <a href="../../index.html">Back to main page</a>
+      <p>NeuroMIB mini-site | Hosted at <code>projects/neuromib/</code></p>
+      <a href="../../index.html">Back to main site</a>
     </div>
   </footer>
-  <script src="js/neuromib.js"></script>
+  <script src="js/site-shell.js"></script>
 </body>
 </html>

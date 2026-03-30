@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NeuroMIB | Leaderboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/neuromib.css">
+</head>
+<body data-page="leaderboard">
+  <nav class="nav">
+    <div class="container nav__inner">
+      <a class="nav__logo" href="./index.html">NeuroMIB</a>
+      <div class="nav__links">
+        <a data-nav="index" href="./index.html">Overview</a>
+        <a data-nav="benchmark" href="./benchmark.html">Benchmark</a>
+        <a data-nav="data" href="./data.html">Data</a>
+        <a data-nav="leaderboard" href="./leaderboard.html">Leaderboard</a>
+        <a data-nav="docs" href="./docs.html">Docs</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <span class="badge">Public Track (Mock Data)</span>
+        <h1>Interactive Leaderboard</h1>
+        <p class="lead">Sortable, data-driven public leaderboard mockup for NeuroMIB challenge operations.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="viz-panel">
+          <label for="track-filter">Track:</label>
+          <select id="track-filter">
+            <option value="all">All</option>
+            <option value="public">Public</option>
+            <option value="private">Private</option>
+          </select>
+          <div id="leaderboard-table-wrap" style="margin-top: 12px;"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p>NeuroMIB leaderboard prototype</p>
+      <a href="../../index.html">Back to main site</a>
+    </div>
+  </footer>
+  <script src="js/site-shell.js"></script>
+  <script src="js/viz-leaderboard.js"></script>
+</body>
+</html>

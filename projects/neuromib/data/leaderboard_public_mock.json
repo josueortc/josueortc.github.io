@@ -1,0 +1,32 @@
+[
+  {
+    "team": "NeuroLabA",
+    "method": "CausalRollout",
+    "track": "public",
+    "latent": 0.74,
+    "mechanism": 0.69,
+    "support": 0.67,
+    "intervention": 0.72,
+    "total": 0.706
+  },
+  {
+    "team": "DynExplain",
+    "method": "ProbePlusMediation",
+    "track": "public",
+    "latent": 0.71,
+    "mechanism": 0.73,
+    "support": 0.64,
+    "intervention": 0.70,
+    "total": 0.694
+  },
+  {
+    "team": "SystemML",
+    "method": "SparseComponents",
+    "track": "private",
+    "latent": 0.68,
+    "mechanism": 0.66,
+    "support": 0.70,
+    "intervention": 0.65,
+    "total": 0.671
+  }
+]

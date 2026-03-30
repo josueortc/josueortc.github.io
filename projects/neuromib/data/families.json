@@ -1,0 +1,38 @@
+[
+  {
+    "id": "ring_attractor",
+    "name": "Ring Attractor",
+    "latents": ["angle", "gain", "cue_anchor"],
+    "variants": ["stable", "dark_drift", "cue_conflict", "remap"]
+  },
+  {
+    "id": "rotational_dynamics",
+    "name": "Rotational Dynamics",
+    "latents": ["plane1", "plane2", "condition_axis"],
+    "variants": ["autonomous", "input_triggered", "tilted_plane"]
+  },
+  {
+    "id": "decision_attractor",
+    "name": "Decision Attractor",
+    "latents": ["accumulator", "urgency", "commitment"],
+    "variants": ["line_like", "bistable", "delay_memory"]
+  },
+  {
+    "id": "switching_dynamics",
+    "name": "Switching Dynamics",
+    "latents": ["state_id", "switch_time", "regime_subspace"],
+    "variants": ["context_switch", "engagement", "hierarchical"]
+  },
+  {
+    "id": "lowrank_recurrent",
+    "name": "Low-Rank Recurrent",
+    "latents": ["rank_factors", "low_rank_axis"],
+    "variants": ["rank1", "rank2", "rank3"]
+  },
+  {
+    "id": "multi_area_communication",
+    "name": "Multi-Area Communication",
+    "latents": ["directed_graph", "lag", "active_pathway"],
+    "variants": ["feedforward", "bidirectional", "top_down", "lagged"]
+  }
+]

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NeuroMIB | Data</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/neuromib.css">
+</head>
+<body data-page="data">
+  <nav class="nav">
+    <div class="container nav__inner">
+      <a class="nav__logo" href="./index.html">NeuroMIB</a>
+      <div class="nav__links">
+        <a data-nav="index" href="./index.html">Overview</a>
+        <a data-nav="benchmark" href="./benchmark.html">Benchmark</a>
+        <a data-nav="data" href="./data.html">Data</a>
+        <a data-nav="leaderboard" href="./leaderboard.html">Leaderboard</a>
+        <a data-nav="docs" href="./docs.html">Docs</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <span class="badge">Data and Schema</span>
+        <h1>Observation Models and Instance Format</h1>
+        <p class="lead">Explore NeuroMIB modalities and benchmark instance objects.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2>Observation Modalities</h2>
+        <div id="modalities-grid" class="grid"></div>
+      </div>
+    </section>
+
+    <section class="section section--alt">
+      <div class="container">
+        <h2>Instance Schema</h2>
+<pre><code>instance_003.npz
+  x: [trials, time, channels] or [trials, regions, time, modalities]
+  y: task labels
+  meta_visible: trial condition metadata
+
+instance_003_hidden.npz
+  latent
+  support_mask
+  mechanism_label
+  intervention_targets
+  factor_metadata</code></pre>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p>NeuroMIB data explorer</p>
+      <a href="../../index.html">Back to main site</a>
+    </div>
+  </footer>
+  <script src="js/site-shell.js"></script>
+  <script src="js/viz-families.js"></script>
+</body>
+</html>

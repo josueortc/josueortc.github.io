@@ -1,0 +1,26 @@
+[
+  {
+    "id": "latent_recovery",
+    "name": "Latent Recovery",
+    "description": "Recover task-relevant hidden trajectories from model explanations.",
+    "metrics": ["R2", "CircularCorr", "SubspaceCorr", "AMI"]
+  },
+  {
+    "id": "mechanism_classification",
+    "name": "Mechanism Classification",
+    "description": "Predict the generating mechanism class or mixed classes.",
+    "metrics": ["Accuracy", "Top2", "HierarchyCredit"]
+  },
+  {
+    "id": "support_recovery",
+    "name": "Support Recovery",
+    "description": "Recover region/time/component support used by computation.",
+    "metrics": ["AUROC", "AUPRC", "IoU", "TopKPrecision", "SparseF1"]
+  },
+  {
+    "id": "intervention_prediction",
+    "name": "Intervention Prediction",
+    "description": "Predict effects of benchmark-defined perturbation families.",
+    "metrics": ["Corr", "MAE", "RankCorr"]
+  }
+]
