@@ -29,7 +29,7 @@
       <div class="container">
         <span class="badge">Documentation Hub</span>
         <h1>NeuroMIB Docs</h1>
-        <p class="lead">Everything needed to install, submit, validate, score, and contribute.</p>
+        <p class="lead">Everything needed to install, submit, validate, and run EvalAI-hosted benchmark evaluation.</p>
         <p class="meta">Version: <strong>v1.0</strong> | Last updated: <strong>2026-03-30</strong></p>
       </div>
     </section>
@@ -40,7 +40,7 @@
         <div class="grid">
           <article class="card">
             <h3>Install and Quickstart</h3>
-            <p>Set up the package and run a local generation/scoring cycle.</p>
+            <p>Set up the package and prepare artifacts for EvalAI-hosted evaluation.</p>
             <a class="btn btn--outline" href="./docs-install.html">Open Install Guide</a>
           </article>
           <article class="card">
@@ -60,11 +60,11 @@
     <section class="section section--alt">
       <div class="container two-col">
         <article class="card">
-          <h2>Core CLI Workflow</h2>
+          <h2>Core CLI + EvalAI Workflow</h2>
 <pre><code>neuromib-generate --config neuromib/configs/public/family1_public.yaml --output data/public/family1
 neuromib-validate-submission --submission-dir submissions/example
 neuromib-score --instance data/public/family1/instance_000.npz --hidden data/public/family1/instance_000_hidden.npz --submission-dir submissions/example</code></pre>
-          <p class="muted">Run validation before scoring to catch schema and file-format issues early.</p>
+          <p class="muted">Use local validation/scoring as preflight checks before EvalAI submission.</p>
         </article>
         <article class="card">
           <h2>Required Submission Bundle</h2>
