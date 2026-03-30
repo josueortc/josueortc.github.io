@@ -28,14 +28,14 @@
       <div class="container">
         <span class="badge">Submission and CLI</span>
         <h1>Submission Guide</h1>
-        <p class="lead">Practical submission workflow with required artifacts, validation steps, and common troubleshooting paths.</p>
+        <p class="lead">Submission workflow with required artifacts, validation steps, and common troubleshooting paths.</p>
       </div>
     </section>
 
     <section class="section">
       <div class="container two-col">
         <article class="card">
-          <h2>Step-by-Step CLI Workflow</h2>
+          <h2>CLI Workflow</h2>
 <pre><code>neuromib-generate --config neuromib/configs/public/family1_public.yaml --output data/public/family1
 neuromib-validate-submission --submission-dir submissions/example
 neuromib-score --instance data/public/family1/instance_000.npz --hidden data/public/family1/instance_000_hidden.npz --submission-dir submissions/example</code></pre>
@@ -50,7 +50,7 @@ neuromib-score --instance data/public/family1/instance_000.npz --hidden data/pub
             <li><code>support_predictions.parquet</code></li>
             <li><code>intervention_predictions.parquet</code></li>
           </ul>
-          <p class="muted">All required files must be present and schema-compliant for leaderboard eligibility.</p>
+          <p class="muted">All required files must be present and schema-compliant for leaderboard inclusion.</p>
         </article>
       </div>
     </section>
