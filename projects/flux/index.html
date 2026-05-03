@@ -17,6 +17,7 @@
     <div class="nav__inner">
       <a href="../../index.html" class="nav__logo">JOC</a>
       <ul class="nav__menu">
+        <li><a href="#figure-overview" class="nav__link">Figure</a></li>
         <li><a href="#overview" class="nav__link">Overview</a></li>
         <li><a href="#contributions" class="nav__link">Contributions</a></li>
         <li><a href="#pipeline" class="nav__link">Pipeline</a></li>
@@ -55,66 +56,31 @@
           <span class="btn btn--outline" style="opacity: 0.65; cursor: default; pointer-events: none;">Paper forthcoming</span>
         </div>
       </div>
+    </div>
+  </section>
 
-      <div class="flux-hero__graphic" aria-hidden="true">
-        <svg viewBox="0 0 420 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Schematic: curved manifold with a trajectory colored by two regimes">
-          <defs>
-            <linearGradient id="fluxManifoldGrad" x1="0%" y1="100%" x2="100%" y2="0%">
-              <stop offset="0%" stop-color="#e0e7ff"/>
-              <stop offset="55%" stop-color="#ede9fe"/>
-              <stop offset="100%" stop-color="#f5f3ff"/>
-            </linearGradient>
-            <filter id="fluxHeroShadow" x="-15%" y="-15%" width="130%" height="130%">
-              <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#3730a3" flood-opacity="0.12"/>
-            </filter>
-          </defs>
-          <!-- Embedded manifold (ribbon / surface hint) -->
-          <path
-            d="M 52 318 C 95 95 325 85 368 318 C 330 355 210 382 90 352 C 68 340 52 330 52 318 Z"
-            fill="url(#fluxManifoldGrad)"
-            filter="url(#fluxHeroShadow)"
-            opacity="0.92"/>
-          <path
-            d="M 70 305 C 110 120 310 115 350 300"
-            fill="none"
-            stroke="#c7d2fe"
-            stroke-width="36"
-            stroke-linecap="round"
-            opacity="0.55"/>
-          <!-- Trajectory: regime A then regime B along manifold -->
-          <path
-            d="M 78 298 C 118 135 178 118 210 168"
-            fill="none"
-            stroke="#4f46e5"
-            stroke-width="4.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"/>
-          <path
-            d="M 210 168 C 248 118 308 145 342 278"
-            fill="none"
-            stroke="#7c3aed"
-            stroke-width="4.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"/>
-          <!-- Unpaired snapshots / marginals along time -->
-          <circle cx="78" cy="298" r="6" fill="#fff" stroke="#4f46e5" stroke-width="2"/>
-          <circle cx="128" cy="188" r="5" fill="#fff" stroke="#4f46e5" stroke-width="1.8"/>
-          <circle cx="178" cy="152" r="5" fill="#fff" stroke="#4f46e5" stroke-width="1.8"/>
-          <circle cx="210" cy="168" r="7" fill="#fff" stroke="#6366f1" stroke-width="2.2"/>
-          <circle cx="268" cy="178" r="5" fill="#fff" stroke="#7c3aed" stroke-width="1.8"/>
-          <circle cx="318" cy="238" r="5" fill="#fff" stroke="#7c3aed" stroke-width="1.8"/>
-          <circle cx="342" cy="278" r="6" fill="#fff" stroke="#7c3aed" stroke-width="2"/>
-          <!-- Regime labels -->
-          <text x="118" y="52" fill="#4338ca" font-size="12" font-family="Inter, system-ui, sans-serif" font-weight="600">Regime A</text>
-          <text x="248" y="52" fill="#6d28d9" font-size="12" font-family="Inter, system-ui, sans-serif" font-weight="600">Regime B</text>
-          <text x="210" y="392" text-anchor="middle" fill="#64748b" font-size="11" font-family="Inter, system-ui, sans-serif">Manifold-aware path · longitudinal marginals</text>
-        </svg>
-      </div>
+  <section class="section section--tight section--alt" id="figure-overview">
+    <div class="container">
+      <figure class="flux-figure-card fade-in">
+        <img
+          src="images/figure-overview-ab.svg"
+          width="920"
+          height="440"
+          alt="Panel A: five unpaired population snapshots at times t₁–t₅. Panel B: wavy data manifold split into three regimes (amber, teal, indigo) with regime-colored samples and dashed boundaries."
+          class="flux-figure-card__img"
+          loading="eager"
+          decoding="async">
+        <figcaption class="flux-figure-card__caption">
+          Overview schematic (Figure 1 style): <strong>(A)</strong> longitudinal marginals are unpaired clouds at each timepoint;
+          <strong>(B)</strong> the same process lives on a manifold that can switch among qualitatively distinct dynamical regimes (site palette: amber, teal, indigo).
+        </figcaption>
+      </figure>
     </div>
   </section>
 
   <div class="toc-bar">
     <div class="container toc-bar__inner">
+      <a href="#figure-overview" class="toc-bar__link">Figure</a>
       <a href="#overview" class="toc-bar__link">Overview</a>
       <a href="#contributions" class="toc-bar__link">Contributions</a>
       <a href="#pipeline" class="toc-bar__link">Pipeline</a>
