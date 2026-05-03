@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FLUX — Geometry-Aware Longitudinal Flow Matching with Mixture of Experts</title>
+  <meta name="description" content="FLUX extends conditional flow matching for unpaired longitudinal snapshots: adjacent-marginal chaining, learned Riemannian metrics, and mixture-of-experts velocities for transport and regime discovery.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/flux.css">
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav__inner">
+      <a href="../../index.html" class="nav__logo">JOC</a>
+      <ul class="nav__menu">
+        <li><a href="#overview" class="nav__link">Overview</a></li>
+        <li><a href="#contributions" class="nav__link">Contributions</a></li>
+        <li><a href="#pipeline" class="nav__link">Pipeline</a></li>
+        <li><a href="#benchmarks" class="nav__link">Benchmarks</a></li>
+        <li><a href="#usage" class="nav__link">Usage</a></li>
+      </ul>
+      <button class="nav__toggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <section class="flux-hero">
+    <div class="container flux-hero__inner">
+      <div class="flux-hero__content">
+        <h1 class="flux-hero__title">FLUX</h1>
+        <p class="flux-hero__subtitle">Geometry-Aware Longitudinal Flow Matching with Mixture of Experts</p>
+        <p class="flux-hero__desc">
+          <strong>FLUX</strong> (<strong>Fl</strong>ow matching for <strong>U</strong>npaired longitudinal data with mi<strong>X</strong>ture-of-experts) couples <strong>adjacent-marginal transport</strong> along a chain of snapshots with <strong>metric flow matching</strong> and a <strong>MixtureVelocityNet</strong> for simultaneous generative modeling and unsupervised regime discovery.
+        </p>
+
+        <div class="flux-hero__authors">
+          <span class="flux-hero__author"><strong>Josue Ortega Caro</strong></span>
+          <span class="flux-hero__author">Collaborators</span>
+        </div>
+
+        <p class="flux-hero__affiliation">
+          Yale University &middot; Wu Tsai Institute &middot; Kavli Institute
+        </p>
+
+        <div class="flux-hero__actions">
+          <a href="https://github.com/josueortc/flux" target="_blank" rel="noopener" class="btn btn--primary">
+            Code
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+          </a>
+          <span class="btn btn--outline" style="opacity: 0.65; cursor: default; pointer-events: none;">Paper forthcoming</span>
+        </div>
+      </div>
+
+      <div class="flux-hero__graphic" id="hero-flux-graphic" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <div class="toc-bar">
+    <div class="container toc-bar__inner">
+      <a href="#overview" class="toc-bar__link">Overview</a>
+      <a href="#contributions" class="toc-bar__link">Contributions</a>
+      <a href="#pipeline" class="toc-bar__link">Pipeline</a>
+      <a href="#benchmarks" class="toc-bar__link">Benchmarks</a>
+      <a href="#usage" class="toc-bar__link">Usage</a>
+      <a href="#citation" class="toc-bar__link">Cite</a>
+    </div>
+  </div>
+
+  <section class="section" id="overview">
+    <div class="container">
+      <div class="section__header fade-in">
+        <span class="section-label">Overview</span>
+        <h2 class="section-title">Longitudinal flows on curved manifolds</h2>
+      </div>
+      <div class="prose fade-in">
+        <p>
+          Many scientific systems are observed only as a sequence of <strong>unpaired population snapshots</strong> at discrete timepoints, yielding a chain of marginal distributions from which underlying dynamics and <strong>regime transitions</strong> must be inferred. Flow matching learns a velocity field whose ODE transports a source to a target without neural ODE simulation or restrictive diffusion schedules.
+        </p>
+        <p>
+          FLUX unifies <strong>longitudinal adjacent-marginal training</strong> with <strong>learned Riemannian interpolation</strong> (RBF or GAGA-pullback metrics and a bend network) and a <strong>mixture-of-experts velocity</strong> with Straight-Through Gumbel-Softmax gating, so transport stays consistent along the full chain while gating reveals distinct dynamical modes when they exist.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt" id="contributions">
+    <div class="container">
+      <div class="section__header fade-in">
+        <span class="section-label">Contributions</span>
+        <h2 class="section-title">What FLUX adds</h2>
+      </div>
+      <div class="prose fade-in">
+        <ul style="margin: 0; padding-left: 1.25rem; color: var(--text-secondary); font-size: 1.05rem; line-height: 1.85;">
+          <li style="margin-bottom: 12px;"><strong>Coupled pipeline:</strong> adjacent-marginal chaining with metric flow matching and learned conditional paths across the marginal chain, including high-dimensional data and irregular session spacing.</li>
+          <li style="margin-bottom: 12px;"><strong>MixtureVelocityNet:</strong> MoE velocity with Gumbel-Softmax gating for unsupervised regime discovery; manifold-aware paths are important so gating does not collapse when regimes exist.</li>
+          <li><strong>Benchmarks:</strong> Lorenz attractor, IMMFM S-shape, NeuralTable (widefield calcium), and embryoid body scRNA-seq, against generative and regime-discovery baselines.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="pipeline">
+    <div class="container">
+      <div class="section__header fade-in">
+        <span class="section-label">Pipeline</span>
+        <h2 class="section-title">Three-stage training</h2>
+        <p class="section-subtitle">Geometry and bend networks are frozen before velocity training. Evaluation uses <code>compute_metrics.py</code>.</p>
+      </div>
+      <div class="pipeline-table-wrap fade-in">
+        <table class="pipeline-table">
+          <thead>
+            <tr>
+              <th>Stage</th>
+              <th>Script</th>
+              <th>Output</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>1. Geometry</strong></td>
+              <td><code>train_benchmark_rbf.py</code> or <code>train_benchmark_vae.py</code></td>
+              <td><code>rbf_network_best.pth</code> or <code>best_gaga_model.pth</code></td>
+            </tr>
+            <tr>
+              <td><strong>2. Bend</strong></td>
+              <td><code>train_benchmark_bend.py</code></td>
+              <td><code>bend_network_best.pth</code></td>
+            </tr>
+            <tr>
+              <td><strong>3. Velocity</strong></td>
+              <td><code>train_benchmark_velocity.py</code></td>
+              <td><code>velocity_network_best.pth</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt" id="benchmarks">
+    <div class="container">
+      <div class="section__header fade-in">
+        <span class="section-label">Benchmarks</span>
+        <h2 class="section-title">Datasets</h2>
+      </div>
+      <div class="data-overview fade-in">
+        <div class="data-card">
+          <div class="data-card__icon data-card__icon--coral">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4"/><path d="M12 18v4"/><circle cx="12" cy="12" r="4"/><path d="m4.93 4.93 2.83 2.83"/><path d="m16.24 16.24 2.83 2.83"/><path d="M2 12h4"/><path d="M18 12h4"/><path d="m4.93 19.07 2.83-2.83"/><path d="m16.24 7.76 2.83-2.83"/></svg>
+          </div>
+          <div class="data-card__title">Lorenz</div>
+          <div class="data-card__value">8 marginals</div>
+          <div class="data-card__desc">Chaotic vs subcritical regimes; multi-step composition and regime metrics.</div>
+        </div>
+        <div class="data-card">
+          <div class="data-card__icon data-card__icon--teal">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
+          </div>
+          <div class="data-card__title">IMMFM S-shape</div>
+          <div class="data-card__value">2D control</div>
+          <div class="data-card__desc">Gaussian clusters along an S-curve; isolates geometry without regime structure.</div>
+        </div>
+        <div class="data-card">
+          <div class="data-card__icon data-card__icon--gold">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+          </div>
+          <div class="data-card__title">NeuralTable</div>
+          <div class="data-card__value">Widefield Ca<sup>2+</sup></div>
+          <div class="data-card__desc">41 cortical areas, 22 day-level marginals, Go/No-Go learning phases.</div>
+        </div>
+      </div>
+      <div class="prose fade-in" style="margin-top: 32px;">
+        <p>
+          A fourth benchmark uses <strong>embryoid body scRNA-seq</strong> (~17k cells, five timepoints) with known differentiation stages, complementing the neural and synthetic settings above.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="usage">
+    <div class="container">
+      <div class="section__header fade-in">
+        <span class="section-label">Usage</span>
+        <h2 class="section-title">Install and run (Lorenz)</h2>
+        <p class="section-subtitle">See the repository README for full options, conda setup, and dataset-specific flags.</p>
+      </div>
+
+      <div class="fade-in">
+        <h3 class="section-title" style="font-size: 1.15rem; margin-bottom: 12px;">Clone and environment</h3>
+        <div class="code-block">
+<pre><code>git clone https://github.com/josueortc/flux.git
+cd flux
+conda create -n flux python=3.10 -y &amp;&amp; conda activate flux
+# Install PyTorch for your platform, then:
+pip install -r requirements.txt</code></pre>
+        </div>
+      </div>
+
+      <div class="usage-steps fade-in" style="margin-top: 40px;">
+        <div class="usage-step">
+          <div class="usage-step__num">1</div>
+          <div class="usage-step__content">
+            <h3>Metric (RBF)</h3>
+            <p>Learn the Riemannian metric for your benchmark dataset.</p>
+            <div class="code-block">
+<pre><code>python scripts/benchmark_data/train_benchmark_rbf.py \
+  --dataset lorenz --lorenz_mode day_marginals --num_marginals 8 \
+  --save_dir saved_models/lorenz</code></pre>
+            </div>
+          </div>
+        </div>
+        <div class="usage-step">
+          <div class="usage-step__num">2</div>
+          <div class="usage-step__content">
+            <h3>Bend network</h3>
+            <p>Train the bend network using the saved geometry checkpoint.</p>
+            <div class="code-block">
+<pre><code>python scripts/benchmark_data/train_benchmark_bend.py \
+  --dataset lorenz --lorenz_mode day_marginals --num_marginals 8 \
+  --geo_model_path saved_models/lorenz/rbf_network_best.pth \
+  --save_dir saved_models/lorenz</code></pre>
+            </div>
+          </div>
+        </div>
+        <div class="usage-step">
+          <div class="usage-step__num">3</div>
+          <div class="usage-step__content">
+            <h3>Velocity + MoE</h3>
+            <p>Train MixtureVelocityNet with Gumbel routing, then evaluate.</p>
+            <div class="code-block">
+<pre><code>python scripts/benchmark_data/train_benchmark_velocity.py \
+  --dataset lorenz --lorenz_mode day_marginals --num_marginals 8 \
+  --geo_model_path saved_models/lorenz/rbf_network_best.pth \
+  --bend_model_path saved_models/lorenz/bend_network_best.pth \
+  --use_gumbel_routing --num_experts 2 --save_dir saved_models/lorenz
+
+python scripts/benchmark_data/compute_metrics.py \
+  --dataset lorenz --model_dir saved_models/lorenz</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt" id="citation">
+    <div class="container">
+      <div class="section__header fade-in">
+        <span class="section-label">Cite</span>
+        <h2 class="section-title">Citation</h2>
+      </div>
+      <div class="citation-block fade-in">
+        <p class="citation-block__note">If you use FLUX in your research, please cite:</p>
+        <div class="code-block code-block--cite">
+<pre><code>@article{ortegacaro2026flux,
+  title={FLUX: Geometry-Aware Longitudinal Flow Matching with Mixture of Experts},
+  author={Ortega Caro, Josue and others},
+  journal={Under review},
+  year={2026}
+}</code></pre>
+        </div>
+        <button type="button" class="demo-btn" id="copy-cite-btn">Copy BibTeX</button>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div class="footer__info">
+          <h4>FLUX</h4>
+          <p>
+            Geometry-aware longitudinal flow matching with mixture-of-experts velocities<br>
+            <a href="https://josueortc.github.io" target="_blank" rel="noopener" class="footer__link">josueortc.github.io</a> &middot; Yale University
+          </p>
+        </div>
+        <div class="footer__links">
+          <a href="https://github.com/josueortc/flux" target="_blank" rel="noopener" class="footer__link">GitHub</a>
+          <a href="../../index.html" class="footer__link">Back to Main Site</a>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        &copy; 2026 Josue Ortega Caro &middot; Yale University
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/flux-page.js"></script>
+</body>
+</html>
