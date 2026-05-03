@@ -1,6 +1,0 @@
-{
-  "latent_recovery": 0.25,
-  "mechanism_classification": 0.20,
-  "support_recovery": 0.25,
-  "intervention_prediction": 0.30
-}
