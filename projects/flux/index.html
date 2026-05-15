@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FLUX — Geometry-Aware Longitudinal Flow Matching with Mixture of Experts</title>
-  <meta name="description" content="FLUX extends conditional flow matching for unpaired longitudinal snapshots: adjacent-marginal chaining, learned Riemannian metrics, and mixture-of-experts velocities. Benchmarks include Lorenz, widefield calcium (NeuralTable), and embryoid body scRNA-seq.">
+  <meta name="description" content="FLUX is a geometry-aware longitudinal flow-matching framework for joint transport modeling and unsupervised regime discovery from unpaired population snapshots.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -17,11 +17,11 @@
     <div class="nav__inner">
       <a href="../../index.html" class="nav__logo">JOC</a>
       <ul class="nav__menu">
-        <li><a href="#figure-overview" class="nav__link">Figure</a></li>
-        <li><a href="#overview" class="nav__link">Overview</a></li>
-        <li><a href="#contributions" class="nav__link">Contributions</a></li>
-        <li><a href="#pipeline" class="nav__link">Pipeline</a></li>
+        <li><a href="#abstract" class="nav__link">Abstract</a></li>
+        <li><a href="#method" class="nav__link">Method</a></li>
+        <li><a href="#results" class="nav__link">Results</a></li>
         <li><a href="#benchmarks" class="nav__link">Benchmarks</a></li>
+        <li><a href="#pipeline" class="nav__link">Pipeline</a></li>
         <li><a href="#usage" class="nav__link">Usage</a></li>
       </ul>
       <button class="nav__toggle" aria-label="Toggle menu">
@@ -36,12 +36,16 @@
         <h1 class="flux-hero__title">FLUX</h1>
         <p class="flux-hero__subtitle">Geometry-Aware Longitudinal Flow Matching with Mixture of Experts</p>
         <p class="flux-hero__desc">
-          <strong>FLUX</strong> (<strong>Fl</strong>ow matching for <strong>U</strong>npaired longitudinal data with mi<strong>X</strong>ture-of-experts) couples <strong>adjacent-marginal transport</strong> along a chain of snapshots with <strong>metric flow matching</strong> and a <strong>MixtureVelocityNet</strong> for simultaneous generative modeling and unsupervised regime discovery.
+          Many biological systems evolve through continuous dynamics while switching between latent regimes, yet are observed only as <strong>unpaired longitudinal snapshots</strong>. FLUX learns a data-dependent geometry to construct <strong>manifold-aware conditional paths</strong> between adjacent marginals and decomposes the resulting velocity field into sparse expert vector fields for joint transport modeling and <strong>unsupervised regime discovery</strong>.
         </p>
 
         <div class="flux-hero__authors">
           <span class="flux-hero__author"><strong>Josue Ortega Caro</strong></span>
-          <span class="flux-hero__author">Collaborators</span>
+          <span class="flux-hero__author">Yongxu Zhang</span>
+          <span class="flux-hero__author">Hanna M. Batchelor</span>
+          <span class="flux-hero__author">Sizhuang He</span>
+          <span class="flux-hero__author">Jessica Cardin</span>
+          <span class="flux-hero__author">Shreya Saxena</span>
         </div>
 
         <p class="flux-hero__affiliation">
@@ -49,26 +53,29 @@
         </p>
 
         <div class="flux-hero__actions">
-          <a href="https://github.com/josueortc/flux" target="_blank" rel="noopener" class="btn btn--primary">
+          <a href="https://arxiv.org/abs/2605.08648" target="_blank" rel="noopener" class="btn btn--primary">
+            Paper
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+          <a href="https://github.com/josueortc/flux" target="_blank" rel="noopener" class="btn btn--outline">
             Code
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
           </a>
-          <span class="btn btn--outline" style="opacity: 0.65; cursor: default; pointer-events: none;">Paper forthcoming</span>
         </div>
       </div>
 
-      <div class="flux-hero__figure" id="figure-overview" aria-labelledby="figure-overview-caption">
+      <div class="flux-hero__figure" aria-labelledby="figure-overview-caption">
         <figure class="flux-hero__figure-inner fade-in">
           <div class="flux-hero__figure-img-wrap">
             <img
-              src="images/figure-flux-overview.svg"
-              alt="Figure overview: five unpaired marginal snapshots (t₁–t₅) and a three-regime manifold with colored samples."
+              src="images/figure-1-overview.png"
+              alt="Overview of FLUX: unpaired marginal snapshots, geometry-aware conditional paths via a learned metric and bend network, and a mixture-of-experts velocity field with Gumbel-Softmax routing."
               class="flux-hero__figure-img"
               loading="eager"
               decoding="async">
           </div>
           <figcaption id="figure-overview-caption" class="flux-hero__figure-caption">
-            <strong>(A)</strong> Unpaired marginals at each timepoint; <strong>(B)</strong> manifold with distinct dynamical regimes.
+            Longitudinal data are observed as unpaired population snapshots. FLUX uses learned geometry for manifold-aware conditional paths across ordered marginals, and a regime-switching velocity field with Straight-Through Gumbel-Softmax routing.
           </figcaption>
         </figure>
       </div>
@@ -77,45 +84,186 @@
 
   <div class="toc-bar">
     <div class="container toc-bar__inner">
-      <a href="#figure-overview" class="toc-bar__link">Figure</a>
-      <a href="#overview" class="toc-bar__link">Overview</a>
-      <a href="#contributions" class="toc-bar__link">Contributions</a>
-      <a href="#pipeline" class="toc-bar__link">Pipeline</a>
+      <a href="#abstract" class="toc-bar__link">Abstract</a>
+      <a href="#method" class="toc-bar__link">Method</a>
+      <a href="#results" class="toc-bar__link">Results</a>
       <a href="#benchmarks" class="toc-bar__link">Benchmarks</a>
+      <a href="#pipeline" class="toc-bar__link">Pipeline</a>
       <a href="#usage" class="toc-bar__link">Usage</a>
       <a href="#citation" class="toc-bar__link">Cite</a>
     </div>
   </div>
 
-  <section class="section" id="overview">
+  <section class="section" id="abstract">
     <div class="container">
       <div class="section__header fade-in">
-        <span class="section-label">Overview</span>
-        <h2 class="section-title">Longitudinal flows on curved manifolds</h2>
+        <span class="section-label">Abstract</span>
+        <h2 class="section-title">Joint transport modeling and regime discovery</h2>
       </div>
       <div class="prose fade-in">
         <p>
-          Many scientific systems are observed only as a sequence of <strong>unpaired population snapshots</strong> at discrete timepoints, yielding a chain of marginal distributions from which underlying dynamics and <strong>regime transitions</strong> must be inferred. Flow matching learns a velocity field whose ODE transports a source to a target without neural ODE simulation or restrictive diffusion schedules.
+          Many biological systems evolve through continuous local dynamics while switching between latent regimes defined by learning, stimulus context, internal state, or developmental stage. These processes are often observed only as unpaired longitudinal snapshots: the same cells, neurons, or animals are not tracked as matched trajectories, even though population states are sampled across successive stages. This creates two coupled challenges. First, trajectories must respect curved low-dimensional manifolds embedded in high-dimensional biological measurements. Second, the model must identify when the transport mechanism itself changes.
         </p>
         <p>
-          FLUX unifies <strong>longitudinal adjacent-marginal training</strong> with <strong>learned Riemannian interpolation</strong> (RBF or GAGA-pullback metrics and a bend network) and a <strong>mixture-of-experts velocity</strong> with Straight-Through Gumbel-Softmax gating, so transport stays consistent along the full chain while gating reveals distinct dynamical modes when they exist.
+          We introduce <strong>FLUX</strong> (<strong>Fl</strong>ow matching for <strong>U</strong>npaired longitudinal data with mi<strong>X</strong>ture-of-experts), a geometry-aware longitudinal flow-matching framework for joint transport modeling and unsupervised regime discovery. FLUX learns a data-dependent metric from pooled labeled and unlabeled observations, uses that metric to construct geometry-aware conditional paths between adjacent marginals, and decomposes the resulting velocity field into sparse expert vector fields selected by a <strong>Straight-Through Gumbel-Softmax router</strong>.
+        </p>
+        <p>
+          Across manifold controls, a regime-switching Lorenz system, widefield cortical calcium imaging during associative learning, and embryoid body single-cell differentiation, FLUX reconstructs longitudinal transport while recovering interpretable regime structure. Ablations show that mixture-of-experts routing alone is insufficient: FLUX without geometric learning can fit local transport but fails or weakens regime discovery when regimes are encoded in local dynamics. These results suggest that <strong>geometry-aware velocity decomposition</strong> provides a general strategy for discovering latent biological state transitions from unpaired longitudinal snapshots.
         </p>
       </div>
     </div>
   </section>
 
-  <section class="section section--alt" id="contributions">
+  <section class="section section--alt" id="method">
     <div class="container">
       <div class="section__header fade-in">
-        <span class="section-label">Contributions</span>
-        <h2 class="section-title">What FLUX adds</h2>
+        <span class="section-label">Method</span>
+        <h2 class="section-title">How FLUX works</h2>
+        <p class="section-subtitle">FLUX combines three ideas: longitudinal marginal chaining, geometry-aware conditional paths, and a mixture-of-experts velocity field.</p>
       </div>
-      <div class="prose fade-in">
-        <ul style="margin: 0; padding-left: 1.25rem; color: var(--text-secondary); font-size: 1.05rem; line-height: 1.85;">
-          <li style="margin-bottom: 12px;"><strong>Coupled pipeline:</strong> adjacent-marginal chaining with metric flow matching and learned conditional paths across the marginal chain, including high-dimensional data and irregular session spacing.</li>
-          <li style="margin-bottom: 12px;"><strong>MixtureVelocityNet:</strong> MoE velocity with Gumbel-Softmax gating for unsupervised regime discovery; manifold-aware paths are important so gating does not collapse when regimes exist.</li>
-          <li><strong>Benchmarks:</strong> Lorenz attractor with distinct dynamical regimes, NeuralTable widefield calcium imaging across learning, embryoid body (EB) scRNA-seq across differentiation stages, plus generative and regime-discovery baselines (including a 2D multi-marginal control from the paper).</li>
-        </ul>
+
+      <div class="arch-tabs fade-in">
+        <button class="arch-tab arch-tab--active" data-tab="longitudinal">
+          <span class="arch-tab__num">1</span>
+          Longitudinal Flow Matching
+        </button>
+        <button class="arch-tab" data-tab="geometry">
+          <span class="arch-tab__num">2</span>
+          Geometry-Aware Paths
+        </button>
+        <button class="arch-tab" data-tab="moe">
+          <span class="arch-tab__num">3</span>
+          Regime-Switching Velocity
+        </button>
+      </div>
+
+      <div class="arch-panel arch-panel--active" id="panel-longitudinal">
+        <div class="arch-details fade-in">
+          <div class="arch-detail" style="grid-column: 1 / -1;">
+            <h4>Adjacent-marginal chaining</h4>
+            <p>
+              FLUX observes <em>T</em> ordered marginal distributions at discrete observation times. Each marginal contains unpaired samples&mdash;consecutive snapshots do not correspond to the same cell, neuron, or individual. FLUX trains on adjacent marginal pairs: for each pair, endpoints are sampled from an optimal-transport coupling, a local interpolation time is drawn, and the resulting point and tangent are mapped to global model time. This yields a single velocity field whose ODE is integrated across the full marginal chain.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="arch-panel" id="panel-geometry">
+        <div class="arch-details fade-in">
+          <div class="arch-detail" style="grid-column: 1 / -1;">
+            <h4>From Euclidean shortcuts to manifold-aware paths</h4>
+            <p>
+              Standard flow matching uses Euclidean linear interpolation between endpoints, which can pass through low-density regions when data concentrate near a curved manifold. FLUX instead learns a data-dependent metric <em>G</em> from pooled observations (including unlabeled samples when available), then trains a bend network <em>B</em> that parameterizes approximate geodesic paths. The geometry-aware path replaces the Euclidean interpolant everywhere: it changes the training locations, the target tangents, and where the velocity network is evaluated. The metric is not an input to the velocity network&mdash;it reshapes the conditional paths used for supervision.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="arch-panel" id="panel-moe">
+        <div class="arch-details fade-in">
+          <div class="arch-detail" style="grid-column: 1 / -1;">
+            <h4>Sparse expert routing for regime discovery</h4>
+            <p>
+              FLUX decomposes the velocity field into <em>M</em> expert vector fields. A router maps each (time, state) pair to expert logits, and Straight-Through Gumbel-Softmax produces differentiable but near-discrete routing weights during training. At inference, the hard expert assignment provides an unsupervised candidate regime label&mdash;a decomposition of the learned transport dynamics rather than post-hoc clustering of static observations. Router regularizers encourage sparse, temporally coherent assignments and discourage expert collapse.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="results">
+    <div class="container">
+      <div class="section__header fade-in">
+        <span class="section-label">Results</span>
+        <h2 class="section-title">Experiments</h2>
+      </div>
+
+      <div class="figure-card fade-in">
+        <figure>
+          <img src="images/figure-bunny.png"
+               alt="Stanford Bunny dimensionality ablation: eight ordered marginals on a geodesic path, held-out Wasserstein distance across ambient dimensions 3 to 100."
+               loading="lazy" decoding="async">
+          <figcaption>
+            <strong>Stanford Bunny dimensionality ablation.</strong> Eight ordered marginals are sampled on a geodesic path over the Stanford Bunny mesh, with two intermediate marginals held out from velocity training. The same surface is embedded into higher-dimensional spaces (D = 3, 5, 10, 20, 50, 100). Geometry-aware paths preserve surface transport and interpolate to unseen marginals, while Euclidean baselines cut through the mesh interior as ambient dimension increases.
+          </figcaption>
+        </figure>
+      </div>
+
+      <div class="figure-card fade-in">
+        <figure>
+          <img src="images/figure-lorenz.png"
+               alt="Lorenz dynamical-system benchmark: transport metrics, regime-discovery metrics, temporal regime assignments, and radar summary."
+               loading="lazy" decoding="async">
+          <figcaption>
+            <strong>Lorenz dynamical-system benchmark.</strong> <strong>(A)</strong> Two-dimensional visualization of trajectory-window samples colored by the ground-truth Lorenz parameter regime. <strong>(B)</strong> Generative transport metrics. <strong>(C)</strong> Segment-level regime-discovery metrics (ARI and NMI). <strong>(D)</strong> Temporal regime assignments predicted by each method compared with the ground-truth parameter switch. <strong>(E)</strong> Radar summary. FLUX recovers the chaotic/subcritical boundary exactly (seg-ARI = 1.0, seg-NMI = 1.0), while FLUX without manifold learning collapses to a single expert.
+          </figcaption>
+        </figure>
+      </div>
+
+      <div class="figure-card fade-in">
+        <figure>
+          <img src="images/figure-neural.png"
+               alt="Widefield calcium-imaging benchmark: cortical activity, transport metrics, regime-discovery metrics, temporal expert assignments, and radar summary."
+               loading="lazy" decoding="async">
+          <figcaption>
+            <strong>Widefield calcium-imaging benchmark.</strong> <strong>(A)</strong> Example post-stimulus cortical activity represented as brain area by time, flattened into a 451-dimensional vector. <strong>(B)</strong> Generative transport metrics. <strong>(C)</strong> Segment-level regime-discovery metrics. <strong>(D)</strong> Temporal expert assignments compared with early, intermediate, and late behavioral learning labels. <strong>(E)</strong> Radar summary. The router separates early/intermediate from late training, coinciding with the behavioral divergence of CS+ and CS&minus; lick indices.
+          </figcaption>
+        </figure>
+      </div>
+
+      <div class="figure-card fade-in">
+        <figure>
+          <img src="images/figure-eb.png"
+               alt="Embryoid body differentiation benchmark: UMAP projections colored by differentiation stage, transport metrics, regime-discovery metrics, temporal expert assignments, and radar summary."
+               loading="lazy" decoding="async">
+          <figcaption>
+            <strong>Embryoid body differentiation benchmark.</strong> <strong>(A)</strong> RNA-seq profiles projected into UMAP space and colored by differentiation stage. <strong>(B)</strong> Generative transport metrics. <strong>(C)</strong> Segment-level regime-discovery metrics. <strong>(D)</strong> Temporal expert assignments compared with pluripotent, commitment, and differentiated stage labels. <strong>(E)</strong> Radar summary. FLUX separates expression-evolution regimes associated with pluripotent and more differentiated cell populations.
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt" id="benchmarks">
+    <div class="container">
+      <div class="section__header fade-in">
+        <span class="section-label">Benchmarks</span>
+        <h2 class="section-title">Datasets</h2>
+      </div>
+      <div class="data-overview fade-in">
+        <div class="data-card">
+          <div class="data-card__icon data-card__icon--gold">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c-1.2 0-2.4.6-3 1.7A3.6 3.6 0 0 0 4.6 9c-1 .6-1.7 1.8-1.7 3s.7 2.4 1.7 3c-.3 1.8.5 3.6 2.1 4.4 1 .5 2.2.5 3.3.1.8.7 1.8 1.1 2.8 1.1 1.2 0 2.4-.6 3-1.7A3.6 3.6 0 0 0 19.4 15c1-.6 1.7-1.8 1.7-3s-.7-2.4-1.7-3c.3-1.8-.5-3.6-2.1-4.4-1-.5-2.2-.5-3.3-.1-.8-.7-1.8-1.1-2.8-1.1Z"/></svg>
+          </div>
+          <div class="data-card__title">Stanford Bunny</div>
+          <div class="data-card__value">8 marginals</div>
+          <div class="data-card__desc">Geodesic path on a known 3D mesh, embedded into ambient dimensions up to 100. Two marginals held out for evaluation. Tests whether geometry-aware transport stays on the manifold.</div>
+        </div>
+        <div class="data-card">
+          <div class="data-card__icon data-card__icon--coral">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4"/><path d="M12 18v4"/><circle cx="12" cy="12" r="4"/><path d="m4.93 4.93 2.83 2.83"/><path d="m16.24 16.24 2.83 2.83"/><path d="M2 12h4"/><path d="M18 12h4"/><path d="m4.93 19.07 2.83-2.83"/><path d="m16.24 7.76 2.83-2.83"/></svg>
+          </div>
+          <div class="data-card__title">Lorenz</div>
+          <div class="data-card__value">8 marginals &middot; 60-D</div>
+          <div class="data-card__desc">Chaotic vs lower-&rho; regimes from flattened 3&times;20 trajectory windows. Known dynamical transition between marginals 3 and 4.</div>
+        </div>
+        <div class="data-card">
+          <div class="data-card__icon data-card__icon--teal">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+          </div>
+          <div class="data-card__title">Widefield Ca<sup>2+</sup></div>
+          <div class="data-card__value">22 day marginals &middot; 451-D</div>
+          <div class="data-card__desc">12 mice, 41 cortical areas, Go/No-Go visual associative learning. Behavioral labels used for evaluation only, not during training or routing.</div>
+        </div>
+        <div class="data-card">
+          <div class="data-card__icon data-card__icon--coral">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="9" r="2.5"/><circle cx="15" cy="9" r="2.5"/><circle cx="7" cy="15" r="2.5"/><circle cx="12" cy="16" r="2.5"/><circle cx="17" cy="15" r="2.5"/><path d="M9 11.5c-1 2 0 3.5 3 4.5M15 11.5c1 2 0 3.5-3 4.5" opacity="0.6"/></svg>
+          </div>
+          <div class="data-card__title">Embryoid body (EB)</div>
+          <div class="data-card__value">5 timepoints &middot; scRNA-seq</div>
+          <div class="data-card__desc">Up to 1,000 cells per marginal in PCA space. Pluripotent, commitment, and differentiated stage labels withheld during training.</div>
+        </div>
       </div>
     </div>
   </section>
@@ -158,47 +306,7 @@
     </div>
   </section>
 
-  <section class="section section--alt" id="benchmarks">
-    <div class="container">
-      <div class="section__header fade-in">
-        <span class="section-label">Benchmarks</span>
-        <h2 class="section-title">Datasets</h2>
-      </div>
-      <div class="data-overview fade-in">
-        <div class="data-card">
-          <div class="data-card__icon data-card__icon--coral">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4"/><path d="M12 18v4"/><circle cx="12" cy="12" r="4"/><path d="m4.93 4.93 2.83 2.83"/><path d="m16.24 16.24 2.83 2.83"/><path d="M2 12h4"/><path d="M18 12h4"/><path d="m4.93 19.07 2.83-2.83"/><path d="m16.24 7.76 2.83-2.83"/></svg>
-          </div>
-          <div class="data-card__title">Lorenz</div>
-          <div class="data-card__value">8 marginals</div>
-          <div class="data-card__desc">Chaotic vs subcritical regimes; sharp distributional shift and multi-step composition metrics.</div>
-        </div>
-        <div class="data-card">
-          <div class="data-card__icon data-card__icon--gold">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
-          </div>
-          <div class="data-card__title">NeuralTable</div>
-          <div class="data-card__value">Widefield Ca<sup>2+</sup></div>
-          <div class="data-card__desc">41 cortical areas, 22 day-level marginals, Go/No-Go visual learning across phases.</div>
-        </div>
-        <div class="data-card">
-          <div class="data-card__icon data-card__icon--teal">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="9" r="2.5"/><circle cx="15" cy="9" r="2.5"/><circle cx="7" cy="15" r="2.5"/><circle cx="12" cy="16" r="2.5"/><circle cx="17" cy="15" r="2.5"/><path d="M9 11.5c-1 2 0 3.5 3 4.5M15 11.5c1 2 0 3.5-3 4.5" opacity="0.6"/></svg>
-          </div>
-          <div class="data-card__title">Embryoid body (EB)</div>
-          <div class="data-card__value">scRNA-seq</div>
-          <div class="data-card__desc">~17k cells, five timepoints, three differentiation stages (pluripotent, commitment, differentiated) in PCA embedding space.</div>
-        </div>
-      </div>
-      <div class="prose fade-in" style="margin-top: 32px;">
-        <p>
-          Additional experiments in the paper use a low-dimensional <strong>multi-marginal control</strong> (synthetic 2D marginals along a smooth curve) to isolate geometry-aware interpolation where explicit regime structure is absent.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="usage">
+  <section class="section section--alt" id="usage">
     <div class="container">
       <div class="section__header fade-in">
         <span class="section-label">Usage</span>
@@ -247,7 +355,7 @@ pip install -r requirements.txt</code></pre>
           <div class="usage-step__num">3</div>
           <div class="usage-step__content">
             <h3>Velocity + MoE</h3>
-            <p>Train MixtureVelocityNet with Gumbel routing, then evaluate.</p>
+            <p>Train the mixture-of-experts velocity with Gumbel routing, then evaluate.</p>
             <div class="code-block">
 <pre><code>python scripts/benchmark_data/train_benchmark_velocity.py \
   --dataset lorenz --lorenz_mode day_marginals --num_marginals 8 \
@@ -264,7 +372,7 @@ python scripts/benchmark_data/compute_metrics.py \
     </div>
   </section>
 
-  <section class="section section--alt" id="citation">
+  <section class="section" id="citation">
     <div class="container">
       <div class="section__header fade-in">
         <span class="section-label">Cite</span>
@@ -275,8 +383,8 @@ python scripts/benchmark_data/compute_metrics.py \
         <div class="code-block code-block--cite">
 <pre><code>@article{ortegacaro2026flux,
   title={FLUX: Geometry-Aware Longitudinal Flow Matching with Mixture of Experts},
-  author={Ortega Caro, Josue and others},
-  journal={Under review},
+  author={Ortega Caro, Josue and Zhang, Yongxu and Batchelor, Hannah M. and He, Sizhuang and Cardin, Jessica and Saxena, Shreya},
+  journal={arXiv preprint arXiv:2605.08648},
   year={2026}
 }</code></pre>
         </div>
@@ -296,6 +404,7 @@ python scripts/benchmark_data/compute_metrics.py \
           </p>
         </div>
         <div class="footer__links">
+          <a href="https://arxiv.org/abs/2605.08648" target="_blank" rel="noopener" class="footer__link">Paper</a>
           <a href="https://github.com/josueortc/flux" target="_blank" rel="noopener" class="footer__link">GitHub</a>
           <a href="../../index.html" class="footer__link">Back to Main Site</a>
         </div>
