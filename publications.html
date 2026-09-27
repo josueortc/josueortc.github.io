@@ -2,259 +2,295 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Publications — Josue Ortega Caro</title>
-  <meta name="description" content="Publications and preprints by Josue Ortega Caro. Foundation models, neural integral equations, adversarial robustness, and computational neuroscience.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Publications — Josué Ortega Caro</title>
+  <meta name="description" content="Publications and preprints by Josué Ortega Caro: flow matching for longitudinal neural data, foundation models for brain activity, neural integral equations, and robustness in vision models.">
+  <link rel="canonical" href="https://josueortc.github.io/publications.html">
+  <meta name="theme-color" content="#fbfaf7">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Josué Ortega Caro">
+  <meta property="og:title" content="Publications — Josué Ortega Caro">
+  <meta property="og:description" content="Peer-reviewed papers and preprints in machine learning and computational neuroscience.">
+  <meta property="og:url" content="https://josueortc.github.io/publications.html">
+  <meta property="og:image" content="https://josueortc.github.io/images/og/home.jpg">
+  <meta name="twitter:card" content="summary">
+  <script>document.documentElement.classList.add('js');</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400..700&display=swap">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/site.css">
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
 
-  <!-- Navigation -->
-  <nav class="nav nav--scrolled">
+  <header class="nav">
     <div class="nav__inner">
-      <a href="index.html" class="nav__logo">JOC</a>
-      <ul class="nav__menu">
-        <li><a href="index.html" class="nav__link">Research</a></li>
-        <li><a href="publications.html" class="nav__link nav__link--active">Publications</a></li>
-        <li><a href="awards-conferences.html" class="nav__link">Talks</a></li>
-        <li><a href="cv.html" class="nav__link">CV</a></li>
-      </ul>
-      <button class="nav__toggle" aria-label="Toggle menu">
-        <span></span>
-        <span></span>
-        <span></span>
+      <a class="nav__brand" href="./">Josué Ortega Caro</a>
+      <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu">
+        <span class="nav__toggle-bar"></span><span class="nav__toggle-bar"></span>
       </button>
-    </div>
-  </nav>
-
-  <!-- Page Header -->
-  <header class="page-header">
-    <div class="container">
-      <h1 class="page-header__title">Publications</h1>
-      <p class="page-header__desc">Peer-reviewed publications, conference proceedings, and preprints in computational neuroscience and machine learning.</p>
+      <nav class="nav__menu" id="nav-menu" aria-label="Primary">
+        <a class="nav__link" href="./#research">Research</a>
+        <a class="nav__link is-active" href="publications.html" aria-current="page">Publications</a>
+        <a class="nav__link" href="talks.html">Talks</a>
+        <a class="nav__link" href="cv.html">CV</a>
+      </nav>
     </div>
   </header>
 
-  <!-- Publications List -->
-  <section class="section">
-    <div class="container">
+  <main id="main">
+    <header class="page-head">
+      <div class="container">
+        <h1>Publications</h1>
+        <p>Peer-reviewed papers and preprints in machine learning and computational neuroscience. For citation counts, see <a href="https://scholar.google.com/citations?user=SctA3g8AAAAJ" target="_blank" rel="noopener">Google Scholar</a>.</p>
+      </div>
+    </header>
 
-      <!-- 2025 -->
-      <h2 class="pub-year fade-in">2025</h2>
-      <ul class="pub-list">
-        <li class="pub-item fade-in">
-          <div class="pub-item__title">
-            <a href="https://www.biorxiv.org/content/10.1101/2025.08.29.673096v1" target="_blank" rel="noopener">Selective changes in cortical cholinergic signaling during learning</a>
+    <section class="section section--tight">
+      <div class="container">
+        <div class="pub-toolbar">
+          <div class="segmented" data-pub-filter role="group" aria-label="Filter publications">
+            <button type="button" data-filter="all" aria-pressed="true">All</button>
+            <button type="button" data-filter="first" aria-pressed="false">First author</button>
+            <button type="button" data-filter="conference" aria-pressed="false">Conference</button>
+            <button type="button" data-filter="journal" aria-pressed="false">Journal</button>
+            <button type="button" data-filter="preprint" aria-pressed="false">Preprint</button>
           </div>
-          <p class="pub-item__authors"><strong>Ortega Caro, J.</strong>, Batchelor, H. M., Lohani, S., van Dijk, D., &amp; Cardin, J. A.</p>
-          <p class="pub-item__venue">bioRxiv, 2025-08 <span class="pub-item__badge">Preprint</span></p>
-          <div class="pub-item__links">
-            <a href="https://www.biorxiv.org/content/10.1101/2025.08.29.673096v1" target="_blank" rel="noopener" class="pub-link">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/></svg>
-              Paper
-            </a>
-          </div>
-        </li>
-      </ul>
+          <p class="pub-toolbar__note"><span id="pub-count" aria-live="polite">14 papers</span> · <strong>Bold</strong> = me · * equal contribution</p>
+        </div>
 
-      <!-- 2024 -->
-      <h2 class="pub-year fade-in">2024</h2>
-      <ul class="pub-list">
-        <li class="pub-item fade-in">
-          <div class="pub-item__title">
-            <a href="https://www.nature.com/articles/s42256-024-00886-8" target="_blank" rel="noopener">Learning integral operators via neural integral equations</a>
-          </div>
-          <p class="pub-item__authors">Zappala, E., Fonseca, A., <strong>Caro, J. O.</strong> &amp; van Dijk, D.</p>
-          <p class="pub-item__venue">Nature Machine Intelligence, 1-17 <span class="pub-item__badge">Nature MI</span></p>
-          <div class="pub-item__links">
-            <a href="https://www.nature.com/articles/s42256-024-00886-8" target="_blank" rel="noopener" class="pub-link">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/></svg>
-              Paper
-            </a>
-          </div>
-        </li>
-        <li class="pub-item fade-in">
-          <div class="pub-item__title">
-            <a href="https://proceedings.mlr.press/v235/" target="_blank" rel="noopener">Cell2sentence: Teaching large language models the language of biology</a>
-          </div>
-          <p class="pub-item__authors">Levine, D., L&eacute;vy, S., Rizvi, S. A., Pallikkavaliyaveetil, N., Chen, X., Zhang, D., ... <strong>Ortega Caro, J.</strong>, Karbasi, A., Dhodapkar, R., &amp; van Dijk, D.</p>
-          <p class="pub-item__venue">Proceedings of the International Conference on Machine Learning (ICML), July 2024 <span class="pub-item__badge">ICML</span></p>
-          <div class="pub-item__links">
-            <a href="https://proceedings.mlr.press/v235/" target="_blank" rel="noopener" class="pub-link">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/></svg>
-              Paper
-            </a>
-          </div>
-        </li>
-        <li class="pub-item fade-in">
-          <div class="pub-item__title">
-            <a href="https://openreview.net/forum?id=RwI7ZEfR27" target="_blank" rel="noopener">BrainLM: A foundation model for brain activity recordings</a>
-          </div>
-          <p class="pub-item__authors"><strong>Ortega Caro, J.</strong>, Oliveira Fonseca, A. H., Averill, C., Rizvi, S. A., Rosati, M., Cross, J. L., ... &amp; van Dijk, D.</p>
-          <p class="pub-item__venue">Proceedings of the International Conference on Learning Representations (ICLR), May 2024 <span class="pub-item__badge">ICLR</span></p>
-          <div class="pub-item__links">
-            <a href="https://openreview.net/forum?id=RwI7ZEfR27" target="_blank" rel="noopener" class="pub-link">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/></svg>
-              Paper
-            </a>
-            <a href="https://github.com/josueortc/brainlm" target="_blank" rel="noopener" class="pub-link">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
-              Code
-            </a>
-          </div>
-        </li>
-        <li class="pub-item fade-in">
-          <div class="pub-item__title">
-            <a href="https://www.frontiersin.org/articles/10.3389/fncom.2024.1387077/full" target="_blank" rel="noopener">Translational symmetry in convolutions with localized kernels causes an implicit bias toward high frequency adversarial examples</a>
-          </div>
-          <p class="pub-item__authors"><strong>Caro, J. O.</strong>, Ju, Y., Pyle, R., Dey, S., Brendel, W., Anselmi, F. &amp; Patel, A.</p>
-          <p class="pub-item__venue">Frontiers in Computational Neuroscience, 18, 1387077 <span class="pub-item__badge">Frontiers</span></p>
-          <div class="pub-item__links">
-            <a href="https://www.frontiersin.org/articles/10.3389/fncom.2024.1387077/full" target="_blank" rel="noopener" class="pub-link">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/></svg>
-              Paper
-            </a>
-          </div>
-        </li>
-        <li class="pub-item fade-in">
-          <div class="pub-item__title">
-            <a href="https://openaccess.thecvf.com/WACV2024" target="_blank" rel="noopener">Linking convolutional kernel size to generalization bias in face analysis CNNs</a>
-          </div>
-          <p class="pub-item__authors">Liang, H., <strong>Caro, J. O.</strong>, Maheshri, V., Patel, A. B., &amp; Balakrishnan, G.</p>
-          <p class="pub-item__venue">IEEE/CVF Winter Conference on Applications of Computer Vision (WACV), pp. 4705–4715 <span class="pub-item__badge">WACV</span></p>
-          <div class="pub-item__links">
-            <a href="https://openaccess.thecvf.com/WACV2024" target="_blank" rel="noopener" class="pub-link">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/></svg>
-              Paper
-            </a>
-          </div>
-        </li>
-      </ul>
+        <!-- 2026 -->
+        <div class="pub-group">
+          <h2 class="pub-year">2026</h2>
 
-      <!-- 2023 -->
-      <h2 class="pub-year fade-in">2023</h2>
-      <ul class="pub-list">
-        <li class="pub-item fade-in">
-          <div class="pub-item__title">
-            <a href="https://proceedings.mlr.press/v202/" target="_blank" rel="noopener">Continuous Spatiotemporal Transformers</a>
-          </div>
-          <p class="pub-item__authors">Fonseca, A., Zappala, E., <strong>Caro, J. O.</strong> &amp; van Dijk, D.</p>
-          <p class="pub-item__venue">Proceedings of the International Conference on Machine Learning (ICML), July 2023 <span class="pub-item__badge">ICML</span></p>
-          <div class="pub-item__links">
-            <a href="https://proceedings.mlr.press/v202/" target="_blank" rel="noopener" class="pub-link">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/></svg>
-              Paper
-            </a>
-          </div>
-        </li>
-        <li class="pub-item fade-in">
-          <div class="pub-item__title">
-            <a href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010932" target="_blank" rel="noopener">Robust deep learning object recognition models rely on low frequency information in natural images</a>
-          </div>
-          <p class="pub-item__authors">Li, Z.*, <strong>Caro, J. O.</strong>*, Rusak, E., Brendel, W., Bethge, M., Anselmi, F., Patel, A. B., Tolias, A. &amp; Pitkow, X. (* Co-first Authors)</p>
-          <p class="pub-item__venue">PLOS Computational Biology, 19(3), e1010932 <span class="pub-item__badge">PLOS Comp. Bio.</span></p>
-          <div class="pub-item__links">
-            <a href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010932" target="_blank" rel="noopener" class="pub-link">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/></svg>
-              Paper
-            </a>
-          </div>
-        </li>
-      </ul>
+          <article class="pub" data-tags="first conference">
+            <div class="pub__badge"><span class="tag">NeurIPS</span></div>
+            <div>
+              <h3 class="pub__title"><a href="https://arxiv.org/abs/2605.08648" target="_blank" rel="noopener">FLUX: Longitudinal Flow Matching with Mixture of Experts</a></h3>
+              <p class="pub__authors"><span class="me">Ortega Caro, J.</span>, Zhang, Y., Batchelor, H. M., He, S., Cardin, J. A., &amp; Saxena, S.</p>
+              <p class="pub__venue">Advances in Neural Information Processing Systems (NeurIPS), 2026</p>
+              <div class="pub__links">
+                <a class="pub-link" href="https://arxiv.org/abs/2605.08648" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/></svg>arXiv</a>
+                <a class="pub-link pub-link--project" href="projects/flux/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>Project page</a>
+              </div>
+            </div>
+          </article>
 
-      <!-- 2022 -->
-      <h2 class="pub-year fade-in">2022</h2>
-      <ul class="pub-list">
-        <li class="pub-item fade-in">
-          <div class="pub-item__title">
-            <a href="https://arxiv.org/abs/2210.09475" target="_blank" rel="noopener">AMPNet: Attention as Message Passing for Graph Neural Networks</a>
-          </div>
-          <p class="pub-item__authors">Rizvi, S., Nguyen, N., Lyu, H., Christensen, B., <strong>Caro, J. O.</strong>, Zappala, E., Brbic, M., Dhodapkar, R. M. &amp; van Dijk, D.</p>
-          <p class="pub-item__venue">arXiv preprint arXiv:2210.09475 <span class="pub-item__badge">Preprint</span></p>
-          <div class="pub-item__links">
-            <a href="https://arxiv.org/abs/2210.09475" target="_blank" rel="noopener" class="pub-link">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/></svg>
-              Paper
-            </a>
-          </div>
-        </li>
-        <li class="pub-item fade-in">
-          <div class="pub-item__title">
-            <a href="https://www.frontiersin.org/articles/10.3389/frai.2022.890016/full" target="_blank" rel="noopener">Understanding robustness and generalization of artificial neural networks through Fourier masks</a>
-          </div>
-          <p class="pub-item__authors">Karantzas, N., Besier, E., <strong>Caro, J. O.</strong>, Pitkow, X., Tolias, A. S., Patel, A. B., &amp; Anselmi, F.</p>
-          <p class="pub-item__venue">Frontiers in Artificial Intelligence, 2022 <span class="pub-item__badge">Frontiers</span></p>
-          <div class="pub-item__links">
-            <a href="https://www.frontiersin.org/articles/10.3389/frai.2022.890016/full" target="_blank" rel="noopener" class="pub-link">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/></svg>
-              Paper
-            </a>
-          </div>
-        </li>
-        <li class="pub-item fade-in">
-          <div class="pub-item__title">
-            <a href="https://www.frontiersin.org/articles/10.3389/frai.2022.889981/full" target="_blank" rel="noopener">Shallow Univariate ReLU Networks as Splines: Initialization, Loss Surface, Hessian, &amp; Gradient Flow Dynamics</a>
-          </div>
-          <p class="pub-item__authors">Sahs, J., Pyle, R., Damaraju, A., <strong>Caro, J. O.</strong>, Tavaslioglu, O., Lu, A., &amp; Patel, A.</p>
-          <p class="pub-item__venue">Frontiers in Artificial Intelligence, 2022 <span class="pub-item__badge">Frontiers</span></p>
-          <div class="pub-item__links">
-            <a href="https://www.frontiersin.org/articles/10.3389/frai.2022.889981/full" target="_blank" rel="noopener" class="pub-link">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/></svg>
-              Paper
-            </a>
-          </div>
-        </li>
-      </ul>
+          <article class="pub" data-tags="conference">
+            <div class="pub__badge"><span class="tag">NeurIPS</span></div>
+            <div>
+              <h3 class="pub__title"><a href="https://openreview.net/forum?id=ZI46yRLHVp" target="_blank" rel="noopener">Learning Interpretable Switching Dynamics in Shared Neural-Behavioral Latent Space</a></h3>
+              <p class="pub__authors">Zhang, Y., <span class="me">Ortega Caro, J.</span>, Oren, R., Cardin, J. A., Higley, M. J., &amp; Saxena, S.</p>
+              <p class="pub__venue">Advances in Neural Information Processing Systems (NeurIPS), 2026</p>
+              <div class="pub__links">
+                <a class="pub-link" href="https://openreview.net/forum?id=ZI46yRLHVp" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/></svg>OpenReview</a>
+              </div>
+            </div>
+          </article>
 
-      <!-- 2017 -->
-      <h2 class="pub-year fade-in">2017</h2>
-      <ul class="pub-list">
-        <li class="pub-item fade-in">
-          <div class="pub-item__title">
-            <a href="http://www.pnas.org/content/early/2018/08/07/1719397115.short" target="_blank" rel="noopener">Recurrent computations for visual pattern completion</a>
-          </div>
-          <p class="pub-item__authors">Tang, H., Schrimpf, M., Lotter, W., Moerman, C., Paredes, A., <strong>Caro, J. O.</strong>, ... &amp; Kreiman, G.</p>
-          <p class="pub-item__venue">Proceedings of the National Academy of Sciences, 2017, 19397 <span class="pub-item__badge">PNAS</span></p>
-          <div class="pub-item__links">
-            <a href="http://www.pnas.org/content/early/2018/08/07/1719397115.short" target="_blank" rel="noopener" class="pub-link">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/></svg>
-              Paper
-            </a>
-          </div>
-        </li>
-      </ul>
+          <article class="pub" data-tags="journal">
+            <div class="pub__badge"><span class="tag">TMLR</span></div>
+            <div>
+              <h3 class="pub__title"><a href="https://arxiv.org/abs/2210.09475" target="_blank" rel="noopener">FIMP: Foundation Model-Informed Message Passing for Graph Neural Networks</a></h3>
+              <p class="pub__authors">Rizvi, S. A., … <span class="me">Ortega Caro, J.</span>, … Brbic, M., Dhodapkar, R. M., &amp; van Dijk, D.</p>
+              <p class="pub__venue">Transactions on Machine Learning Research (TMLR), August 2026</p>
+              <div class="pub__links">
+                <a class="pub-link" href="https://arxiv.org/abs/2210.09475" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/></svg>arXiv</a>
+              </div>
+            </div>
+          </article>
+        </div>
 
-    </div>
-  </section>
+        <!-- 2025 -->
+        <div class="pub-group">
+          <h2 class="pub-year">2025</h2>
 
-  <!-- Footer -->
+          <article class="pub" data-tags="first preprint">
+            <div class="pub__badge"><span class="tag tag--neutral">bioRxiv</span></div>
+            <div>
+              <h3 class="pub__title"><a href="https://doi.org/10.1101/2025.08.29.673096" target="_blank" rel="noopener">Selective changes in cortical cholinergic signaling during learning</a></h3>
+              <p class="pub__authors"><span class="me">Ortega Caro, J.</span>, Batchelor, H. M., Lohani, S., van Dijk, D., &amp; Cardin, J. A.</p>
+              <p class="pub__venue">bioRxiv preprint, 2025</p>
+              <div class="pub__links">
+                <a class="pub-link" href="https://doi.org/10.1101/2025.08.29.673096" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/></svg>Paper</a>
+                <a class="pub-link pub-link--project" href="projects/prismt/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>Project page</a>
+                <a class="pub-link" href="https://github.com/josueortc/prismt" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m16 18 6-6-6-6"/><path d="m8 6-6 6 6 6"/></svg>Code</a>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- 2024 -->
+        <div class="pub-group">
+          <h2 class="pub-year">2024</h2>
+
+          <article class="pub" data-tags="journal">
+            <div class="pub__badge"><span class="tag">Nat. Mach. Intell.</span></div>
+            <div>
+              <h3 class="pub__title"><a href="https://www.nature.com/articles/s42256-024-00886-8" target="_blank" rel="noopener">Learning integral operators via neural integral equations</a></h3>
+              <p class="pub__authors">Zappala, E., Fonseca, A. H. O., <span class="me">Ortega Caro, J.</span>, Moberly, A. H., Higley, M. J., Cardin, J. A., &amp; van Dijk, D.</p>
+              <p class="pub__venue">Nature Machine Intelligence, 6(9), 1046–1062, 2024</p>
+              <div class="pub__links">
+                <a class="pub-link" href="https://www.nature.com/articles/s42256-024-00886-8" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/></svg>Paper</a>
+                <a class="pub-link" href="https://arxiv.org/abs/2209.15190" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/></svg>arXiv</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="pub" data-tags="conference">
+            <div class="pub__badge"><span class="tag">ICML</span></div>
+            <div>
+              <h3 class="pub__title"><a href="https://openreview.net/forum?id=EWt5wsEdvc" target="_blank" rel="noopener">Cell2Sentence: Teaching large language models the language of biology</a></h3>
+              <p class="pub__authors">Levine, D., Lévy, S., Rizvi, S. A., Pallikkavaliyaveetil, N., Chen, X., Zhang, D., … <span class="me">Ortega Caro, J.</span>, Karbasi, A., Dhodapkar, R., &amp; van Dijk, D.</p>
+              <p class="pub__venue">International Conference on Machine Learning (ICML), 2024</p>
+              <div class="pub__links">
+                <a class="pub-link" href="https://openreview.net/forum?id=EWt5wsEdvc" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/></svg>Paper</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="pub" data-tags="first conference">
+            <div class="pub__badge"><span class="tag">ICLR</span></div>
+            <div>
+              <h3 class="pub__title"><a href="https://openreview.net/forum?id=RwI7ZEfR27" target="_blank" rel="noopener">BrainLM: A foundation model for brain activity recordings</a></h3>
+              <p class="pub__authors"><span class="me">Ortega Caro, J.</span>, Fonseca, A. H. O., Rizvi, S. A., Rosati, M., Averill, C., Cross, J. L., Mittal, P., Zappala, E., Dhodapkar, R. M., Abdallah, C., &amp; van Dijk, D.</p>
+              <p class="pub__venue">International Conference on Learning Representations (ICLR), 2024</p>
+              <div class="pub__links">
+                <a class="pub-link" href="https://openreview.net/forum?id=RwI7ZEfR27" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/></svg>Paper</a>
+                <a class="pub-link pub-link--project" href="projects/brainlm/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>Project page</a>
+                <a class="pub-link" href="https://github.com/josueortc/BrainLM" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m16 18 6-6-6-6"/><path d="m8 6-6 6 6 6"/></svg>Code</a>
+                <a class="pub-link" href="https://huggingface.co/vandijklab/brainlm" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>Model weights</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="pub" data-tags="first journal">
+            <div class="pub__badge"><span class="tag">Frontiers</span></div>
+            <div>
+              <h3 class="pub__title"><a href="https://www.frontiersin.org/articles/10.3389/fncom.2024.1387077/full" target="_blank" rel="noopener">Translational symmetry in convolutions with localized kernels causes an implicit bias toward high frequency adversarial examples</a></h3>
+              <p class="pub__authors"><span class="me">Ortega Caro, J.</span>, Ju, Y., Pyle, R., Dey, S., Brendel, W., Anselmi, F., &amp; Patel, A. B.</p>
+              <p class="pub__venue">Frontiers in Computational Neuroscience, 18, 1387077, 2024</p>
+              <div class="pub__links">
+                <a class="pub-link" href="https://www.frontiersin.org/articles/10.3389/fncom.2024.1387077/full" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/></svg>Paper</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="pub" data-tags="conference">
+            <div class="pub__badge"><span class="tag">WACV</span></div>
+            <div>
+              <h3 class="pub__title"><a href="https://openaccess.thecvf.com/content/WACV2024/html/Liang_Linking_Convolutional_Kernel_Size_to_Generalization_Bias_in_Face_Analysis_WACV_2024_paper.html" target="_blank" rel="noopener">Linking convolutional kernel size to generalization bias in face analysis CNNs</a></h3>
+              <p class="pub__authors">Liang, H., <span class="me">Ortega Caro, J.</span>, Maheshri, V., Patel, A. B., &amp; Balakrishnan, G.</p>
+              <p class="pub__venue">IEEE/CVF Winter Conference on Applications of Computer Vision (WACV), 2024</p>
+              <div class="pub__links">
+                <a class="pub-link" href="https://openaccess.thecvf.com/content/WACV2024/html/Liang_Linking_Convolutional_Kernel_Size_to_Generalization_Bias_in_Face_Analysis_WACV_2024_paper.html" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/></svg>Paper</a>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- 2023 -->
+        <div class="pub-group">
+          <h2 class="pub-year">2023</h2>
+
+          <article class="pub" data-tags="conference">
+            <div class="pub__badge"><span class="tag">ICML</span></div>
+            <div>
+              <h3 class="pub__title"><a href="https://openreview.net/forum?id=RnZhB7kNl0" target="_blank" rel="noopener">Continuous Spatiotemporal Transformers</a></h3>
+              <p class="pub__authors">Fonseca, A. H. O., Zappala, E., <span class="me">Ortega Caro, J.</span>, &amp; van Dijk, D.</p>
+              <p class="pub__venue">International Conference on Machine Learning (ICML), 2023</p>
+              <div class="pub__links">
+                <a class="pub-link" href="https://openreview.net/forum?id=RnZhB7kNl0" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/></svg>Paper</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="pub" data-tags="first journal">
+            <div class="pub__badge"><span class="tag">PLOS Comp. Biol.</span></div>
+            <div>
+              <h3 class="pub__title"><a href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010932" target="_blank" rel="noopener">Robust deep learning object recognition models rely on low frequency information in natural images</a></h3>
+              <p class="pub__authors">Li, Z.*, <span class="me">Ortega Caro, J.</span>*, Rusak, E., Brendel, W., Bethge, M., Anselmi, F., Patel, A. B., Tolias, A. S., &amp; Pitkow, X.</p>
+              <p class="pub__venue">PLOS Computational Biology, 19(3), e1010932, 2023 <span class="pub__note">· *equal contribution</span></p>
+              <div class="pub__links">
+                <a class="pub-link" href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010932" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/></svg>Paper</a>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- 2022 -->
+        <div class="pub-group">
+          <h2 class="pub-year">2022</h2>
+
+          <article class="pub" data-tags="journal">
+            <div class="pub__badge"><span class="tag">Frontiers</span></div>
+            <div>
+              <h3 class="pub__title"><a href="https://www.frontiersin.org/articles/10.3389/frai.2022.890016/full" target="_blank" rel="noopener">Understanding robustness and generalization of artificial neural networks through Fourier masks</a></h3>
+              <p class="pub__authors">Karantzas, N., Besier, E., <span class="me">Ortega Caro, J.</span>, Pitkow, X., Tolias, A. S., Patel, A. B., &amp; Anselmi, F.</p>
+              <p class="pub__venue">Frontiers in Artificial Intelligence, 5, 890016, 2022</p>
+              <div class="pub__links">
+                <a class="pub-link" href="https://www.frontiersin.org/articles/10.3389/frai.2022.890016/full" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/></svg>Paper</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="pub" data-tags="journal">
+            <div class="pub__badge"><span class="tag">Frontiers</span></div>
+            <div>
+              <h3 class="pub__title"><a href="https://www.frontiersin.org/articles/10.3389/frai.2022.889981/full" target="_blank" rel="noopener">Shallow univariate ReLU networks as splines: Initialization, loss surface, Hessian, and gradient flow dynamics</a></h3>
+              <p class="pub__authors">Sahs, J., Pyle, R., Damaraju, A., <span class="me">Ortega Caro, J.</span>, Tavaslioglu, O., Lu, A., Anselmi, F., &amp; Patel, A. B.</p>
+              <p class="pub__venue">Frontiers in Artificial Intelligence, 5, 889981, 2022</p>
+              <div class="pub__links">
+                <a class="pub-link" href="https://www.frontiersin.org/articles/10.3389/frai.2022.889981/full" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/></svg>Paper</a>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- 2018 -->
+        <div class="pub-group">
+          <h2 class="pub-year">2018</h2>
+
+          <article class="pub" data-tags="journal">
+            <div class="pub__badge"><span class="tag">PNAS</span></div>
+            <div>
+              <h3 class="pub__title"><a href="https://doi.org/10.1073/pnas.1719397115" target="_blank" rel="noopener">Recurrent computations for visual pattern completion</a></h3>
+              <p class="pub__authors">Tang, H., Schrimpf, M., Lotter, W., Moerman, C., Paredes, A., <span class="me">Ortega Caro, J.</span>, Hardesty, W., Cox, D., &amp; Kreiman, G.</p>
+              <p class="pub__venue">Proceedings of the National Academy of Sciences, 115(35), 8835–8840, 2018</p>
+              <div class="pub__links">
+                <a class="pub-link" href="https://doi.org/10.1073/pnas.1719397115" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/></svg>Paper</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
   <footer class="footer">
     <div class="container">
       <div class="footer__inner">
-        <div class="footer__info">
-          <h4>Josue Ortega Caro, PhD</h4>
-          <p>
-            Wu Tsai Fellow<br>
-            Yale University &middot; <a href="https://cardinlab.org" target="_blank" rel="noopener" class="footer__link">Cardin Lab</a><br>
-            New Haven, CT
-          </p>
+        <div>
+          <p class="footer__name">Josué Ortega Caro, PhD</p>
+          <p>Swartz Postdoctoral Fellow · Department of Neuroscience, Yale University</p>
+          <p>New Haven, CT</p>
         </div>
-        <div class="footer__links">
-          <a href="mailto:josue.ortegacaro@yale.edu" class="footer__link">Email</a>
-          <a href="https://github.com/josueortc" target="_blank" rel="noopener" class="footer__link">GitHub</a>
-          <a href="https://twitter.com/josueortc" target="_blank" rel="noopener" class="footer__link">Twitter</a>
-          <a href="https://www.linkedin.com/in/josue-ortega-caro-652a1a56" target="_blank" rel="noopener" class="footer__link">LinkedIn</a>
-        </div>
+        <ul class="footer__links">
+          <li><a href="mailto:josue.ortegacaro@yale.edu">Email</a></li>
+          <li><a href="https://scholar.google.com/citations?user=SctA3g8AAAAJ" target="_blank" rel="noopener">Google Scholar</a></li>
+          <li><a href="https://github.com/josueortc" target="_blank" rel="noopener">GitHub</a></li>
+          <li><a href="https://openreview.net/profile?id=~Josue_Ortega_Caro1" target="_blank" rel="noopener">OpenReview</a></li>
+          <li><a href="https://www.linkedin.com/in/josue-ortega-caro-652a1a56" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="https://x.com/josueortc" target="_blank" rel="noopener">X</a></li>
+          <li><a href="files/josue_ortegacaro_CV.pdf">CV (PDF)</a></li>
+        </ul>
       </div>
-      <div class="footer__bottom">
-        &copy; 2025 Josue Ortega Caro
-      </div>
+      <p class="footer__meta">© 2026 Josué Ortega Caro · Last updated September 2026</p>
     </div>
   </footer>
 
-  <script src="js/main.js"></script>
+  <script src="js/main.js" defer></script>
 </body>
 </html>

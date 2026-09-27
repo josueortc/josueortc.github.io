@@ -2,665 +2,502 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PRISMT — Pattern Reconstruction and Interpretation with a Structured Multimodal Transformer</title>
-  <meta name="description" content="PRISMT combines masked autoencoding with multimodal causal attention to identify key cortical regions that reorganize with learning from widefield calcium imaging.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PRISMt: Structured Motifs in Transformer Models of Neural Recordings — Josué Ortega Caro</title>
+  <meta name="description" content="PRISMt maps classification-token attribution of a transformer back onto the region, time, and modality axes of a neural recording and decomposes it into structured motifs. Applied to cortical calcium and acetylcholine imaging during learning, it found cholinergic motifs reorganizing toward frontal cortex.">
+  <link rel="canonical" href="https://josueortc.github.io/projects/prismt/">
+  <meta name="theme-color" content="#fbfaf7">
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Josué Ortega Caro">
+  <meta property="og:title" content="PRISMt: Structured motifs in transformer models of neural recordings">
+  <meta property="og:description" content="Interpretable, model-faithful attribution for multimodal neural recordings, applied to cortical acetylcholine and calcium imaging during learning.">
+  <meta property="og:url" content="https://josueortc.github.io/projects/prismt/">
+  <meta property="og:image" content="https://josueortc.github.io/images/og/prismt.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <script>document.documentElement.classList.add('js');</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400..700&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+  <link rel="stylesheet" href="../../css/base.css">
+  <link rel="stylesheet" href="../../css/paper.css">
   <link rel="stylesheet" href="css/prismt.css">
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
 
-  <!-- Navigation -->
-  <nav class="nav">
+  <header class="nav">
     <div class="nav__inner">
-      <a href="../../index.html" class="nav__logo">JOC</a>
-      <ul class="nav__menu">
-        <li><a href="#abstract" class="nav__link">Abstract</a></li>
-        <li><a href="#data" class="nav__link">Data</a></li>
-        <li><a href="#tokenization" class="nav__link">Tokenization</a></li>
-        <li><a href="#architecture" class="nav__link">Architecture</a></li>
-        <li><a href="#demos" class="nav__link">Demos</a></li>
-        <li><a href="#usage" class="nav__link">Usage</a></li>
-      </ul>
-      <button class="nav__toggle" aria-label="Toggle menu">
-        <span></span><span></span><span></span>
+      <a class="nav__brand" href="../../">Josué Ortega Caro</a>
+      <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu">
+        <span class="nav__toggle-bar"></span><span class="nav__toggle-bar"></span>
       </button>
+      <nav class="nav__menu" id="nav-menu" aria-label="Primary">
+        <a class="nav__link is-active" href="../../#research">Research</a>
+        <a class="nav__link" href="../../publications.html">Publications</a>
+        <a class="nav__link" href="../../talks.html">Talks</a>
+        <a class="nav__link" href="../../cv.html">CV</a>
+      </nav>
     </div>
-  </nav>
+  </header>
 
-  <!-- Hero -->
-  <section class="prismt-hero">
-    <div class="container prismt-hero__inner">
-      <div class="prismt-hero__content">
-        <h1 class="prismt-hero__title">PRISMT</h1>
-        <p class="prismt-hero__subtitle">Pattern Reconstruction and Interpretation with a Structured Multimodal Transformer</p>
-        <p class="prismt-hero__desc">
-          An interpretable transformer framework for <strong>spatiotemporal neural dynamics</strong>. PRISMT combines <strong>masked autoencoding</strong> with <strong>causal temporal attention</strong> to learn structured representations from multi-region brain recordings and reveal which regions, timepoints, and cross-modal interactions drive neural computation.
+  <main id="main">
+    <header class="paper-hero">
+      <div class="container">
+        <div class="paper-hero__venue"><span class="tag">Preprint · bioRxiv 2025</span></div>
+        <h1 class="paper-hero__title">PRISMt</h1>
+        <p class="paper-hero__subtitle">Pattern Reconstruction and Interpretation of Structured Motifs in transformers</p>
+        <p class="paper-hero__authors">
+          <span class="me">Josué Ortega Caro</span>
+          <span>Hannah M. Batchelor</span>
+          <span>Sweyta Lohani</span>
+          <span>David van Dijk</span>
+          <span>Jessica A. Cardin</span>
         </p>
-
-        <div class="prismt-hero__authors">
-          <span class="prismt-hero__author"><strong>Josue Ortega Caro</strong></span>
-          <span class="prismt-hero__author">Hannah M. Batchelor</span>
-          <span class="prismt-hero__author">Sweyta Lohani</span>
-          <span class="prismt-hero__author">David van Dijk</span>
-          <span class="prismt-hero__author">Jessica A. Cardin</span>
-        </div>
-
-        <p class="prismt-hero__affiliation">
-          Yale University &middot; Department of Neuroscience &middot; Kavli Institute &middot; Wu Tsai Institute
-        </p>
-
-        <div class="prismt-hero__actions">
-          <a href="https://www.biorxiv.org/content/10.1101/2025.08.29.673096v1" target="_blank" rel="noopener" class="btn btn--primary">
-            Paper
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        <p class="paper-hero__affil">Department of Neuroscience · Kavli Institute for Neuroscience · Wu Tsai Institute · Yale University</p>
+        <div class="paper-hero__links">
+          <a class="btn btn--dark" href="https://doi.org/10.1101/2025.08.29.673096" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/></svg>
+            Preprint (bioRxiv)
           </a>
-          <a href="https://github.com/josueortc/prismt" target="_blank" rel="noopener" class="btn btn--outline">
+          <a class="btn btn--dark" href="https://github.com/josueortc/prismt" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m16 18 6-6-6-6"/><path d="m8 6-6 6 6 6"/></svg>
             Code
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+          </a>
+          <a class="btn btn--ghost" href="#citation">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z"/><path d="M5 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z"/></svg>
+            BibTeX
           </a>
         </div>
-      </div>
+        <p class="paper-hero__tldr"><strong>TL;DR.</strong> Transformers can model neural recordings across regions, time, and modalities, but standard attribution collapses those axes into one importance map. PRISMt maps a transformer’s classification-token attribution <strong>back onto the native axes of the recording</strong> and decomposes it into <strong>spatial, temporal, and modality-resolved motifs</strong> that are faithful to what the model actually uses. In cortical calcium and acetylcholine imaging during learning, it revealed <strong>cholinergic motifs reorganizing toward frontal cortex</strong>.</p>
 
-      <div class="prismt-hero__graphic" id="hero-brain-grid">
-        <!-- Animated brain grid SVG injected by JS -->
-      </div>
-    </div>
-  </section>
-
-  <!-- Table of Contents -->
-  <div class="toc-bar">
-    <div class="container toc-bar__inner">
-      <a href="#abstract" class="toc-bar__link">Abstract</a>
-      <a href="#data" class="toc-bar__link">Data</a>
-      <a href="#tokenization" class="toc-bar__link">Tokenization</a>
-      <a href="#architecture" class="toc-bar__link">Architecture</a>
-      <a href="#demos" class="toc-bar__link">Demos</a>
-      <a href="#usage" class="toc-bar__link">Usage</a>
-      <a href="#citation" class="toc-bar__link">Cite</a>
-    </div>
-  </div>
-
-  <!-- Abstract -->
-  <section class="section" id="abstract">
-    <div class="container">
-      <div class="section__header fade-in">
-        <span class="section-label">Abstract</span>
-        <h2 class="section-title">Interpretable Models for Neural Dynamics</h2>
-      </div>
-      <div class="prose fade-in">
-        <p>
-          Understanding how distributed neural circuits coordinate across brain regions and time is a central challenge in neuroscience. Standard analysis methods often treat brain areas independently or rely on hand-crafted features, missing the <strong>structured spatiotemporal dependencies</strong> that underlie perception, learning, and decision-making. PRISMT addresses this gap with a general-purpose transformer architecture designed for interpretable analysis of multi-region neural recordings.
-        </p>
-        <p>
-          PRISMT tokenizes spatiotemporal brain activity &mdash; where each scalar measurement (one brain area at one timepoint) becomes a token &mdash; and applies <strong>masked autoencoding</strong> with <strong>causal temporal attention</strong> to learn structured representations. The causal mask ensures that predictions at time <em>t</em> depend only on past and present activity, respecting the temporal structure of neural computation. Through <strong>attention rollout</strong>, the model produces interpretable maps that reveal which brain regions, timepoints, and cross-modal interactions are most informative for a given task.
-        </p>
-        <p>
-          PRISMT is designed to work with any trial-based spatiotemporal neural data &mdash; widefield calcium imaging, multi-region electrophysiology, or multimodal recordings. It supports both classification (e.g., decoding behavioral states, learning phases, or genotypes) and reconstruction tasks, making it a flexible tool for <strong>discovery-driven neuroscience</strong>.
-        </p>
-        <h3 style="margin-top:32px;margin-bottom:12px;">Application: Cortical Cholinergic Signaling During Learning</h3>
-        <p>
-          In the motivating application, we applied PRISMT to simultaneous <strong>dual-color mesoscopic imaging</strong> of acetylcholine (ACh) and calcium signaling in the neocortex of awake mice across multiple stages of visual task learning. PRISMT identified key cortical regions that reorganize with learning and revealed that cholinergic signaling exhibits <strong>spatiotemporally selective plasticity</strong> in frontal cortical subnetworks during visual perceptual learning.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Data & Problem -->
-  <section class="section section--alt" id="data">
-    <div class="container">
-      <div class="section__header fade-in">
-        <span class="section-label">Data</span>
-        <h2 class="section-title">Widefield Calcium Imaging</h2>
-        <p class="section-subtitle">Dual-color mesoscopic imaging captures both acetylcholine and calcium dynamics across the cortical surface.</p>
-      </div>
-
-      <div class="data-overview fade-in">
-        <div class="data-card">
-          <div class="data-card__icon data-card__icon--coral">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+        <figure class="teaser viz" id="prismt-teaser">
+          <div class="viz__stage">
+            <canvas role="img" aria-label="Animated schematic: calcium and acetylcholine maps on the 41-region cortical grid evolve over a trial; alongside, a token matrix of regions by time highlights the current time bin, dims future bins, and draws attention lines from a query token to past tokens."></canvas>
           </div>
-          <h3 class="data-card__title">Cortical Coverage</h3>
-          <p class="data-card__value">~25 Allen Atlas Regions</p>
-          <p class="data-card__desc">Bilateral cortical areas parcellated using the Allen Brain Atlas, spanning visual, somatosensory, motor, and frontal cortex.</p>
-        </div>
-        <div class="data-card">
-          <div class="data-card__icon data-card__icon--teal">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12h4l3-9 4 18 3-9h4"/></svg>
-          </div>
-          <h3 class="data-card__title">Dual-Color Signals</h3>
-          <p class="data-card__value">ACh + Calcium</p>
-          <p class="data-card__desc">Simultaneous imaging of cholinergic (ACh) and neural (calcium) activity, creating a multimodal view of cortical dynamics.</p>
-        </div>
-        <div class="data-card">
-          <div class="data-card__icon data-card__icon--gold">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
-          </div>
-          <h3 class="data-card__title">Trial Structure</h3>
-          <p class="data-card__value">Timepoints &times; Brain Areas</p>
-          <p class="data-card__desc">Each trial is a matrix of shape (timepoints, brain_areas) containing dF/F or z-scored fluorescence signals.</p>
-        </div>
-      </div>
-
-      <div class="data-format fade-in">
-        <h3>Standardized Data Format</h3>
-        <p>All data is stored in a standardized <code>.mat</code> structure with the following organization:</p>
-        <div class="code-block">
-<pre><code>standardized_data
-  ├── n_datasets: scalar
-  └── dataset_001: struct
-      ├── dff:      (trials, timepoints, brain_areas)  % raw fluorescence
-      ├── zscore:   (trials, timepoints, brain_areas)  % z-scored signal
-      ├── stim:     (trials, 1)   % stimulus condition
-      ├── response: (trials, 1)   % behavioral response
-      ├── phase:    (trials, 1)   % learning phase
-      └── mouse:    (trials, 1)   % subject identity</code></pre>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Tokenization -->
-  <section class="section" id="tokenization">
-    <div class="container">
-      <div class="section__header fade-in">
-        <span class="section-label">Tokenization</span>
-        <h2 class="section-title">From Brain Signals to Tokens</h2>
-        <p class="section-subtitle">PRISMTransformer supports configurable tokenization strategies. The choice of tokenization determines the granularity at which the model operates.</p>
-      </div>
-
-      <div class="token-comparison fade-in">
-        <div class="token-card">
-          <div class="token-card__header token-card__header--coral">
-            <span class="token-card__badge">Classification</span>
-            <h3>Area-level Tokenization</h3>
-          </div>
-          <div class="token-card__body">
-            <p>Each <strong>brain area</strong> becomes a single token. The full time series for that area is projected to the hidden dimension via a linear layer.</p>
-            <div class="token-card__detail">
-              <div class="token-card__label">Token count</div>
-              <div class="token-card__formula">N<sub>areas</sub> + 1 (CLS)</div>
+          <div class="viz__bar">
+            <div class="viz__controls">
+              <button class="icon-btn" type="button" data-play aria-label="Pause animation"></button>
+              <div class="segmented" data-mode role="group" aria-label="Learning stage">
+                <button type="button" data-value="early" aria-pressed="true">Early learning</button>
+                <button type="button" data-value="late" aria-pressed="false">Late learning</button>
+              </div>
+              <span class="viz__readout" data-readout></span>
             </div>
-            <div class="token-card__detail">
-              <div class="token-card__label">Embedding</div>
-              <div class="token-card__formula">Linear(time_points &rarr; hidden_dim)</div>
-            </div>
-            <div class="token-card__detail">
-              <div class="token-card__label">Output</div>
-              <div class="token-card__formula">CLS token &rarr; classifier head</div>
+            <div class="viz__legend">
+              <span><span class="swatch swatch--viridis" aria-hidden="true"></span>ΔF/F (low → high)</span>
+              <span><span class="swatch swatch--masked" aria-hidden="true"></span>masked token</span>
+              <span><span class="swatch swatch--future" aria-hidden="true"></span>future (not attended)</span>
             </div>
           </div>
+          <figcaption class="viz__caption"><span class="viz-note">Illustrative</span> The 41-region cortical grid used in the paper, one map per modality, with synthetic responses. Every region, time bin, and modality becomes a token; a query token (circled) attends only to the present and past, and masked tokens are reconstructed from that causal context. Switch to <em>late learning</em> to see acetylcholine responses shift from posterior visual toward frontal cortex, the kind of change PRISMt resolved in real data.</figcaption>
+        </figure>
+      </div>
+    </header>
+
+    <nav class="toc" aria-label="On this page">
+      <div class="container toc__inner">
+        <span class="toc__label">PRISMt</span>
+        <a class="toc__link" href="#overview">Overview</a>
+        <a class="toc__link" href="#method">Method</a>
+        <a class="toc__link" href="#benchmarks">Benchmarks</a>
+        <a class="toc__link" href="#application">Application</a>
+        <a class="toc__link" href="#architecture">Architecture</a>
+        <a class="toc__link" href="#usage">Usage</a>
+        <a class="toc__link" href="#citation">Citation</a>
+      </div>
+    </nav>
+
+    <!-- Overview -->
+    <section class="section" id="overview">
+      <div class="container two-col">
+        <div>
+          <div class="section-head">
+            <span class="eyebrow">Overview</span>
+            <h2>Interpreting transformers of multidimensional neural data</h2>
+          </div>
+          <div class="prose">
+            <p>Large-scale recordings increasingly combine signals across brain regions, time, and measurement modalities. Transformers can relate all of these in parallel, but interpreting them is a separate problem. Attention rollout describes how information is routed through the layers, and gradient- or relevance-based methods add class sensitivity, yet both characterize model tokens rather than the <strong>experimentally meaningful axes</strong> of the recording. Decomposing the observations alone finds dominant structure in the data, not the structure used for a particular prediction.</p>
+            <p>PRISMt is applied to a trained classification-token transformer. It combines attention-mediated routing with the <strong>signed value message</strong> carried by each token, maps the result back onto sample, region, time, and modality, reduces it across layers and heads, and factorizes it into <strong>structured motifs</strong> that can be aligned across model fits and experimental conditions. Masked autoencoding learns distributed neural structure; PRISMt identifies the structured signals that drive a specific prediction.</p>
+          </div>
+        </div>
+        <div class="keypoints reveal">
+          <div class="keypoint">
+            <h3>Attribution on the recording’s axes</h3>
+            <p>Region × time × modality, per trial, instead of one collapsed importance map.</p>
+          </div>
+          <div class="keypoint">
+            <h3>Structured motifs</h3>
+            <p>Non-negative CP factors with separate spatial, temporal, and modality profiles, comparable across conditions.</p>
+          </div>
+          <div class="keypoint">
+            <h3>Faithful to the model</h3>
+            <p>Distinguishes pathways the classifier uses from correlated decoys present in the data.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Method -->
+    <section class="section section--subtle" id="method">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Method</span>
+          <h2>How PRISMt works</h2>
+          <p class="lede">A multimodal transformer is pretrained by masked autoencoding under block-causal attention and fine-tuned with a CLS token. PRISMt then turns each prediction into a region × time × modality attribution tensor and decomposes it into motifs.</p>
         </div>
 
-        <div class="token-card">
-          <div class="token-card__header token-card__header--teal">
-            <span class="token-card__badge">Reconstruction</span>
-            <h3>Scalar Tokenization</h3>
-          </div>
-          <div class="token-card__body">
-            <p>Each <strong>scalar value</strong> (one timepoint, one brain area) becomes a token. This creates a fine-grained sequence that enables masked reconstruction.</p>
-            <div class="token-card__detail">
-              <div class="token-card__label">Token count</div>
-              <div class="token-card__formula">N<sub>time</sub> &times; N<sub>areas</sub></div>
+        <div class="steps">
+          <!-- Step 1 -->
+          <div class="step">
+            <div class="step__text">
+              <span class="step__num">1</span>
+              <h3>One token per region, time, and modality</h3>
+              <p>Each trial is a tensor \(X_n \in \mathbb{R}^{R\times T\times M}\). Every scalar observation becomes a token: it is projected to the model dimension (\(d = 512\)) and combined with a learned token embedding. For the cortical dataset, \(R = 41\) regions, \(T = 10\) time bins, and \(M = 2\) modalities give 820 data tokens per trial.</p>
+              <p>A learned <strong>CLS token</strong> provides the sequence-level representation used for classification.</p>
+              <div class="eq"><span class="eq__label">Token embedding</span>\[ z^{(0)}_{n,i} = W_E\, x_{nrtm} + b_E + p_i, \qquad i = \tau(r,t,m) \]</div>
             </div>
-            <div class="token-card__detail">
-              <div class="token-card__label">Embedding</div>
-              <div class="token-card__formula">Linear(1 &rarr; hidden_dim)</div>
+            <figure class="viz reveal" id="prismt-tokens">
+              <div class="viz__stage">
+                <canvas role="img" aria-label="Animated schematic: calcium and acetylcholine region-by-time grids; each cell moves in turn into a token sequence that starts with a CLS token and is ordered by time."></canvas>
+              </div>
+              <div class="viz__bar">
+                <div class="viz__controls">
+                  <button class="icon-btn" type="button" data-play aria-label="Pause animation"></button>
+                </div>
+                <span class="viz__readout" data-readout></span>
+              </div>
+              <figcaption class="viz__caption"><span class="viz-note">Illustrative</span> A toy trial with 4 regions, 5 time bins, and 2 modalities. Tokens are ordered by time: all regions and modalities at the first bin, then the next.</figcaption>
+            </figure>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="step step--flip">
+            <div class="step__text">
+              <span class="step__num">2</span>
+              <h3>Learn distributed structure by masked autoencoding</h3>
+              <p>During pretraining, <strong>90% of data tokens</strong> are replaced by a learned mask embedding and the model reconstructs them from the remaining context. The loss is evaluated only on masked tokens.</p>
+              <p>Try it: mask cells, then reconstruct. The estimate here is a toy that uses the information available under block-causal attention: the <strong>past</strong> of each region and <strong>other tokens at the same time</strong>.</p>
+              <div class="eq"><span class="eq__label">Masked reconstruction loss</span>\[ \mathcal{L}_{\mathrm{MAE}} = \frac{1}{\sum_n |\Omega_n|} \sum_n \sum_{i\in\Omega_n} \big\lVert \hat z_{n,i} - z^{(0)}_{n,i} \big\rVert_2^2 \]</div>
             </div>
-            <div class="token-card__detail">
-              <div class="token-card__label">Position</div>
-              <div class="token-card__formula">time_emb + area_emb</div>
+            <figure class="viz reveal" id="prismt-mask">
+              <div class="viz__stage">
+                <canvas role="img" aria-label="Interactive grid of time bins by regions. Hatched cells are masked; after reconstruction they are filled with estimated values and outlined."></canvas>
+              </div>
+              <div class="viz__bar">
+                <div class="viz__controls">
+                  <button class="btn btn--ghost btn--sm" type="button" data-action="random">Mask 30%</button>
+                  <button class="btn btn--primary btn--sm" type="button" data-action="reconstruct">Reconstruct</button>
+                  <button class="btn btn--ghost btn--sm" type="button" data-action="reset">New signal</button>
+                </div>
+                <span class="viz__readout" data-readout aria-live="polite"></span>
+              </div>
+              <figcaption class="viz__caption"><span class="viz-note">Illustrative</span> Synthetic traveling-wave signal. Reconstructed cells are outlined and filled bin by bin, because each estimate may use only the current and earlier time bins. This toy estimator is not the trained model.</figcaption>
+            </figure>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="step">
+            <div class="step__text">
+              <span class="step__num">3</span>
+              <h3>Block-causal attention</h3>
+              <p>A token at time \(t\) attends to all regions and modalities at the same time and to every token at earlier times, never to future bins. The same backbone models recordings whose modalities differ in scale, noise, and temporal structure.</p>
+              <div class="eq"><span class="eq__label">Attention with the block-causal mask</span>\[ A^{(\ell,h)}_{n,ij} = \operatorname{softmax}_j\!\left( \frac{q_{n,i}^{\top} k_{n,j}}{\sqrt{d_h}} + M_{ij} \right), \qquad M_{ij} = \begin{cases} 0 & t_j \le t_i \\ -\infty & t_j > t_i \end{cases} \]</div>
+            </div>
+            <figure class="viz reveal" id="prismt-attn">
+              <div class="viz__stage viz__stage--auto">
+                <div data-mask style="width:100%"></div>
+              </div>
+              <div class="viz__bar">
+                <div class="viz__controls">
+                  <label class="mask-select">Time bins
+                    <select name="timepoints"><option>3</option><option selected>4</option><option>5</option></select>
+                  </label>
+                  <label class="mask-select">Tokens per bin
+                    <select name="areas"><option>2</option><option selected>3</option><option>4</option></select>
+                  </label>
+                </div>
+                <span class="viz__readout" data-info aria-live="polite"></span>
+              </div>
+              <figcaption class="viz__caption">Filled cells are allowed query → key pairs. Hover a cell to highlight its row and column.</figcaption>
+            </figure>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="step step--flip">
+            <div class="step__text">
+              <span class="step__num">4</span>
+              <h3>Attribute the prediction to region, time, and modality</h3>
+              <p>For every layer \(\ell\), head \(h\), and token, PRISMt multiplies the residual-aware rollout coefficient \(\rho\) (how much the token is routed to CLS) by the token’s <strong>signed value message</strong> projected onto the direction of the target logit \(\zeta_n\).</p>
+              <p>Layer–head pairs are then weighted by how strongly their attribution differs between classes, removing the transformer-specific axes while keeping sample, region, time, and modality.</p>
+              <div class="eq"><span class="eq__label">Token attribution</span>\[ G_n^{(\ell,h)}(r,t,m) = \rho^{(\ell,h)}_{n,i}\; u_n^{\top} W_O^{(\ell,h)} v^{(\ell,h)}_{n,i}, \qquad u_n = \frac{\nabla_{h_{n,\mathrm{CLS}}}\zeta_n}{\lVert \nabla_{h_{n,\mathrm{CLS}}}\zeta_n \rVert_2} \]</div>
+              <div class="eq"><span class="eq__label">Layer–head reduction</span>\[ w_{\ell h} = \frac{D_{\ell h}}{\sum_{\ell',h'} D_{\ell' h'}}, \qquad \tilde G_n(r,t,m) = \sum_{\ell,h} w_{\ell h}\, G_n^{(\ell,h)}(r,t,m) \]</div>
+            </div>
+            <figure class="viz reveal" id="prismt-attr">
+              <div class="viz__stage">
+                <canvas role="img" aria-label="Animated schematic: for each layer and head, a routing map multiplied by a signed message map gives an attribution map; weighting layer-head pairs by their class-discriminative strength yields a reduced attribution that highlights the pathway used by the model."></canvas>
+              </div>
+              <div class="viz__bar">
+                <div class="viz__controls">
+                  <button class="icon-btn" type="button" data-play aria-label="Pause animation"></button>
+                  <span class="viz__readout" data-readout></span>
+                </div>
+              </div>
+              <figcaption class="viz__caption"><span class="viz-note">Illustrative</span> Synthetic example with a used pathway (frontal ACh, late bins) and a correlated decoy (visual calcium, early bins). Routing alone lights up both; combining routing with signed messages and discriminative layer–head weights keeps the pathway the classifier uses.</figcaption>
+            </figure>
+          </div>
+
+          <!-- Step 5 -->
+          <div class="step">
+            <div class="step__text">
+              <span class="step__num">5</span>
+              <h3>Decompose into structured motifs</h3>
+              <p>PRISMt factorizes the magnitude of the reduced attribution tensor with a non-negative <strong>canonical polyadic</strong> decomposition. Each motif has a sample factor \(a_k(n)\), a spatial profile \(d_k(r)\), a temporal profile \(e_k(t)\), and a modality allocation \(f_k(m)\) constrained to the simplex, so every motif sits on a common modality scale.</p>
+              <p>Motifs are calcium- or ACh-dominant when one modality weight exceeds 0.65 and shared otherwise, and they are aligned across cross-validated fits and bootstrap resamples before conditions are compared.</p>
+              <div class="eq"><span class="eq__label">Motif decomposition</span>\[ T_n(r,t,m) \approx \sum_{k=1}^{K} \lambda_k\, a_k(n)\, d_k(r)\, e_k(t)\, f_k(m), \qquad f_k(m) \ge 0,\;\; \sum_m f_k(m) = 1 \]</div>
+            </div>
+            <figure class="viz reveal" id="prismt-motifs">
+              <div class="viz__stage">
+                <canvas role="img" aria-label="Animated schematic: three motifs, each with a cortical spatial map, a temporal profile, and a position on a calcium-to-acetylcholine scale; between early and late learning the acetylcholine-dominant motif moves from visual to frontal cortex."></canvas>
+              </div>
+              <div class="viz__bar">
+                <div class="viz__controls">
+                  <button class="icon-btn" type="button" data-play aria-label="Pause animation"></button>
+                  <span class="viz__readout" data-readout></span>
+                </div>
+              </div>
+              <figcaption class="viz__caption"><span class="viz-note">Illustrative</span> Three motifs with spatial, temporal, and modality factors on the 41-region grid. Across learning, the calcium-dominant motif stays broadly distributed while the ACh-dominant motif shifts from posterior visual toward frontal cortex, as PRISMt found in the imaging data.</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Benchmarks -->
+    <section class="section" id="benchmarks">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Benchmarks</span>
+          <h2>Recovery and faithfulness on synthetic systems</h2>
+          <p class="lede">All synthetic systems come from the same 64-unit recurrent network trained on a NeuroGym two-alternative perceptual decision task, projected to 32 regions and two modalities, so they differ only in how task-relevant information is arranged. Recovery asks whether a method finds the pathways placed in the data; faithfulness asks whether attribution follows the pathways the classifier uses.</p>
+        </div>
+
+        <div class="stats reveal" style="margin-bottom: 28px">
+          <div class="stat"><div class="stat__value">0.987</div><p class="stat__label">Unit-support AUROC, System 1 (one modality-specific pathway)</p></div>
+          <div class="stat"><div class="stat__value">0.975</div><p class="stat__label">System 2 (two separated modality-specific pathways)</p></div>
+          <div class="stat"><div class="stat__value">0.795</div><p class="stat__label">System 3 (adds a shared pathway with gain increasing across trials)</p></div>
+          <div class="stat"><div class="stat__value">0.937</div><p class="stat__label">Decoy system, primary pathway (observation-level methods: 0.547–0.827)</p></div>
+        </div>
+
+        <div class="cards">
+          <article class="card reveal">
+            <p class="card__kicker">The decoy test</p>
+            <h3>Correlated is not the same as used</h3>
+            <p>In System 4 a decoy pathway is correlated with held-out labels but never learned by the classifier. Observation-level decompositions recover both pathways; PRISMt places essentially no attribution on the decoy (causal allocation agreement 1.000, false-attribution mass 0.000).</p>
+          </article>
+          <article class="card reveal">
+            <p class="card__kicker">Operating range</p>
+            <h3>14 of 20 decoy configurations</h3>
+            <p>Across a sweep of decoy informativeness and pathway gain, PRISMt outperformed the observation-level baseline in 14 of 20 settings; most failures occurred where occlusion showed the classifier had switched to the decoy.</p>
+          </article>
+          <article class="card reveal">
+            <p class="card__kicker">Generalization</p>
+            <h3>Different multimodal recordings</h3>
+            <p>The same backbone modeled spontaneous activity in dual-color calcium/ACh3.0 imaging and in mesoscale calcium imaging combined with extracellular electrophysiology, exceeding a channel-mean floor in both.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Application -->
+    <section class="section section--subtle" id="application">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Application</span>
+          <h2>Cortical calcium and acetylcholine during learning</h2>
+          <p class="lede">Mice expressing the calcium indicator jRCaMP1b and the acetylcholine sensor GRAB-ACh3.0 throughout cortex were imaged through the intact skull while learning a visual detection task, first response timing (Stage 1) and then contrast detection (Stage 2).</p>
+        </div>
+        <div class="two-col" style="margin-bottom: 32px">
+          <div class="prose">
+            <p>The transformer reconstructed masked signals, predicted forward in time, and generalized to held-out mice; behavioral prediction was strongest when calcium and ACh3.0 were modeled together. Applying PRISMt to these models, <strong>calcium-associated motifs remained broadly distributed</strong> across frontal, somatosensory, and visual cortex, whereas <strong>ACh-associated motifs shifted from posterior visual cortex toward frontal cortex</strong> across Stage 2 learning, consistently across individual mice.</p>
+            <p>Two independent objectives agreed: ACh3.0 became more predictable in anterior cortex under both random masking and forward prediction, while jRCaMP1b changed little. Regions selected by PRISMt also became more strongly coordinated in the cholinergic signal after learning.</p>
+          </div>
+          <div class="keypoints">
+            <div class="keypoint"><h3>Calcium</h3><p>Distributed motifs; little learning-related change in predictability.</p></div>
+            <div class="keypoint"><h3>Acetylcholine</h3><p>Motifs reorganize toward frontal subnetworks; anterior predictability and connectivity increase.</p></div>
+          </div>
+        </div>
+        <figure class="figure reveal">
+          <img src="images/cholinergic-fig1.webp" width="1280" height="776" loading="lazy" decoding="async" alt="Dual-color mesoscopic imaging setup, task stages, trial outcomes, behavioral performance across learning, and cortex-wide jRCaMP1b calcium and ACh3.0 acetylcholine maps for hit and miss trials early and late in learning.">
+          <figcaption><strong>Dual-color imaging across learning</strong> (from the bioRxiv preprint). <strong>(a)</strong> Mesoscopic imaging setup. <strong>(b)</strong> Task stages. <strong>(c)</strong> Trial outcomes. <strong>(d–f)</strong> Behavioral performance across learning. <strong>(g, h)</strong> Cortex-wide calcium (jRCaMP1b) and acetylcholine (ACh3.0) maps for hit and miss trials, early and late in learning, and their difference (L − E).</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- Architecture -->
+    <section class="section" id="architecture">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Architecture</span>
+          <h2>Predictive backbone and interpretation</h2>
+          <p class="lede">The model and its interpretation are separate: the transformer learns to predict; PRISMt explains the prediction.</p>
+        </div>
+
+        <div class="tabs">
+          <div class="tabs__list" role="tablist" aria-label="Pipeline stages">
+            <button class="tabs__tab" role="tab" id="tab-pre" aria-controls="panel-pre" aria-selected="true">Transformer</button>
+            <button class="tabs__tab" role="tab" id="tab-attr" aria-controls="panel-attr" aria-selected="false" tabindex="-1">PRISMt</button>
+          </div>
+
+          <div class="tabs__panel" role="tabpanel" id="panel-pre" aria-labelledby="tab-pre">
+            <div class="diagram">
+              <svg viewBox="0 0 940 250" role="img" aria-label="Transformer: region by time by modality input, scalar tokens with CLS, block-causal decoder layers, reconstruction head for masked tokens and CLS head for classification.">
+                <defs><marker id="ah-pre" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" class="dg-head"/></marker></defs>
+                <rect x="8" y="84" width="112" height="64" rx="10" class="dg-box dg-box--in"/>
+                <text x="64" y="110" class="dg-title">Input</text><text x="64" y="128" class="dg-sub">R × T × M</text>
+                <line x1="122" y1="116" x2="154" y2="116" class="dg-arrow" marker-end="url(#ah-pre)"/>
+                <rect x="158" y="62" width="138" height="108" rx="10" class="dg-box"/>
+                <text x="227" y="88" class="dg-title">Tokenize</text><text x="227" y="108" class="dg-sub">Linear(1 → 512)</text><text x="227" y="126" class="dg-sub">+ token embedding</text><text x="227" y="150" class="dg-sub dg-sub--accent">+ CLS token</text>
+                <line x1="298" y1="116" x2="330" y2="116" class="dg-arrow" marker-end="url(#ah-pre)"/>
+                <rect x="334" y="70" width="124" height="92" rx="10" class="dg-box dg-box--mask"/>
+                <text x="396" y="98" class="dg-title">Mask</text><text x="396" y="118" class="dg-sub">90% of tokens</text><text x="396" y="138" class="dg-sub dg-sub--accent">learned [MASK]</text>
+                <line x1="460" y1="116" x2="492" y2="116" class="dg-arrow" marker-end="url(#ah-pre)"/>
+                <rect x="496" y="50" width="200" height="132" rx="10" class="dg-box dg-box--main"/>
+                <text x="596" y="78" class="dg-title">Decoder-only Transformer</text><text x="596" y="100" class="dg-sub dg-sub--accent">block-causal attention</text><text x="596" y="120" class="dg-sub">residual + layer norm</text><text x="596" y="140" class="dg-sub">two-layer feedforward</text><text x="596" y="164" class="dg-sub dg-sub--accent">× L layers</text>
+                <line x1="698" y1="96" x2="734" y2="80" class="dg-arrow" marker-end="url(#ah-pre)"/>
+                <line x1="698" y1="136" x2="734" y2="152" class="dg-arrow" marker-end="url(#ah-pre)"/>
+                <rect x="738" y="46" width="194" height="60" rx="10" class="dg-box dg-box--out"/>
+                <text x="835" y="72" class="dg-title">Reconstruction</text><text x="835" y="90" class="dg-sub">loss on masked tokens</text>
+                <rect x="738" y="126" width="194" height="60" rx="10" class="dg-box dg-box--out"/>
+                <text x="835" y="152" class="dg-title">CLS head</text><text x="835" y="170" class="dg-sub">behavioral classification</text>
+                <rect x="334" y="204" width="598" height="36" rx="10" class="dg-note"/>
+                <text x="633" y="227" class="dg-note-title">AdamW · batch 128 · lr 5×10⁻⁴ with cosine annealing · ≤ 200 epochs, early stopping</text>
+              </svg>
             </div>
           </div>
-        </div>
-      </div>
 
-      <div class="token-order fade-in">
-        <h3>Token Ordering (Scalar Tokenization)</h3>
-        <p>Tokens are arranged in row-major order over time, then brain areas:</p>
-        <div class="token-order__visual" id="token-order-viz">
-          <!-- Token order visualization injected by JS -->
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Architecture -->
-  <section class="section section--alt" id="architecture">
-    <div class="container">
-      <div class="section__header fade-in">
-        <span class="section-label">Architecture</span>
-        <h2 class="section-title">PRISMTransformer Architecture</h2>
-        <p class="section-subtitle">PRISMTransformer uses causal temporal attention for both classification and masked reconstruction, with configurable tokenization.</p>
-      </div>
-
-      <!-- Architecture tab switcher -->
-      <div class="arch-tabs fade-in">
-        <button class="arch-tab arch-tab--active" data-tab="classification">
-          <span class="arch-tab__num">1</span>
-          PRISMTransformer (Classification)
-        </button>
-        <button class="arch-tab" data-tab="reconstruction">
-          <span class="arch-tab__num">2</span>
-          PRISMTransformer (Reconstruction)
-        </button>
-      </div>
-
-      <!-- Classification architecture -->
-      <div class="arch-panel arch-panel--active" id="panel-classification">
-        <div class="arch-diagram fade-in" id="arch-classification">
-          <svg viewBox="0 0 920 320" class="arch-svg">
-            <!-- Input -->
-            <g class="arch-node" transform="translate(10, 90)">
-              <rect x="0" y="0" width="110" height="60" rx="10" class="arch-node__box arch-node__box--input"/>
-              <text x="55" y="26" class="arch-node__title">Input</text>
-              <text x="55" y="44" class="arch-node__sub">(T, N_areas)</text>
-            </g>
-            <!-- Arrow -->
-            <line x1="124" y1="120" x2="158" y2="120" class="arch-arrow"/>
-            <polygon points="156,115 166,120 156,125" class="arch-arrow-head"/>
-            <!-- Transpose + Token Embed -->
-            <g class="arch-node" transform="translate(168, 70)">
-              <rect x="0" y="0" width="136" height="100" rx="10" class="arch-node__box"/>
-              <text x="68" y="24" class="arch-node__title">Tokenize</text>
-              <text x="68" y="44" class="arch-node__sub">Transpose</text>
-              <text x="68" y="60" class="arch-node__sub">Linear(T &rarr; D)</text>
-              <text x="68" y="82" class="arch-node__sub arch-node__sub--accent">+ CLS token</text>
-            </g>
-            <!-- Arrow -->
-            <line x1="308" y1="120" x2="342" y2="120" class="arch-arrow"/>
-            <polygon points="340,115 350,120 340,125" class="arch-arrow-head"/>
-            <!-- Positional + Dropout -->
-            <g class="arch-node" transform="translate(352, 78)">
-              <rect x="0" y="0" width="116" height="84" rx="10" class="arch-node__box"/>
-              <text x="58" y="26" class="arch-node__title">Position</text>
-              <text x="58" y="46" class="arch-node__sub">Learnable</text>
-              <text x="58" y="64" class="arch-node__sub">+ Dropout</text>
-            </g>
-            <!-- Arrow -->
-            <line x1="472" y1="120" x2="506" y2="120" class="arch-arrow"/>
-            <polygon points="504,115 514,120 504,125" class="arch-arrow-head"/>
-            <!-- Transformer Blocks -->
-            <g class="arch-node" transform="translate(510, 60)">
-              <rect x="0" y="0" width="168" height="120" rx="10" class="arch-node__box arch-node__box--main"/>
-              <text x="84" y="26" class="arch-node__title">Transformer</text>
-              <text x="84" y="46" class="arch-node__sub">PreNorm</text>
-              <text x="84" y="64" class="arch-node__sub">Causal Temporal Attn</text>
-              <text x="84" y="82" class="arch-node__sub">FFN (GELU)</text>
-              <text x="84" y="104" class="arch-node__sub arch-node__sub--accent">&times; L layers</text>
-            </g>
-            <!-- Arrow -->
-            <line x1="682" y1="120" x2="716" y2="120" class="arch-arrow"/>
-            <polygon points="714,115 724,120 714,125" class="arch-arrow-head"/>
-            <!-- CLS -> Output -->
-            <g class="arch-node" transform="translate(726, 78)">
-              <rect x="0" y="0" width="130" height="84" rx="10" class="arch-node__box arch-node__box--output"/>
-              <text x="65" y="26" class="arch-node__title">CLS Head</text>
-              <text x="65" y="46" class="arch-node__sub">Extract CLS</text>
-              <text x="65" y="64" class="arch-node__sub">Linear &rarr; classes</text>
-            </g>
-            <!-- Attention rollout annotation -->
-            <g transform="translate(510, 200)">
-              <rect x="0" y="0" width="346" height="52" rx="10" class="arch-note"/>
-              <text x="173" y="20" class="arch-note__text">Attention Rollout: CLS &rarr; brain areas</text>
-              <text x="173" y="38" class="arch-note__sub">Interpretable maps of which areas drive classification</text>
-            </g>
-            <line x1="683" y1="180" x2="683" y2="200" class="arch-arrow arch-arrow--dashed"/>
-          </svg>
-        </div>
-
-        <div class="arch-details fade-in">
-          <div class="arch-detail">
-            <h4>Causal Temporal Attention</h4>
-            <p>Uses the same CausalTemporalAttention mechanism as reconstruction. With area-level tokenization, all tokens share a single effective timepoint, so the causal mask allows full bidirectional attention &mdash; consistent mechanism, appropriate behaviour for classification.</p>
-          </div>
-          <div class="arch-detail">
-            <h4>Attention Rollout</h4>
-            <p>After training, attention weights are composed across layers (with residual mixing) to produce a single CLS-to-areas attention map, revealing which brain regions most influence the classification decision.</p>
-          </div>
-          <div class="arch-detail">
-            <h4>Output</h4>
-            <p>Supports classification (learning phase, genotype) and regression. The CLS token's final representation is projected through a linear head.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Reconstruction architecture -->
-      <div class="arch-panel" id="panel-reconstruction">
-        <div class="arch-diagram fade-in" id="arch-reconstruction">
-          <svg viewBox="0 0 940 360" class="arch-svg">
-            <!-- Input -->
-            <g class="arch-node" transform="translate(8, 100)">
-              <rect x="0" y="0" width="100" height="60" rx="10" class="arch-node__box arch-node__box--input"/>
-              <text x="50" y="26" class="arch-node__title">Input</text>
-              <text x="50" y="44" class="arch-node__sub">(T, N_areas)</text>
-            </g>
-            <!-- Arrow -->
-            <line x1="112" y1="130" x2="140" y2="130" class="arch-arrow"/>
-            <polygon points="138,125 148,130 138,135" class="arch-arrow-head"/>
-            <!-- Masking -->
-            <g class="arch-node" transform="translate(150, 78)">
-              <rect x="0" y="0" width="120" height="104" rx="10" class="arch-node__box arch-node__box--mask"/>
-              <text x="60" y="24" class="arch-node__title">Mask</text>
-              <text x="60" y="44" class="arch-node__sub">Random areas</text>
-              <text x="60" y="60" class="arch-node__sub">zero + replace</text>
-              <text x="60" y="84" class="arch-node__sub arch-node__sub--accent">Learnable [M]</text>
-            </g>
-            <!-- Arrow -->
-            <line x1="274" y1="130" x2="302" y2="130" class="arch-arrow"/>
-            <polygon points="300,125 310,130 300,135" class="arch-arrow-head"/>
-            <!-- Scalar Token Embed -->
-            <g class="arch-node" transform="translate(312, 82)">
-              <rect x="0" y="0" width="114" height="96" rx="10" class="arch-node__box"/>
-              <text x="57" y="24" class="arch-node__title">Tokenize</text>
-              <text x="57" y="44" class="arch-node__sub">Each scalar</text>
-              <text x="57" y="60" class="arch-node__sub">Linear(1&rarr;D)</text>
-              <text x="57" y="80" class="arch-node__sub">T&times;N tokens</text>
-            </g>
-            <!-- Arrow -->
-            <line x1="430" y1="130" x2="458" y2="130" class="arch-arrow"/>
-            <polygon points="456,125 466,130 456,135" class="arch-arrow-head"/>
-            <!-- Position Embed -->
-            <g class="arch-node" transform="translate(468, 88)">
-              <rect x="0" y="0" width="114" height="84" rx="10" class="arch-node__box"/>
-              <text x="57" y="24" class="arch-node__title">Position</text>
-              <text x="57" y="44" class="arch-node__sub">time_emb</text>
-              <text x="57" y="64" class="arch-node__sub">+ area_emb</text>
-            </g>
-            <!-- Arrow -->
-            <line x1="586" y1="130" x2="614" y2="130" class="arch-arrow"/>
-            <polygon points="612,125 622,130 612,135" class="arch-arrow-head"/>
-            <!-- Causal Transformer - wider box to contain text -->
-            <g class="arch-node" transform="translate(624, 58)">
-              <rect x="0" y="0" width="174" height="144" rx="10" class="arch-node__box arch-node__box--main"/>
-              <text x="87" y="26" class="arch-node__title">Transformer</text>
-              <text x="87" y="48" class="arch-node__sub">PreNorm</text>
-              <text x="87" y="68" class="arch-node__sub arch-node__sub--accent">Causal Temporal</text>
-              <text x="87" y="84" class="arch-node__sub arch-node__sub--accent">Attention</text>
-              <text x="87" y="104" class="arch-node__sub">FFN (GELU)</text>
-              <text x="87" y="128" class="arch-node__sub arch-node__sub--accent">&times; L layers</text>
-            </g>
-            <!-- Arrow -->
-            <line x1="802" y1="130" x2="830" y2="130" class="arch-arrow"/>
-            <polygon points="828,125 838,130 828,135" class="arch-arrow-head"/>
-            <!-- Reconstruction head -->
-            <g class="arch-node" transform="translate(840, 88)">
-              <rect x="0" y="0" width="90" height="84" rx="10" class="arch-node__box arch-node__box--output"/>
-              <text x="45" y="26" class="arch-node__title">Recon</text>
-              <text x="45" y="46" class="arch-node__sub">Linear</text>
-              <text x="45" y="64" class="arch-node__sub">D &rarr; 1</text>
-            </g>
-            <!-- Causal mask annotation -->
-            <g transform="translate(560, 224)">
-              <rect x="0" y="0" width="370" height="68" rx="10" class="arch-note"/>
-              <text x="185" y="20" class="arch-note__text">Causal Temporal Masking</text>
-              <text x="185" y="38" class="arch-note__sub">Token at time t attends to time s where s &le; t</text>
-              <text x="185" y="54" class="arch-note__sub">Same-timepoint areas attend freely to each other</text>
-            </g>
-            <line x1="711" y1="202" x2="711" y2="224" class="arch-arrow arch-arrow--dashed"/>
-          </svg>
-        </div>
-
-        <div class="arch-details fade-in">
-          <div class="arch-detail">
-            <h4>Masked Autoencoding</h4>
-            <p>Random brain areas are masked at the input, replaced with a shared learnable [MASK] token. The model learns to reconstruct the masked values from the remaining context.</p>
-          </div>
-          <div class="arch-detail">
-            <h4>Causal Temporal Attention</h4>
-            <p>A structured attention mask enforces temporal causality: tokens at time t can attend to all tokens at time s &le; t. Within each timepoint, all brain areas attend freely to each other.</p>
-          </div>
-          <div class="arch-detail">
-            <h4>Multimodal Integration</h4>
-            <p>Both ACh and calcium modalities share the same token space. The model learns cross-modal dependencies through the attention mechanism, discovering how neuromodulatory patterns relate to neural activity.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Interactive Demos -->
-  <section class="section" id="demos">
-    <div class="container">
-      <div class="section__header fade-in">
-        <span class="section-label">Interactive Demos</span>
-        <h2 class="section-title">Explore the Model</h2>
-        <p class="section-subtitle">Interact with the visualizations below to understand how PRISMT processes cortical data.</p>
-      </div>
-
-      <!-- Demo 1: Masking & Reconstruction -->
-      <div class="demo-block fade-in" id="demo-masking">
-        <div class="demo-block__header">
-          <h3>Masking &amp; Reconstruction</h3>
-          <p>Click on individual cells to mask tokens (each cell is one timepoint &times; brain area scalar). Then watch how the PRISMTransformer reconstructs the masked values from surrounding context using causal temporal attention.</p>
-        </div>
-        <div class="demo-block__controls">
-          <button class="demo-btn" id="mask-random-btn">Mask Random Tokens</button>
-          <button class="demo-btn demo-btn--outline" id="mask-reset-btn">Reset</button>
-          <button class="demo-btn demo-btn--teal" id="mask-reconstruct-btn">Reconstruct</button>
-        </div>
-        <div class="demo-block__canvas-wrap">
-          <div class="demo-block__labels">
-            <span class="demo-block__label-y">Timepoints &darr;</span>
-          </div>
-          <canvas id="masking-canvas" width="700" height="360"></canvas>
-          <div class="demo-block__legend">
-            <span class="legend-item"><span class="legend-swatch legend-swatch--signal"></span>Signal</span>
-            <span class="legend-item"><span class="legend-swatch legend-swatch--masked"></span>Masked</span>
-            <span class="legend-item"><span class="legend-swatch legend-swatch--recon"></span>Reconstructed</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Demo 2: Causal Attention Heatmap -->
-      <div class="demo-block fade-in" id="demo-attention">
-        <div class="demo-block__header">
-          <h3>Causal Temporal Attention Mask</h3>
-          <p>Hover over cells to see which tokens can attend to which. The causal mask ensures that information flows only forward in time, while brain areas within the same timepoint can freely communicate.</p>
-        </div>
-        <div class="demo-block__controls">
-          <label class="demo-label">
-            Timepoints:
-            <select id="attn-timepoints">
-              <option value="3">3</option>
-              <option value="4" selected>4</option>
-              <option value="5">5</option>
-            </select>
-          </label>
-          <label class="demo-label">
-            Brain Areas:
-            <select id="attn-areas">
-              <option value="2">2</option>
-              <option value="3" selected>3</option>
-              <option value="4">4</option>
-            </select>
-          </label>
-        </div>
-        <div class="demo-block__viz-wrap">
-          <div id="attention-heatmap"></div>
-          <div id="attention-tooltip" class="attn-tooltip"></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- How to Use -->
-  <section class="section section--alt" id="usage">
-    <div class="container">
-      <div class="section__header fade-in">
-        <span class="section-label">Getting Started</span>
-        <h2 class="section-title">How to Use PRISMT</h2>
-      </div>
-
-      <div class="usage-steps fade-in">
-        <!-- Step 1 -->
-        <div class="usage-step">
-          <div class="usage-step__num">1</div>
-          <div class="usage-step__content">
-            <h3>Prepare Your Data</h3>
-            <p>Standardize your widefield imaging data into the expected <code>.mat</code> format using the provided MATLAB scripts or the PRISMT GUI.</p>
-            <div class="code-block">
-<pre><code>% In MATLAB: standardize your data
-run_prismt_gui   % Launch the PRISMT GUI
-% Or use the command-line standardization script:
-standardize_data('your_data.mat', 'output_standardized.mat')</code></pre>
+          <div class="tabs__panel" role="tabpanel" id="panel-attr" aria-labelledby="tab-attr" hidden>
+            <div class="diagram">
+              <svg viewBox="0 0 940 250" role="img" aria-label="PRISMt: token attribution from routing and signed value messages, layer-head reduction, non-negative CP decomposition, and motif alignment across fits.">
+                <defs><marker id="ah-attr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" class="dg-head"/></marker></defs>
+                <rect x="8" y="70" width="190" height="104" rx="10" class="dg-box dg-box--in"/>
+                <text x="103" y="98" class="dg-title">Token attribution</text><text x="103" y="120" class="dg-sub">rollout routing ρ</text><text x="103" y="138" class="dg-sub">× signed value message</text><text x="103" y="158" class="dg-sub dg-sub--accent">G(n, ℓ, h, r, t, m)</text>
+                <line x1="200" y1="122" x2="232" y2="122" class="dg-arrow" marker-end="url(#ah-attr)"/>
+                <rect x="236" y="70" width="190" height="104" rx="10" class="dg-box"/>
+                <text x="331" y="98" class="dg-title">Layer–head reduction</text><text x="331" y="120" class="dg-sub">class-discriminative</text><text x="331" y="138" class="dg-sub">weights w_ℓh</text><text x="331" y="158" class="dg-sub dg-sub--accent">G̃(n, r, t, m)</text>
+                <line x1="428" y1="122" x2="460" y2="122" class="dg-arrow" marker-end="url(#ah-attr)"/>
+                <rect x="464" y="56" width="220" height="132" rx="10" class="dg-box dg-box--main"/>
+                <text x="574" y="84" class="dg-title">Non-negative CP</text><text x="574" y="106" class="dg-sub">a_k(n) · d_k(r) · e_k(t) · f_k(m)</text><text x="574" y="126" class="dg-sub">modality factor on the simplex</text><text x="574" y="146" class="dg-sub">TensorLy, 5 restarts</text><text x="574" y="170" class="dg-sub dg-sub--accent">K motifs</text>
+                <line x1="686" y1="122" x2="718" y2="122" class="dg-arrow" marker-end="url(#ah-attr)"/>
+                <rect x="722" y="70" width="210" height="104" rx="10" class="dg-box dg-box--out"/>
+                <text x="827" y="98" class="dg-title">Consensus motifs</text><text x="827" y="120" class="dg-sub">Hungarian alignment across</text><text x="827" y="138" class="dg-sub">CV fits and bootstraps</text><text x="827" y="158" class="dg-sub dg-sub--accent">compare across learning</text>
+                <rect x="236" y="204" width="696" height="36" rx="10" class="dg-note"/>
+                <text x="584" y="227" class="dg-note-title">Parcel significance by label permutation (P &lt; 0.05) → PRISMt-selected regions</text>
+              </svg>
             </div>
           </div>
         </div>
-        <!-- Step 2 -->
-        <div class="usage-step">
-          <div class="usage-step__num">2</div>
-          <div class="usage-step__content">
-            <h3>Configure Training</h3>
-            <p>Set model hyperparameters and training configuration. PRISMT supports both command-line arguments and the MATLAB GUI for configuration.</p>
-            <div class="code-block">
-<pre><code># Train a classification model (e.g., learning phase)
-python train.py \
-  --data_path data/standardized.mat \
-  --task_name phase_classification \
-  --hidden_dim 128 \
-  --num_heads 4 \
-  --num_layers 3 \
-  --batch_size 16 \
-  --epochs 100 \
-  --lr 5e-5 \
-  --scheduler_type cosine_warmup</code></pre>
-            </div>
-          </div>
+      </div>
+    </section>
+
+    <!-- Usage -->
+    <section class="section section--subtle" id="usage">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Usage</span>
+          <h2>Getting started</h2>
+          <p class="lede">See the <a href="https://github.com/josueortc/prismt" target="_blank" rel="noopener">repository</a> for installation and the current command-line options.</p>
         </div>
-        <!-- Step 3 -->
-        <div class="usage-step">
-          <div class="usage-step__num">3</div>
-          <div class="usage-step__content">
-            <h3>Analyze Results</h3>
-            <p>Extract attention rollout maps and generate brain visualizations to identify which cortical regions drive classification.</p>
-            <div class="code-block">
-<pre><code># Run analysis and generate brain maps
-python analyze_results.py \
+        <div class="usage">
+          <div class="usage__step"><div>
+            <h3>Prepare your data</h3>
+            <p>Organize each trial as regions × time × modality in the standardized <code>.mat</code> format, using the MATLAB scripts or the GUI.</p>
+            <div class="code"><pre><code>% In MATLAB
+run_prismt_gui   % launch the GUI
+% or:
+standardize_data('your_data.mat', 'output_standardized.mat')</code></pre></div>
+          </div></div>
+          <div class="usage__step"><div>
+            <h3>Pretrain and fine-tune the transformer</h3>
+            <div class="code"><pre><code>python train.py --data_path data/standardized.mat --task_name phase_classification</code></pre></div>
+          </div></div>
+          <div class="usage__step"><div>
+            <h3>Run PRISMt attribution and motif analysis</h3>
+            <div class="code"><pre><code>python analyze_results.py \
   --checkpoint results/best_model.pt \
   --data_path data/standardized.mat \
-  --output_dir results/analysis/</code></pre>
-            </div>
-          </div>
+  --output_dir results/analysis/</code></pre></div>
+          </div></div>
         </div>
-        <!-- Step 4 -->
-        <div class="usage-step">
-          <div class="usage-step__num">4</div>
-          <div class="usage-step__content">
-            <h3>Hyperparameter Optimization</h3>
-            <p>Use Optuna-based HPO to find the best model configuration for your specific dataset.</p>
-            <div class="code-block">
-<pre><code># Run HPO with Optuna
-python hpo_optuna.py \
-  --data_path data/standardized.mat \
-  --n_trials 50 \
-  --task_name phase_classification</code></pre>
-            </div>
-          </div>
-        </div>
-      </div>
 
-      <div class="usage-config fade-in">
-        <h3>Default Configuration</h3>
+        <h3 style="margin: 36px 0 12px">Configuration used in the paper</h3>
         <div class="config-grid">
-          <div class="config-item">
-            <span class="config-item__key">hidden_dim</span>
-            <span class="config-item__val">128</span>
-          </div>
-          <div class="config-item">
-            <span class="config-item__key">num_heads</span>
-            <span class="config-item__val">4</span>
-          </div>
-          <div class="config-item">
-            <span class="config-item__key">num_layers</span>
-            <span class="config-item__val">3</span>
-          </div>
-          <div class="config-item">
-            <span class="config-item__key">ff_dim</span>
-            <span class="config-item__val">256</span>
-          </div>
-          <div class="config-item">
-            <span class="config-item__key">dropout</span>
-            <span class="config-item__val">0.3</span>
-          </div>
-          <div class="config-item">
-            <span class="config-item__key">batch_size</span>
-            <span class="config-item__val">16</span>
-          </div>
-          <div class="config-item">
-            <span class="config-item__key">learning_rate</span>
-            <span class="config-item__val">5e-5</span>
-          </div>
-          <div class="config-item">
-            <span class="config-item__key">optimizer</span>
-            <span class="config-item__val">AdamW</span>
-          </div>
-          <div class="config-item">
-            <span class="config-item__key">scheduler</span>
-            <span class="config-item__val">cosine_warmup</span>
-          </div>
-          <div class="config-item">
-            <span class="config-item__key">early_stopping</span>
-            <span class="config-item__val">patience=15</span>
-          </div>
+          <div class="config-item"><code>tokens (cortex)</code><span>41 × 10 × 2 + CLS</span></div>
+          <div class="config-item"><code>model dim d</code><span>512</span></div>
+          <div class="config-item"><code>mask ratio</code><span>90%</span></div>
+          <div class="config-item"><code>optimizer</code><span>AdamW</span></div>
+          <div class="config-item"><code>weight decay</code><span>1e-2</span></div>
+          <div class="config-item"><code>batch size</code><span>128</span></div>
+          <div class="config-item"><code>learning rate</code><span>5e-4, cosine</span></div>
+          <div class="config-item"><code>epochs</code><span>≤ 200</span></div>
+          <div class="config-item"><code>early stopping</code><span>patience 20</span></div>
+          <div class="config-item"><code>grad clip</code><span>1.0</span></div>
+          <div class="config-item"><code>CP restarts</code><span>5 × 2,000 iter</span></div>
+          <div class="config-item"><code>modality threshold</code><span>0.65</span></div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Citation -->
-  <section class="section" id="citation">
-    <div class="container">
-      <div class="section__header fade-in">
-        <span class="section-label">Cite</span>
-        <h2 class="section-title">Cite Our Work</h2>
-      </div>
-      <div class="citation-block fade-in">
-        <p class="citation-block__note">If you find PRISMT useful for your research, please consider citing:</p>
-        <div class="code-block code-block--cite">
-<pre><code>@article{ortegacaro2025cholinergic,
-  title={Selective changes in cortical cholinergic signaling during learning},
-  author={Ortega Caro, Josue and Batchelor, Hannah M. and Lohani, Sweyta
-          and van Dijk, David and Cardin, Jessica A.},
-  journal={bioRxiv},
-  year={2025},
-  doi={10.1101/2025.08.29.673096},
-  publisher={Cold Spring Harbor Laboratory}
+    <!-- Citation -->
+    <section class="section" id="citation">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Citation</span>
+          <h2>Cite this work</h2>
+        </div>
+        <p class="cite__note">If you find PRISMt useful, please cite the preprint:</p>
+        <div class="code">
+          <button class="btn btn--ghost btn--sm code__copy" type="button" data-copy="#prismt-bibtex"><span class="btn__label">Copy</span></button>
+          <pre id="prismt-bibtex"><code>@article{ortegacaro2025cholinergic,
+  title     = {Selective changes in cortical cholinergic signaling during learning},
+  author    = {Ortega Caro, Josu{\'e} and Batchelor, Hannah M. and Lohani, Sweyta
+               and van Dijk, David and Cardin, Jessica A.},
+  journal   = {bioRxiv},
+  year      = {2025},
+  doi       = {10.1101/2025.08.29.673096},
+  publisher = {Cold Spring Harbor Laboratory}
 }</code></pre>
         </div>
-        <button class="demo-btn" id="copy-cite-btn">Copy BibTeX</button>
       </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
-  <!-- Footer -->
   <footer class="footer">
     <div class="container">
       <div class="footer__inner">
-        <div class="footer__info">
-          <h4>PRISMT</h4>
-          <p>
-            Pattern Reconstruction and Interpretation with a<br>
-            Structured Multimodal Transformer<br>
-            <a href="https://cardinlab.org" target="_blank" rel="noopener" class="footer__link">Cardin Lab</a> &middot; Yale University
-          </p>
+        <div>
+          <p class="footer__name">Josué Ortega Caro, PhD</p>
+          <p>Swartz Postdoctoral Fellow · Department of Neuroscience, Yale University</p>
+          <p><a href="../../#projects">← All projects</a></p>
         </div>
-        <div class="footer__links">
-          <a href="https://www.biorxiv.org/content/10.1101/2025.08.29.673096v1" target="_blank" rel="noopener" class="footer__link">Paper</a>
-          <a href="https://github.com/josueortc/prismt" target="_blank" rel="noopener" class="footer__link">GitHub</a>
-          <a href="../../index.html" class="footer__link">Back to Main Site</a>
-        </div>
+        <ul class="footer__links">
+          <li><a href="https://doi.org/10.1101/2025.08.29.673096" target="_blank" rel="noopener">Preprint</a></li>
+          <li><a href="https://github.com/josueortc/prismt" target="_blank" rel="noopener">Code</a></li>
+          <li><a href="http://cardinlab.org/" target="_blank" rel="noopener">Cardin Lab</a></li>
+          <li><a href="../../publications.html">Publications</a></li>
+          <li><a href="mailto:josue.ortegacaro@yale.edu">Email</a></li>
+        </ul>
       </div>
-      <div class="footer__bottom">
-        &copy; 2025 Josue Ortega Caro &middot; Yale University
-      </div>
+      <p class="footer__meta">© 2026 Josué Ortega Caro · Schematics on this page use synthetic signals and do not show model output.</p>
     </div>
   </footer>
 
-  <script src="https://d3js.org/d3.v7.min.js"></script>
-  <script src="js/prismt-viz.js"></script>
+  <script src="../../js/main.js" defer></script>
+  <script src="../../js/viz-kit.js" defer></script>
+  <script src="js/prismt-viz.js?v=3" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" defer crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" defer crossorigin="anonymous"></script>
+  <script src="../../js/math.js" defer></script>
 </body>
 </html>

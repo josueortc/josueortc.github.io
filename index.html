@@ -2,293 +2,331 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Josue Ortega Caro, PhD</title>
-  <meta name="description" content="Wu Tsai Fellow at Yale University. Machine learning for neural dynamics — computational neuroscience, foundation models, and neural integral equations.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Josué Ortega Caro, PhD — Machine learning for neural dynamics</title>
+  <meta name="description" content="Josué Ortega Caro is a Swartz Postdoctoral Fellow in the Department of Neuroscience at Yale University, developing machine learning methods for neural dynamics: flow-based models of learning, interpretable transformers, and foundation models for brain activity.">
+  <link rel="canonical" href="https://josueortc.github.io/">
+  <meta name="theme-color" content="#fbfaf7">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="profile">
+  <meta property="og:site_name" content="Josué Ortega Caro">
+  <meta property="og:title" content="Josué Ortega Caro, PhD">
+  <meta property="og:description" content="Swartz Postdoctoral Fellow, Department of Neuroscience, Yale University. Machine learning for neural dynamics.">
+  <meta property="og:url" content="https://josueortc.github.io/">
+  <meta property="og:image" content="https://josueortc.github.io/images/og/home.jpg">
+  <meta name="twitter:card" content="summary">
+  <script>document.documentElement.classList.add('js');</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400..700&display=swap">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/site.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Josué Ortega Caro",
+    "honorificSuffix": "PhD",
+    "jobTitle": "Swartz Postdoctoral Fellow",
+    "affiliation": { "@type": "Organization", "name": "Department of Neuroscience, Yale University" },
+    "alumniOf": [
+      { "@type": "CollegeOrUniversity", "name": "Baylor College of Medicine" },
+      { "@type": "CollegeOrUniversity", "name": "Universidad Peruana Cayetano Heredia" }
+    ],
+    "email": "mailto:josue.ortegacaro@yale.edu",
+    "url": "https://josueortc.github.io/",
+    "image": "https://josueortc.github.io/images/site/josue-ortega-caro.jpg",
+    "sameAs": [
+      "https://scholar.google.com/citations?user=SctA3g8AAAAJ",
+      "https://github.com/josueortc",
+      "https://openreview.net/profile?id=~Josue_Ortega_Caro1",
+      "https://www.linkedin.com/in/josue-ortega-caro-652a1a56",
+      "https://x.com/josueortc"
+    ],
+    "knowsAbout": ["Computational neuroscience", "Machine learning", "Neural dynamics", "Foundation models", "Flow matching"]
+  }
+  </script>
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
 
-  <!-- Navigation -->
-  <nav class="nav">
+  <header class="nav" data-overlay>
     <div class="nav__inner">
-      <a href="index.html" class="nav__logo">JOC</a>
-      <ul class="nav__menu">
-        <li><a href="index.html" class="nav__link nav__link--active">Research</a></li>
-        <li><a href="publications.html" class="nav__link">Publications</a></li>
-        <li><a href="awards-conferences.html" class="nav__link">Talks</a></li>
-        <li><a href="cv.html" class="nav__link">CV</a></li>
-      </ul>
-      <button class="nav__toggle" aria-label="Toggle menu">
-        <span></span>
-        <span></span>
-        <span></span>
+      <a class="nav__brand" href="./">Josué Ortega Caro</a>
+      <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu">
+        <span class="nav__toggle-bar"></span><span class="nav__toggle-bar"></span>
       </button>
+      <nav class="nav__menu" id="nav-menu" aria-label="Primary">
+        <a class="nav__link" href="#research">Research</a>
+        <a class="nav__link" href="publications.html">Publications</a>
+        <a class="nav__link" href="talks.html">Talks</a>
+        <a class="nav__link" href="cv.html">CV</a>
+      </nav>
     </div>
-  </nav>
+  </header>
 
-  <!-- Hero -->
-  <section class="hero">
-    <div class="container hero__inner">
-      <div class="hero__content">
-        <h1 class="hero__name">Josue Ortega Caro</h1>
-        <p class="hero__tagline">Machine Learning for Neural Dynamics</p>
-        <p class="hero__role">
-          <strong>Wu Tsai Fellow</strong> &middot; Yale University &middot; <a href="https://cardinlab.org" target="_blank" rel="noopener">Cardin Lab</a>
-        </p>
+  <main id="main">
 
-        <div class="hero__keywords">
-          <span class="hero__keyword">Computational Neuroscience</span>
-          <span class="hero__keyword">Foundation Models</span>
-          <span class="hero__keyword">Generative Models</span>
-          <span class="hero__keyword">Inductive Bias</span>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container hero__grid">
+        <div class="hero__content">
+          <h1 class="hero__name">Josué Ortega Caro</h1>
+          <p class="hero__role"><strong>Swartz Postdoctoral Fellow</strong> · Department of Neuroscience, Yale University · <a href="http://cardinlab.org/" target="_blank" rel="noopener">Cardin Lab</a></p>
+          <p class="hero__lede">I develop machine learning methods to understand how neural circuits give rise to perception and learning: generative models that discover latent regimes in longitudinal recordings, interpretable transformers for cortex-wide imaging, and foundation models for brain activity.</p>
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="#research">
+              Research
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
+            </a>
+            <a class="btn btn--ghost" href="publications.html">Publications</a>
+            <a class="btn btn--ghost" href="files/josue_ortegacaro_CV.pdf">
+              CV (PDF)
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15V3"/><path d="m7 10 5 5 5-5"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/></svg>
+            </a>
+          </div>
+          <div class="hero__links">
+            <a class="icon-link" href="mailto:josue.ortegacaro@yale.edu">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+              Email
+            </a>
+            <a class="icon-link" href="https://scholar.google.com/citations?user=SctA3g8AAAAJ" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></svg>
+              Google Scholar
+            </a>
+            <a class="icon-link" href="https://github.com/josueortc" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+              GitHub
+            </a>
+            <a class="icon-link" href="https://openreview.net/profile?id=~Josue_Ortega_Caro1" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
+              OpenReview
+            </a>
+          </div>
+        </div>
+        <div class="hero__media">
+          <div class="hero__photo">
+            <picture>
+              <source srcset="images/site/josue-ortega-caro.webp" type="image/webp">
+              <img src="images/site/josue-ortega-caro.jpg" width="640" height="800" alt="Portrait of Josué Ortega Caro" fetchpriority="high">
+            </picture>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About + News -->
+    <section class="section section--subtle section--tight">
+      <div class="container about">
+        <div class="about__bio">
+          <h2>About</h2>
+          <p>I am a <strong>Swartz Postdoctoral Fellow</strong> in the Department of Neuroscience at Yale University, working with <a href="https://medicine.yale.edu/profile/jess-cardin/" target="_blank" rel="noopener">Jess Cardin</a>. From 2022 to 2025 I was a Wu Tsai Postdoctoral Fellow at Yale’s Wu Tsai Institute, co-mentored by Jess Cardin and David van Dijk.</p>
+          <p>I received my PhD in Quantitative and Computational Biosciences from Baylor College of Medicine, advised by Ankit Patel, and my B.Sc. in Biology from Universidad Peruana Cayetano Heredia in Lima, Peru. My work combines deep learning, dynamical systems, and neuroscience to build models that predict neural activity and are interpretable enough to generate hypotheses about how the brain computes.</p>
+          <p>I also mentor undergraduate researchers through the Research Experience for Peruvian Undergraduates (REPU) program.</p>
+        </div>
+        <div>
+          <h2>News</h2>
+          <ul class="news">
+            <li class="news__item"><span class="news__date">2026</span><span>Two papers accepted at <strong>NeurIPS 2026</strong>: <a href="projects/flux/">FLUX</a> (first author) and <a href="https://openreview.net/forum?id=ZI46yRLHVp" target="_blank" rel="noopener">interpretable switching dynamics in shared neural–behavioral latent space</a>.</span></li>
+            <li class="news__item"><span class="news__date">2026</span><span>Awarded the <strong>Swartz Postdoctoral Fellowship</strong> (2026–2027).</span></li>
+            <li class="news__item"><span class="news__date">2026</span><span><a href="https://arxiv.org/abs/2210.09475" target="_blank" rel="noopener">FIMP</a>, foundation-model-informed message passing for graph neural networks, published in <strong>TMLR</strong>.</span></li>
+            <li class="news__item"><span class="news__date">2025</span><span><strong>Best Talk &amp; Travel Award</strong>, Champalimaud Research Symposium, Lisbon.</span></li>
+            <li class="news__item"><span class="news__date">2025</span><span>Preprint: <a href="projects/prismt/">selective changes in cortical cholinergic signaling during learning</a>.</span></li>
+            <li class="news__item"><span class="news__date">2025</span><span>Invited talk on BrainLM, Foundation Models in Neuroscience workshop, COSYNE, Montreal.</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Research themes -->
+    <section class="section" id="research">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Research</span>
+          <h2>Understanding brain computation through machine learning</h2>
+          <p class="lede">Three connected threads: modeling how neural dynamics change with learning, building predictive models of brain and biological data, and understanding the inductive biases that shape perception in brains and machines.</p>
         </div>
 
-        <div class="hero__actions">
-          <a href="#research" class="btn btn--primary">
-            View Research
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        <div class="themes">
+          <article class="theme reveal">
+            <span class="theme__num">01</span>
+            <h3>Latent dynamics of learning</h3>
+            <p>How do cortical circuits reorganize as animals learn? I develop generative and state-space models that recover latent regimes and transitions from longitudinal, unpaired neural and behavioral recordings.</p>
+            <ul class="theme__papers">
+              <li><a href="projects/flux/">FLUX: Longitudinal Flow Matching with Mixture of Experts</a><span>NeurIPS 2026</span></li>
+              <li><a href="https://openreview.net/forum?id=ZI46yRLHVp" target="_blank" rel="noopener">Learning Interpretable Switching Dynamics in Shared Neural-Behavioral Latent Space</a><span>NeurIPS 2026</span></li>
+              <li><a href="projects/prismt/">Selective changes in cortical cholinergic signaling during learning</a><span>bioRxiv 2025</span></li>
+            </ul>
+          </article>
+
+          <article class="theme reveal">
+            <span class="theme__num">02</span>
+            <h3>Predictive models of brain and biological dynamics</h3>
+            <p>Self-supervised foundation models and operator-learning architectures that learn from large collections of recordings and transfer to new subjects, tasks, and modalities.</p>
+            <ul class="theme__papers">
+              <li><a href="projects/brainlm/">BrainLM: A foundation model for brain activity recordings</a><span>ICLR 2024</span></li>
+              <li><a href="https://www.nature.com/articles/s42256-024-00886-8" target="_blank" rel="noopener">Learning integral operators via neural integral equations</a><span>Nature Machine Intelligence 2024</span></li>
+              <li><a href="https://openreview.net/forum?id=EWt5wsEdvc" target="_blank" rel="noopener">Cell2Sentence: Teaching large language models the language of biology</a><span>ICML 2024</span></li>
+              <li><a href="https://arxiv.org/abs/2210.09475" target="_blank" rel="noopener">FIMP: Foundation Model-Informed Message Passing for Graph Neural Networks</a><span>TMLR 2026</span></li>
+            </ul>
+          </article>
+
+          <article class="theme reveal">
+            <span class="theme__num">03</span>
+            <h3>Perception, recurrence &amp; inductive bias</h3>
+            <p>Which architectural choices make networks robust and brain-like? I study how locality, convolution, and recurrence shape the information that vision models rely on.</p>
+            <ul class="theme__papers">
+              <li><a href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010932" target="_blank" rel="noopener">Robust deep learning object recognition models rely on low frequency information in natural images</a><span>PLOS Computational Biology 2023</span></li>
+              <li><a href="https://www.frontiersin.org/articles/10.3389/fncom.2024.1387077/full" target="_blank" rel="noopener">Translational symmetry in convolutions with localized kernels causes an implicit bias toward high frequency adversarial examples</a><span>Frontiers in Computational Neuroscience 2024</span></li>
+              <li><a href="https://doi.org/10.1073/pnas.1719397115" target="_blank" rel="noopener">Recurrent computations for visual pattern completion</a><span>PNAS 2018</span></li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section class="section section--subtle" id="projects">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Projects</span>
+          <h2>Selected projects</h2>
+          <p class="lede">Project pages include interactive schematics of each method, results, code, and citation details.</p>
+        </div>
+
+        <div class="projects">
+          <a class="project project--feature reveal" href="projects/flux/">
+            <div class="project__media">
+              <img src="images/cards/flux.webp" width="1280" height="342" loading="lazy" decoding="async" alt="FLUX overview: unpaired snapshots from a dynamical system, a router over mixture-of-experts velocity fields, and three regimes discovered on a learned manifold.">
+            </div>
+            <div class="project__body">
+              <div class="project__meta"><span class="tag">NeurIPS 2026</span></div>
+              <h3 class="project__title">FLUX: Longitudinal flow matching with mixture of experts</h3>
+              <p class="project__desc">Flow matching for unpaired longitudinal snapshots along a learned data geometry. A mixture-of-experts velocity field routes each transport step to one expert, discovering regime switches without labels in Lorenz dynamics, cortex-wide calcium imaging across learning, and embryoid-body differentiation.</p>
+              <span class="project__more">Explore the project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+            </div>
           </a>
-          <a href="publications.html" class="btn btn--outline">Publications</a>
-          <a href="cv.html" class="btn btn--outline">CV</a>
-        </div>
 
-        <div class="hero__social">
-          <a href="mailto:josue.ortegacaro@yale.edu" class="hero__social-link" title="Email">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          <a class="project reveal" href="projects/prismt/">
+            <div class="project__media">
+              <img src="images/cards/prismt.webp" width="1280" height="542" loading="lazy" decoding="async" alt="Cortex-wide calcium (jRCaMP1b) and acetylcholine (ACh3.0) maps for hit and miss trials early and late in learning.">
+            </div>
+            <div class="project__body">
+              <div class="project__meta"><span class="tag">bioRxiv 2025</span></div>
+              <h3 class="project__title">PRISMt: Structured motifs in multimodal transformers</h3>
+              <p class="project__desc">Maps a transformer’s predictions back onto region, time, and modality and decomposes them into motifs faithful to what the model uses. In cortical calcium and acetylcholine imaging, cholinergic motifs reorganized toward frontal cortex with learning.</p>
+              <span class="project__more">Explore the project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+            </div>
           </a>
-          <a href="https://github.com/josueortc" target="_blank" rel="noopener" class="hero__social-link" title="GitHub">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+
+          <a class="project reveal" href="projects/brainlm/">
+            <div class="project__media">
+              <img src="images/cards/brainlm.webp" width="1280" height="542" loading="lazy" decoding="async" alt="BrainLM overview: fMRI recordings from 41,986 individuals train a foundation model used for zero-shot inference and fine-tuning tasks.">
+            </div>
+            <div class="project__body">
+              <div class="project__meta"><span class="tag">ICLR 2024</span></div>
+              <h3 class="project__title">BrainLM: A foundation model for brain activity</h3>
+              <p class="project__desc">Trained on 6,700 hours of fMRI with self-supervised masked prediction. BrainLM predicts clinical variables, forecasts future brain states, and recovers functional networks zero-shot.</p>
+              <span class="project__more">Explore the project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+            </div>
           </a>
-          <a href="https://scholar.google.com/citations?user=YOUR_ID" target="_blank" rel="noopener" class="hero__social-link" title="Google Scholar">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/><path d="m9 10 3-3 3 3"/></svg>
+
+          <a class="project reveal" href="https://www.nature.com/articles/s42256-024-00886-8" target="_blank" rel="noopener">
+            <div class="project__media">
+              <img src="images/cards/nie.webp" width="1280" height="542" loading="lazy" decoding="async" alt="Neural integral equations: an integral-equation solver iterated to convergence, trained against data, with attention-based (ANIE) or Monte Carlo (NIE) integration.">
+            </div>
+            <div class="project__body">
+              <div class="project__meta"><span class="tag">Nature Machine Intelligence 2024</span></div>
+              <h3 class="project__title">Neural integral equations</h3>
+              <p class="project__desc">Learning unknown integral operators from data: a principled framework for modeling spatiotemporal dynamics in physical and biological systems, with an attention-based solver (ANIE).</p>
+              <span class="project__more">Read the paper <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></span>
+            </div>
           </a>
-          <a href="https://twitter.com/josueortc" target="_blank" rel="noopener" class="hero__social-link" title="Twitter / X">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
+
+          <a class="project reveal" href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010932" target="_blank" rel="noopener">
+            <div class="project__media">
+              <img src="images/cards/robust.webp" width="1280" height="542" loading="lazy" decoding="async" alt="Neural manifold matching between model features and neural responses to natural images.">
+            </div>
+            <div class="project__body">
+              <div class="project__meta"><span class="tag">PLOS Comp. Biol. 2023</span><span class="tag tag--neutral">Frontiers 2024</span></div>
+              <h3 class="project__title">Robustness &amp; frequency bias in vision models</h3>
+              <p class="project__desc">Robust object-recognition models rely on low-frequency information, and localized convolutions create an implicit bias toward high-frequency adversarial examples.</p>
+              <span class="project__more">Read the paper <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></span>
+            </div>
           </a>
         </div>
       </div>
-      <div class="hero__photo-wrapper">
-        <img src="images/josue_pic.png" alt="Josue Ortega Caro" class="hero__photo">
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Research Focus -->
-  <section class="section section--alt">
-    <div class="container">
-      <div class="section__header fade-in">
-        <span class="section-label">Research Focus</span>
-        <h2 class="section-title">Understanding Brain Computation Through Machine Learning</h2>
-      </div>
-
-      <div class="research-focus fade-in">
-        <div class="research-focus__text">
-          I develop <strong>computational models and machine learning methods</strong> to understand how neural circuits give rise to perception, learning, and decision-making. My work spans <strong>foundation models for brain activity</strong>, <strong>neural integral equation architectures</strong>, and uncovering how <strong>neuromodulatory signals</strong> change during learning.
-        </div>
-        <div class="research-focus__areas">
-          <div class="focus-area">
-            <div class="focus-area__icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a4 4 0 0 0-4 4v2H6a2 2 0 0 0-2 2v2a8 8 0 0 0 16 0v-2a2 2 0 0 0-2-2h-2V6a4 4 0 0 0-4-4z"/></svg>
-            </div>
-            <div>
-              <div class="focus-area__label">Foundation Models for Neuroscience</div>
-              <div class="focus-area__desc">Self-supervised transformers for fMRI and neural recordings at scale</div>
-            </div>
+    <!-- Selected publications -->
+    <section class="section" id="selected-publications">
+      <div class="container">
+        <div class="section-head section-head--row">
+          <div>
+            <span class="eyebrow">Publications</span>
+            <h2>Selected publications</h2>
           </div>
-          <div class="focus-area">
-            <div class="focus-area__icon focus-area__icon--teal">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h4l3-9 4 18 3-9h4"/></svg>
-            </div>
-            <div>
-              <div class="focus-area__label">Neural Integral Equations</div>
-              <div class="focus-area__desc">Learning integral operators from spatiotemporal biological data</div>
-            </div>
-          </div>
-          <div class="focus-area">
-            <div class="focus-area__icon focus-area__icon--gold">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v4m0 14v4M4.22 4.22l2.83 2.83m9.9 9.9 2.83 2.83M1 12h4m14 0h4M4.22 19.78l2.83-2.83m9.9-9.9 2.83-2.83"/></svg>
-            </div>
-            <div>
-              <div class="focus-area__label">Robustness &amp; Inductive Bias</div>
-              <div class="focus-area__desc">How architectural choices shape generalization in biological and artificial networks</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Key Research Areas -->
-  <section class="section" id="research">
-    <div class="container">
-      <div class="section__header fade-in">
-        <span class="section-label">Projects</span>
-        <h2 class="section-title">Key Research Areas</h2>
-        <p class="section-subtitle">
-          Combining deep learning, mathematical modeling, and neuroscience to tackle fundamental questions about brain computation.
-        </p>
-      </div>
-
-      <div class="research-grid">
-        <a href="projects/brainlm/index.html" class="research-card fade-in">
-          <div class="research-card__image-wrap">
-            <img src="images/papers/brainlm_fig1.jpg" alt="BrainLM: Foundation model for brain activity" class="research-card__image">
-          </div>
-          <div class="research-card__body">
-            <span class="research-card__number">01</span>
-            <h3 class="research-card__title">Foundation Models for Brain Activity</h3>
-            <p class="research-card__desc">
-              BrainLM is a foundation model trained on 6,700 hours of fMRI recordings. It predicts clinical variables, forecasts future brain states, and discovers functional networks through zero-shot inference.
-            </p>
-            <span class="research-card__venue">ICLR 2024</span>
-          </div>
-        </a>
-
-        <a href="https://www.nature.com/articles/s42256-024-00886-8" target="_blank" rel="noopener" class="research-card fade-in">
-          <div class="research-card__image-wrap">
-            <img src="images/papers/nie_fig1.png" alt="Neural Integral Equations" class="research-card__image">
-          </div>
-          <div class="research-card__body">
-            <span class="research-card__number">02</span>
-            <h3 class="research-card__title">Neural Integral Equations</h3>
-            <p class="research-card__desc">
-              Attentional Neural Integral Equations (ANIE) learn unknown integral operators from data, providing a principled framework for modeling spatiotemporal dynamics in physical and biological systems.
-            </p>
-            <span class="research-card__venue">Nature Machine Intelligence 2024</span>
-          </div>
-        </a>
-
-        <a href="projects/prismt/index.html" class="research-card fade-in">
-          <div class="research-card__image-wrap">
-            <img src="images/papers/cholinergic_fig1.jpg" alt="PRISMT: Cortical cholinergic signaling during learning" class="research-card__image">
-          </div>
-          <div class="research-card__body">
-            <span class="research-card__number">03</span>
-            <h3 class="research-card__title">PRISMT: Cortical Cholinergic Signaling &amp; Learning</h3>
-            <p class="research-card__desc">
-              A structured multimodal transformer combining masked autoencoding with causal attention to reveal selective changes in cholinergic signaling during visual perceptual learning.
-            </p>
-            <span class="research-card__venue">bioRxiv 2025</span>
-          </div>
-        </a>
-
-        <a href="projects/flux/index.html" class="research-card fade-in">
-          <div class="research-card__image-wrap">
-            <img src="images/papers/flux_fig1.jpg" alt="FLUX: geometry-aware longitudinal flow matching with mixture of experts" class="research-card__image">
-          </div>
-          <div class="research-card__body">
-            <span class="research-card__number">04</span>
-            <h3 class="research-card__title">FLUX: Longitudinal Flow Matching</h3>
-            <p class="research-card__desc">
-              Geometry-aware flow matching for unpaired longitudinal snapshots with mixture-of-experts velocity decomposition for unsupervised regime discovery, evaluated on Lorenz dynamics, widefield cortical learning, and embryoid body differentiation.
-            </p>
-            <span class="research-card__venue">arXiv 2026</span>
-          </div>
-        </a>
-
-        <a href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010932" target="_blank" rel="noopener" class="research-card fade-in">
-          <div class="research-card__image-wrap">
-            <img src="images/papers/robust_lowfreq_fig1.png" alt="Robust models rely on low frequency information" class="research-card__image">
-          </div>
-          <div class="research-card__body">
-            <span class="research-card__number">05</span>
-            <h3 class="research-card__title">Robustness &amp; Generalization</h3>
-            <p class="research-card__desc">
-              Robust deep learning models rely on low-frequency information. Local convolutions induce an implicit bias toward high-frequency adversarial examples via the Fourier Uncertainty Principle.
-            </p>
-            <span class="research-card__venue">PLOS Comp. Bio. 2023 &middot; Frontiers 2024</span>
-          </div>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Selected Publications -->
-  <section class="section section--alt" id="selected-pubs">
-    <div class="container">
-      <div class="section__header fade-in">
-        <span class="section-label">Selected Publications</span>
-        <h2 class="section-title">Recent Work</h2>
-      </div>
-
-      <div class="featured-pubs fade-in">
-        <div class="featured-pub">
-          <span class="featured-pub__venue">bioRxiv 2025</span>
-          <h4 class="featured-pub__title">
-            <a href="projects/prismt/index.html">Interpretable Neural Dynamics</a>
-          </h4>
-          <p class="featured-pub__authors"><strong>Ortega Caro, J.</strong>, Batchelor, H. M., Lohani, S., van Dijk, D., &amp; Cardin, J. A.</p>
+          <a class="arrow-link" href="publications.html">All publications <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
         </div>
 
-        <div class="featured-pub">
-          <span class="featured-pub__venue">ICLR 2024</span>
-          <h4 class="featured-pub__title">
-            <a href="https://openreview.net/forum?id=RwI7ZEfR27" target="_blank" rel="noopener">BrainLM: A foundation model for brain activity recordings</a>
-          </h4>
-          <p class="featured-pub__authors"><strong>Ortega Caro, J.</strong>, Oliveira Fonseca, A. H., Averill, C., Rizvi, S. A., Rosati, M., Cross, J. L., ... &amp; van Dijk, D.</p>
-        </div>
-
-        <div class="featured-pub">
-          <span class="featured-pub__venue">Nature Machine Intelligence 2024</span>
-          <h4 class="featured-pub__title">
-            <a href="https://www.nature.com/articles/s42256-024-00886-8" target="_blank" rel="noopener">Learning integral operators via neural integral equations</a>
-          </h4>
-          <p class="featured-pub__authors">Zappala, E., Fonseca, A., <strong>Caro, J. O.</strong> &amp; van Dijk, D.</p>
-        </div>
-
-        <div class="featured-pub">
-          <span class="featured-pub__venue">ICML 2024</span>
-          <h4 class="featured-pub__title">
-            <a href="https://proceedings.mlr.press/v235/" target="_blank" rel="noopener">Cell2sentence: Teaching large language models the language of biology</a>
-          </h4>
-          <p class="featured-pub__authors">Levine, D., L&eacute;vy, S., Rizvi, S. A., ... <strong>Ortega Caro, J.</strong>, ... &amp; van Dijk, D.</p>
-        </div>
-
-        <div class="featured-pub">
-          <span class="featured-pub__venue">PNAS 2017</span>
-          <h4 class="featured-pub__title">
-            <a href="http://www.pnas.org/content/early/2018/08/07/1719397115.short" target="_blank" rel="noopener">Recurrent computations for visual pattern completion</a>
-          </h4>
-          <p class="featured-pub__authors">Tang, H., Schrimpf, M., Lotter, W., ... <strong>Caro, J. O.</strong>, ... &amp; Kreiman, G.</p>
-        </div>
+        <ul class="pubs-compact">
+          <li class="pub-c">
+            <p class="pub-c__venue">NeurIPS 2026</p>
+            <h3 class="pub-c__title"><a href="projects/flux/">FLUX: Longitudinal Flow Matching with Mixture of Experts</a></h3>
+            <p class="pub-c__authors"><strong>Ortega Caro, J.</strong>, Zhang, Y., Batchelor, H. M., He, S., Cardin, J. A., &amp; Saxena, S.</p>
+          </li>
+          <li class="pub-c">
+            <p class="pub-c__venue">NeurIPS 2026</p>
+            <h3 class="pub-c__title"><a href="https://openreview.net/forum?id=ZI46yRLHVp" target="_blank" rel="noopener">Learning Interpretable Switching Dynamics in Shared Neural-Behavioral Latent Space</a></h3>
+            <p class="pub-c__authors">Zhang, Y., <strong>Ortega Caro, J.</strong>, Oren, R., Cardin, J. A., Higley, M. J., &amp; Saxena, S.</p>
+          </li>
+          <li class="pub-c">
+            <p class="pub-c__venue">bioRxiv 2025</p>
+            <h3 class="pub-c__title"><a href="projects/prismt/">Selective changes in cortical cholinergic signaling during learning</a></h3>
+            <p class="pub-c__authors"><strong>Ortega Caro, J.</strong>, Batchelor, H. M., Lohani, S., van Dijk, D., &amp; Cardin, J. A.</p>
+          </li>
+          <li class="pub-c">
+            <p class="pub-c__venue">ICLR 2024</p>
+            <h3 class="pub-c__title"><a href="projects/brainlm/">BrainLM: A foundation model for brain activity recordings</a></h3>
+            <p class="pub-c__authors"><strong>Ortega Caro, J.</strong>, Fonseca, A. H. O., Rizvi, S. A., Rosati, M., Averill, C., Cross, J. L., … &amp; van Dijk, D.</p>
+          </li>
+          <li class="pub-c">
+            <p class="pub-c__venue">Nature Machine Intelligence 2024</p>
+            <h3 class="pub-c__title"><a href="https://www.nature.com/articles/s42256-024-00886-8" target="_blank" rel="noopener">Learning integral operators via neural integral equations</a></h3>
+            <p class="pub-c__authors">Zappala, E., Fonseca, A. H. O., <strong>Ortega Caro, J.</strong>, Moberly, A. H., Higley, M. J., Cardin, J. A., &amp; van Dijk, D.</p>
+          </li>
+          <li class="pub-c">
+            <p class="pub-c__venue">PLOS Computational Biology 2023</p>
+            <h3 class="pub-c__title"><a href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010932" target="_blank" rel="noopener">Robust deep learning object recognition models rely on low frequency information in natural images</a></h3>
+            <p class="pub-c__authors">Li, Z.*, <strong>Ortega Caro, J.</strong>*, Rusak, E., Brendel, W., Bethge, M., Anselmi, F., Patel, A. B., Tolias, A. S., &amp; Pitkow, X. <span class="muted">(*equal contribution)</span></p>
+          </li>
+        </ul>
       </div>
+    </section>
+  </main>
 
-      <a href="publications.html" class="arrow-link">
-        View all publications
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-      </a>
-    </div>
-  </section>
-
-  <!-- Footer -->
   <footer class="footer">
     <div class="container">
       <div class="footer__inner">
-        <div class="footer__info">
-          <h4>Josue Ortega Caro, PhD</h4>
-          <p>
-            Wu Tsai Fellow<br>
-            Yale University &middot; <a href="https://cardinlab.org" target="_blank" rel="noopener" class="footer__link">Cardin Lab</a><br>
-            New Haven, CT
-          </p>
+        <div>
+          <p class="footer__name">Josué Ortega Caro, PhD</p>
+          <p>Swartz Postdoctoral Fellow · Department of Neuroscience, Yale University</p>
+          <p>New Haven, CT</p>
         </div>
-        <div class="footer__links">
-          <a href="mailto:josue.ortegacaro@yale.edu" class="footer__link">Email</a>
-          <a href="https://github.com/josueortc" target="_blank" rel="noopener" class="footer__link">GitHub</a>
-          <a href="https://twitter.com/josueortc" target="_blank" rel="noopener" class="footer__link">Twitter</a>
-          <a href="https://www.linkedin.com/in/josue-ortega-caro-652a1a56" target="_blank" rel="noopener" class="footer__link">LinkedIn</a>
-        </div>
+        <ul class="footer__links">
+          <li><a href="mailto:josue.ortegacaro@yale.edu">Email</a></li>
+          <li><a href="https://scholar.google.com/citations?user=SctA3g8AAAAJ" target="_blank" rel="noopener">Google Scholar</a></li>
+          <li><a href="https://github.com/josueortc" target="_blank" rel="noopener">GitHub</a></li>
+          <li><a href="https://openreview.net/profile?id=~Josue_Ortega_Caro1" target="_blank" rel="noopener">OpenReview</a></li>
+          <li><a href="https://www.linkedin.com/in/josue-ortega-caro-652a1a56" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="https://x.com/josueortc" target="_blank" rel="noopener">X</a></li>
+          <li><a href="files/josue_ortegacaro_CV.pdf">CV (PDF)</a></li>
+        </ul>
       </div>
-      <div class="footer__bottom">
-        &copy; 2025 Josue Ortega Caro
-      </div>
+      <p class="footer__meta">© 2026 Josué Ortega Caro · Last updated September 2026</p>
     </div>
   </footer>
 
-  <script src="js/main.js"></script>
+  <script src="js/main.js" defer></script>
 </body>
 </html>

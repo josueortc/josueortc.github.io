@@ -2,340 +2,264 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CV — Josue Ortega Caro</title>
-  <meta name="description" content="Curriculum Vitae of Josue Ortega Caro, PhD. Education, research experience, awards, invited talks, teaching, and service.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CV — Josué Ortega Caro</title>
+  <meta name="description" content="Curriculum vitae of Josué Ortega Caro, PhD: education, appointments, honors, invited talks, teaching, and service.">
+  <link rel="canonical" href="https://josueortc.github.io/cv.html">
+  <meta name="theme-color" content="#fbfaf7">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Josué Ortega Caro">
+  <meta property="og:title" content="CV — Josué Ortega Caro">
+  <meta property="og:description" content="Swartz Postdoctoral Fellow, Department of Neuroscience, Yale University.">
+  <meta property="og:url" content="https://josueortc.github.io/cv.html">
+  <meta property="og:image" content="https://josueortc.github.io/images/og/home.jpg">
+  <meta name="twitter:card" content="summary">
+  <script>document.documentElement.classList.add('js');</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400..700&display=swap">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/site.css">
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
 
-  <!-- Navigation -->
-  <nav class="nav nav--scrolled">
+  <header class="nav">
     <div class="nav__inner">
-      <a href="index.html" class="nav__logo">JOC</a>
-      <ul class="nav__menu">
-        <li><a href="index.html" class="nav__link">Research</a></li>
-        <li><a href="publications.html" class="nav__link">Publications</a></li>
-        <li><a href="awards-conferences.html" class="nav__link">Talks</a></li>
-        <li><a href="cv.html" class="nav__link nav__link--active">CV</a></li>
-      </ul>
-      <button class="nav__toggle" aria-label="Toggle menu">
-        <span></span>
-        <span></span>
-        <span></span>
+      <a class="nav__brand" href="./">Josué Ortega Caro</a>
+      <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu">
+        <span class="nav__toggle-bar"></span><span class="nav__toggle-bar"></span>
       </button>
-    </div>
-  </nav>
-
-  <!-- Page Header -->
-  <header class="page-header">
-    <div class="container">
-      <h1 class="page-header__title">Curriculum Vitae</h1>
-      <p class="page-header__desc">Education, research experience, honors, invited talks, teaching, and community service.</p>
+      <nav class="nav__menu" id="nav-menu" aria-label="Primary">
+        <a class="nav__link" href="./#research">Research</a>
+        <a class="nav__link" href="publications.html">Publications</a>
+        <a class="nav__link" href="talks.html">Talks</a>
+        <a class="nav__link is-active" href="cv.html" aria-current="page">CV</a>
+      </nav>
     </div>
   </header>
 
-  <section class="section">
+  <main id="main">
+    <header class="page-head">
+      <div class="container">
+        <h1>Curriculum Vitae</h1>
+        <p>Education, appointments, honors, talks, teaching, and service. The PDF includes the full publication list.</p>
+        <div class="page-head__actions">
+          <a class="btn btn--primary" href="files/josue_ortegacaro_CV.pdf">
+            Download CV (PDF)
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15V3"/><path d="m7 10 5 5 5-5"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/></svg>
+          </a>
+          <a class="btn btn--ghost" href="mailto:josue.ortegacaro@yale.edu">josue.ortegacaro@yale.edu</a>
+        </div>
+      </div>
+    </header>
+
     <div class="container">
 
-      <!-- Education -->
-      <div class="cv-section fade-in">
-        <div class="cv-grid">
-          <div class="cv-section__label">Education</div>
-          <div>
-            <div class="cv-entry">
-              <div class="cv-entry__header">
-                <span class="cv-entry__title">Ph.D., Quantitative and Computational Biosciences</span>
-                <span class="cv-entry__date">2016 – 2022</span>
-              </div>
-              <div class="cv-entry__org">Baylor College of Medicine, Houston, TX</div>
-              <div class="cv-entry__detail">Advisor: Prof. Ankit Patel</div>
+      <section class="cv-section" aria-labelledby="cv-edu">
+        <h2 id="cv-edu">Education</h2>
+        <div>
+          <div class="cv-entry">
+            <div class="cv-entry__head">
+              <span class="cv-entry__title">Ph.D., Quantitative and Computational Biosciences</span>
+              <span class="cv-entry__date">2016 – 2022</span>
             </div>
-            <div class="cv-entry">
-              <div class="cv-entry__header">
-                <span class="cv-entry__title">B.Sc., Biology &amp; Applied Mathematics</span>
-                <span class="cv-entry__date">2010 – 2014</span>
-              </div>
-              <div class="cv-entry__org">Universidad Peruana Cayetano Heredia, Lima, Peru</div>
-              <div class="cv-entry__detail">Advisor: Mirko Zimic &middot; GPA: 4.0</div>
+            <p class="cv-entry__org">Baylor College of Medicine, Houston, TX</p>
+            <p class="cv-entry__detail">Advisor: Prof. Ankit Patel</p>
+          </div>
+          <div class="cv-entry">
+            <div class="cv-entry__head">
+              <span class="cv-entry__title">B.Sc., Biology</span>
+              <span class="cv-entry__date">2010 – 2014</span>
             </div>
+            <p class="cv-entry__org">Universidad Peruana Cayetano Heredia, Lima, Peru</p>
+            <p class="cv-entry__detail">Advisor: Mirko Zimic · GPA 4.0</p>
           </div>
         </div>
-      </div>
+      </section>
 
-      <!-- Experience -->
-      <div class="cv-section fade-in">
-        <div class="cv-grid">
-          <div class="cv-section__label">Experience</div>
-          <div>
-            <div class="cv-entry">
-              <div class="cv-entry__header">
-                <span class="cv-entry__title">Postdoctoral Associate</span>
-                <span class="cv-entry__date">2025 –</span>
-              </div>
-              <div class="cv-entry__org">Department of Neuroscience, Yale University, CT</div>
-              <div class="cv-entry__detail">Mentor: Prof. <a href="https://cardinlab.org" target="_blank" rel="noopener">Jess Cardin</a></div>
+      <section class="cv-section" aria-labelledby="cv-appt">
+        <h2 id="cv-appt">Appointments</h2>
+        <div>
+          <div class="cv-entry">
+            <div class="cv-entry__head">
+              <span class="cv-entry__title">Swartz Postdoctoral Fellow</span>
+              <span class="cv-entry__date">2025 – present</span>
             </div>
-            <div class="cv-entry">
-              <div class="cv-entry__header">
-                <span class="cv-entry__title">Wu Tsai Fellow</span>
-                <span class="cv-entry__date">2022 – 2025</span>
-              </div>
-              <div class="cv-entry__org">Wu Tsai Institute, Yale University, CT</div>
-              <div class="cv-entry__detail">Mentors: Prof. Jess Cardin &amp; Prof. David van Dijk</div>
+            <p class="cv-entry__org">Department of Neuroscience, Yale University, New Haven, CT</p>
+            <p class="cv-entry__detail">Mentor: Prof. <a href="https://medicine.yale.edu/profile/jess-cardin/" target="_blank" rel="noopener">Jess Cardin</a></p>
+          </div>
+          <div class="cv-entry">
+            <div class="cv-entry__head">
+              <span class="cv-entry__title">Wu Tsai Fellow</span>
+              <span class="cv-entry__date">2022 – 2025</span>
             </div>
+            <p class="cv-entry__org">Wu Tsai Institute, Yale University, New Haven, CT</p>
+            <p class="cv-entry__detail">Mentors: Prof. Jess Cardin &amp; Prof. David van Dijk</p>
           </div>
         </div>
-      </div>
+      </section>
 
-      <!-- Awards -->
-      <div class="cv-section fade-in">
-        <div class="cv-grid">
-          <div class="cv-section__label">Honors &amp; Awards</div>
-          <div>
-            <div class="cv-entry">
-              <div class="cv-entry__header">
-                <span class="cv-entry__title">Champalimaud Research Symposium — Best Talk &amp; Travel Award</span>
-                <span class="cv-entry__date">2025</span>
-              </div>
-            </div>
-            <div class="cv-entry">
-              <div class="cv-entry__header">
-                <span class="cv-entry__title">Wu Tsai Postdoctoral Fellowship</span>
-                <span class="cv-entry__date">2022 – 2025</span>
-              </div>
-            </div>
-            <div class="cv-entry">
-              <div class="cv-entry__header">
-                <span class="cv-entry__title">International Conference on Machine Learning — Travel Award</span>
-                <span class="cv-entry__date">2020</span>
-              </div>
-            </div>
-            <div class="cv-entry">
-              <div class="cv-entry__header">
-                <span class="cv-entry__title">Best Poster Award — QCB PhD Retreat</span>
-                <span class="cv-entry__date">2019</span>
-              </div>
-              <div class="cv-entry__org">Quantitative and Computational Biosciences, Baylor College of Medicine</div>
-            </div>
-            <div class="cv-entry">
-              <div class="cv-entry__header">
-                <span class="cv-entry__title">Fondo de Mobilidad Estudiantil — Traveling Award</span>
-                <span class="cv-entry__date">2014</span>
-              </div>
-              <div class="cv-entry__org">Universidad Peruana Cayetano Heredia</div>
-            </div>
+      <section class="cv-section" aria-labelledby="cv-honors">
+        <h2 id="cv-honors">Honors &amp; Awards</h2>
+        <div>
+          <div class="cv-entry"><div class="cv-entry__head"><span class="cv-entry__title">Swartz Postdoctoral Fellowship</span><span class="cv-entry__date">2026 – 2027</span></div></div>
+          <div class="cv-entry"><div class="cv-entry__head"><span class="cv-entry__title">Best Talk &amp; Travel Award, Champalimaud Research Symposium</span><span class="cv-entry__date">2025</span></div></div>
+          <div class="cv-entry"><div class="cv-entry__head"><span class="cv-entry__title">Wu Tsai Postdoctoral Fellowship</span><span class="cv-entry__date">2022 – 2025</span></div></div>
+          <div class="cv-entry"><div class="cv-entry__head"><span class="cv-entry__title">International Conference on Machine Learning (ICML) Travel Award</span><span class="cv-entry__date">2020</span></div></div>
+          <div class="cv-entry">
+            <div class="cv-entry__head"><span class="cv-entry__title">Best Poster Award, Quantitative and Computational Biosciences PhD Retreat</span><span class="cv-entry__date">2019</span></div>
+            <p class="cv-entry__org">Baylor College of Medicine</p>
+          </div>
+          <div class="cv-entry">
+            <div class="cv-entry__head"><span class="cv-entry__title">Fondo de Movilidad Estudiantil (travel award)</span><span class="cv-entry__date">2014</span></div>
+            <p class="cv-entry__org">Universidad Peruana Cayetano Heredia</p>
           </div>
         </div>
-      </div>
+      </section>
 
-      <!-- Invited Talks -->
-      <div class="cv-section fade-in">
-        <div class="cv-grid">
-          <div class="cv-section__label">Invited Talks</div>
-          <div>
-            <div class="cv-entry">
-              <div class="cv-entry__header">
-                <span class="cv-entry__title">Neuro-cybernetics At Scale — Champalimaud Research Symposium</span>
-                <span class="cv-entry__date">2025</span>
-              </div>
-              <div class="cv-entry__org">Lisbon, Portugal</div>
-              <div class="cv-entry__detail">Spatiotemporal Modeling of Cortical Cholinergic and Calcium Signaling Dynamics Across Learning</div>
-            </div>
-            <div class="cv-entry">
-              <div class="cv-entry__header">
-                <span class="cv-entry__title">Foundation Models in Neuroscience Workshop — COSYNE</span>
-                <span class="cv-entry__date">2025</span>
-              </div>
-              <div class="cv-entry__org">Montreal, Canada</div>
-              <div class="cv-entry__detail">BrainLM: A foundation model for brain activity recordings</div>
-            </div>
-            <div class="cv-entry">
-              <div class="cv-entry__header">
-                <span class="cv-entry__title">Shared Visual Representation Workshop — NeurIPS</span>
-                <span class="cv-entry__date">2022</span>
-              </div>
-              <div class="cv-entry__org">New Orleans, LA, USA</div>
-              <div class="cv-entry__detail">Local Convolutions Cause an Implicit Bias towards High Frequency Adversarial Examples</div>
-            </div>
-            <div class="cv-entry">
-              <div class="cv-entry__header">
-                <span class="cv-entry__title">Center for Brains, Minds and Machines — MIT</span>
-                <span class="cv-entry__date">2021</span>
-              </div>
-              <div class="cv-entry__org">Cambridge, MA, USA</div>
-              <div class="cv-entry__detail">Local Convolutions Cause an Implicit Bias towards High-Frequency Adversarial Examples</div>
-            </div>
-            <div class="cv-entry">
-              <div class="cv-entry__header">
-                <span class="cv-entry__title">Theoretical and Computational Neuroscience Conference</span>
-                <span class="cv-entry__date">2019</span>
-              </div>
-              <div class="cv-entry__org">Houston, TX, USA</div>
-              <div class="cv-entry__detail">A Simple Visual Task Demonstrating the Benefit of Lateral or Feedback Connections</div>
-            </div>
+      <section class="cv-section" aria-labelledby="cv-pubs">
+        <h2 id="cv-pubs">Publications</h2>
+        <div>
+          <p class="cv-entry__org">14 papers and preprints, including NeurIPS, ICLR, ICML, TMLR, <em>Nature Machine Intelligence</em>, <em>PLOS Computational Biology</em>, and <em>PNAS</em>.</p>
+          <p class="cv-entry__detail" style="margin-top:10px"><a class="arrow-link" href="publications.html">Full publication list <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a></p>
+        </div>
+      </section>
+
+      <section class="cv-section" aria-labelledby="cv-talks">
+        <h2 id="cv-talks">Invited Talks</h2>
+        <div>
+          <div class="cv-entry">
+            <div class="cv-entry__head"><span class="cv-entry__title">Neuro-cybernetics at Scale, Champalimaud Research Symposium</span><span class="cv-entry__date">2025</span></div>
+            <p class="cv-entry__org">Lisbon, Portugal</p>
+            <p class="cv-entry__detail"><em>Spatiotemporal modeling of cortical cholinergic and calcium signaling dynamics across learning</em></p>
+          </div>
+          <div class="cv-entry">
+            <div class="cv-entry__head"><span class="cv-entry__title">Foundation Models in Neuroscience Workshop, COSYNE</span><span class="cv-entry__date">2025</span></div>
+            <p class="cv-entry__org">Montreal, Canada</p>
+            <p class="cv-entry__detail"><em>BrainLM: A foundation model for brain activity recordings</em></p>
+          </div>
+          <div class="cv-entry">
+            <div class="cv-entry__head"><span class="cv-entry__title">Shared Visual Representations in Human &amp; Machine Intelligence Workshop, NeurIPS</span><span class="cv-entry__date">2022</span></div>
+            <p class="cv-entry__org">New Orleans, LA</p>
+            <p class="cv-entry__detail"><em>Local convolutions cause an implicit bias towards high frequency adversarial examples</em></p>
+          </div>
+          <div class="cv-entry">
+            <div class="cv-entry__head"><span class="cv-entry__title">Center for Brains, Minds and Machines, MIT</span><span class="cv-entry__date">2021</span></div>
+            <p class="cv-entry__org">Cambridge, MA</p>
+            <p class="cv-entry__detail"><em>Local convolutions cause an implicit bias towards high-frequency adversarial examples</em></p>
+          </div>
+          <div class="cv-entry">
+            <div class="cv-entry__head"><span class="cv-entry__title">Theoretical and Computational Neuroscience Conference</span><span class="cv-entry__date">2019</span></div>
+            <p class="cv-entry__org">Houston, TX</p>
+            <p class="cv-entry__detail"><em>A simple visual task demonstrating the benefit of lateral or feedback connections</em></p>
           </div>
         </div>
-      </div>
+      </section>
 
-      <!-- Conferences -->
-      <div class="cv-section fade-in">
-        <div class="cv-grid">
-          <div class="cv-section__label">Conferences</div>
-          <div>
-            <div class="cv-entry">
-              <div class="cv-entry__header">
-                <span class="cv-entry__title">COSYNE Conference — Poster</span>
-                <span class="cv-entry__date">2024</span>
-              </div>
-              <div class="cv-entry__org">Lisbon, Portugal</div>
-              <div class="cv-entry__detail">Spatiotemporal modeling of cortical cholinergic and calcium signaling dynamics across learning</div>
-            </div>
-            <div class="cv-entry">
-              <div class="cv-entry__header">
-                <span class="cv-entry__title">NeuroNex Workshop — Poster</span>
-                <span class="cv-entry__date">2019</span>
-              </div>
-              <div class="cv-entry__org">San Diego, CA, USA</div>
-              <div class="cv-entry__detail">A Simple Visual Task Demonstrating the Benefit of Lateral or Feedback Connections</div>
-            </div>
-            <div class="cv-entry">
-              <div class="cv-entry__header">
-                <span class="cv-entry__title">Brains and Bits Workshop — NeurIPS</span>
-                <span class="cv-entry__date">2016</span>
-              </div>
-              <div class="cv-entry__org">Barcelona, Spain</div>
-              <div class="cv-entry__detail">Recurrent computations for pattern completion</div>
-            </div>
-            <div class="cv-entry">
-              <div class="cv-entry__header">
-                <span class="cv-entry__title">VI Latin American School on Computational Neuroscience (LASCON)</span>
-                <span class="cv-entry__date">2016</span>
-              </div>
-              <div class="cv-entry__org">University of Sao Paulo, Brazil</div>
-              <div class="cv-entry__detail">Synchronization differences in a network memory model of CA3 with progressive neuronal removal</div>
-            </div>
-            <div class="cv-entry">
-              <div class="cv-entry__header">
-                <span class="cv-entry__title">Society for Neuroscience</span>
-                <span class="cv-entry__date">2014</span>
-              </div>
-              <div class="cv-entry__org">Washington D.C., USA</div>
-            </div>
+      <section class="cv-section" aria-labelledby="cv-conf">
+        <h2 id="cv-conf">Conferences &amp; Courses</h2>
+        <div>
+          <div class="cv-entry">
+            <div class="cv-entry__head"><span class="cv-entry__title">COSYNE — poster</span><span class="cv-entry__date">2024</span></div>
+            <p class="cv-entry__org">Lisbon, Portugal</p>
+            <p class="cv-entry__detail"><em>Spatiotemporal modeling of cortical cholinergic and calcium signaling dynamics across learning</em></p>
+          </div>
+          <div class="cv-entry">
+            <div class="cv-entry__head"><span class="cv-entry__title">NeuroNex Workshop — poster</span><span class="cv-entry__date">2019</span></div>
+            <p class="cv-entry__org">San Diego, CA</p>
+            <p class="cv-entry__detail"><em>A simple visual task demonstrating the benefit of lateral or feedback connections</em></p>
+          </div>
+          <div class="cv-entry">
+            <div class="cv-entry__head"><span class="cv-entry__title">Brains and Bits: Neuroscience Meets Machine Learning Workshop, NeurIPS — poster</span><span class="cv-entry__date">2016</span></div>
+            <p class="cv-entry__org">Barcelona, Spain</p>
+            <p class="cv-entry__detail"><em>Recurrent computations for pattern completion</em></p>
+          </div>
+          <div class="cv-entry">
+            <div class="cv-entry__head"><span class="cv-entry__title">VI Latin American School on Computational Neuroscience (LASCON)</span><span class="cv-entry__date">2016</span></div>
+            <p class="cv-entry__org">University of São Paulo, Brazil</p>
+            <p class="cv-entry__detail">Project: <em>Synchronization differences in a network memory model of CA3 with progressive neuronal removal</em></p>
+          </div>
+          <div class="cv-entry">
+            <div class="cv-entry__head"><span class="cv-entry__title">Society for Neuroscience Annual Meeting</span><span class="cv-entry__date">2014</span></div>
+            <p class="cv-entry__org">Washington, D.C.</p>
           </div>
         </div>
-      </div>
+      </section>
 
-      <!-- Teaching -->
-      <div class="cv-section fade-in">
-        <div class="cv-grid">
-          <div class="cv-section__label">Teaching</div>
-          <div>
-            <div class="cv-entry">
-              <div class="cv-entry__header">
-                <span class="cv-entry__title">Graduate Teaching Assistant — Introduction to Deep Learning</span>
-                <span class="cv-entry__date">2017 – 2018</span>
-              </div>
-              <div class="cv-entry__org">Department of Computer Sciences, Rice University, TX</div>
-              <div class="cv-entry__detail">
-                <ul>
-                  <li>Graduate-level module</li>
-                  <li>Designed course material (slides and exercises)</li>
-                  <li>Taught a lecture on recurrent convolutional networks</li>
-                </ul>
-              </div>
-            </div>
-            <div class="cv-entry">
-              <div class="cv-entry__header">
-                <span class="cv-entry__title">Teaching Assistant — Calculus &amp; Differential Equations</span>
-                <span class="cv-entry__date">2015 – 2016</span>
-              </div>
-              <div class="cv-entry__org">Department of Exact Sciences, Universidad Peruana Cayetano Heredia, Peru</div>
-              <div class="cv-entry__detail">
-                <ul>
-                  <li>Univariate Calculus</li>
-                  <li>Multivariate Calculus</li>
-                  <li>Differential Equations</li>
-                </ul>
-              </div>
-            </div>
+      <section class="cv-section" aria-labelledby="cv-teaching">
+        <h2 id="cv-teaching">Teaching</h2>
+        <div>
+          <div class="cv-entry">
+            <div class="cv-entry__head"><span class="cv-entry__title">Graduate Teaching Assistant — Introduction to Deep Learning</span><span class="cv-entry__date">2017 – 2018</span></div>
+            <p class="cv-entry__org">Rice University, Houston, TX</p>
+            <ul class="cv-bullets">
+              <li>Graduate-level course</li>
+              <li>Designed course material (slides and exercises)</li>
+              <li>Taught a lecture on recurrent convolutional networks</li>
+            </ul>
+          </div>
+          <div class="cv-entry">
+            <div class="cv-entry__head"><span class="cv-entry__title">Teaching Assistant — Calculus &amp; Differential Equations</span><span class="cv-entry__date">2015 – 2016</span></div>
+            <p class="cv-entry__org">Department of Exact Sciences, Universidad Peruana Cayetano Heredia, Lima, Peru</p>
+            <ul class="cv-bullets">
+              <li>Univariate Calculus</li>
+              <li>Multivariate Calculus</li>
+              <li>Differential Equations</li>
+            </ul>
           </div>
         </div>
-      </div>
+      </section>
 
-      <!-- Volunteering -->
-      <div class="cv-section fade-in">
-        <div class="cv-grid">
-          <div class="cv-section__label">Service &amp; Volunteering</div>
-          <div>
-            <div class="cv-entry">
-              <div class="cv-entry__header">
-                <span class="cv-entry__title">Mentor &amp; Research Supervisor — REPU</span>
-                <span class="cv-entry__date">2024 –</span>
-              </div>
-              <div class="cv-entry__org">Research Experience for Peruvian Undergraduates</div>
-            </div>
-            <div class="cv-entry">
-              <div class="cv-entry__header">
-                <span class="cv-entry__title">Organizer — LatinX in AI @ NeurIPS 2020</span>
-                <span class="cv-entry__date">2020</span>
-              </div>
-            </div>
-            <div class="cv-entry">
-              <div class="cv-entry__header">
-                <span class="cv-entry__title">NeuroMatch Academy</span>
-                <span class="cv-entry__date">2020</span>
-              </div>
-              <div class="cv-entry__detail">Development of Mentor-Project Matching Algorithm</div>
-            </div>
-            <div class="cv-entry">
-              <div class="cv-entry__header">
-                <span class="cv-entry__title">Head of Data Analytics &amp; Partnerships — Serendipity</span>
-                <span class="cv-entry__date">2018 –</span>
-              </div>
-              <div class="cv-entry__detail">
-                <ul>
-                  <li>Head of the Department of Data Analytics (2020–)</li>
-                  <li>Head of the Department of Partnerships (2018–2020)</li>
-                  <li>One-on-one mentoring and lectures for students (2017–)</li>
-                </ul>
-              </div>
-            </div>
+      <section class="cv-section" aria-labelledby="cv-service">
+        <h2 id="cv-service">Mentoring &amp; Service</h2>
+        <div>
+          <div class="cv-entry">
+            <div class="cv-entry__head"><span class="cv-entry__title">Mentor and Research Supervisor, <a href="https://www.repuprogram.org/" target="_blank" rel="noopener">Research Experience for Peruvian Undergraduates (REPU)</a></span><span class="cv-entry__date">2024 – present</span></div>
+          </div>
+          <div class="cv-entry">
+            <div class="cv-entry__head"><span class="cv-entry__title">Organizer, <a href="https://latinxinai.org/" target="_blank" rel="noopener">LatinX in AI</a> Workshop at NeurIPS 2020</span><span class="cv-entry__date">2020</span></div>
+          </div>
+          <div class="cv-entry">
+            <div class="cv-entry__head"><span class="cv-entry__title"><a href="https://www.neuromatchacademy.org/" target="_blank" rel="noopener">Neuromatch Academy</a></span><span class="cv-entry__date">2020</span></div>
+            <p class="cv-entry__detail">Developed the mentor–project matching algorithm</p>
+          </div>
+          <div class="cv-entry">
+            <div class="cv-entry__head"><span class="cv-entry__title"><a href="https://www.serendipityprogram.com/" target="_blank" rel="noopener">Serendipity</a></span><span class="cv-entry__date">2017 – present</span></div>
+            <ul class="cv-bullets">
+              <li>Head of the Department of Data Analytics (2020 – present)</li>
+              <li>Head of the Department of Partnerships (2018 – 2020)</li>
+              <li>One-on-one mentoring and lectures for students in the program (2017 – present)</li>
+            </ul>
           </div>
         </div>
-      </div>
-
+      </section>
     </div>
-  </section>
+  </main>
 
-  <!-- Footer -->
   <footer class="footer">
     <div class="container">
       <div class="footer__inner">
-        <div class="footer__info">
-          <h4>Josue Ortega Caro, PhD</h4>
-          <p>
-            Wu Tsai Fellow<br>
-            Yale University &middot; <a href="https://cardinlab.org" target="_blank" rel="noopener" class="footer__link">Cardin Lab</a><br>
-            New Haven, CT
-          </p>
+        <div>
+          <p class="footer__name">Josué Ortega Caro, PhD</p>
+          <p>Swartz Postdoctoral Fellow · Department of Neuroscience, Yale University</p>
+          <p>New Haven, CT</p>
         </div>
-        <div class="footer__links">
-          <a href="mailto:josue.ortegacaro@yale.edu" class="footer__link">Email</a>
-          <a href="https://github.com/josueortc" target="_blank" rel="noopener" class="footer__link">GitHub</a>
-          <a href="https://twitter.com/josueortc" target="_blank" rel="noopener" class="footer__link">Twitter</a>
-          <a href="https://www.linkedin.com/in/josue-ortega-caro-652a1a56" target="_blank" rel="noopener" class="footer__link">LinkedIn</a>
-        </div>
+        <ul class="footer__links">
+          <li><a href="mailto:josue.ortegacaro@yale.edu">Email</a></li>
+          <li><a href="https://scholar.google.com/citations?user=SctA3g8AAAAJ" target="_blank" rel="noopener">Google Scholar</a></li>
+          <li><a href="https://github.com/josueortc" target="_blank" rel="noopener">GitHub</a></li>
+          <li><a href="https://openreview.net/profile?id=~Josue_Ortega_Caro1" target="_blank" rel="noopener">OpenReview</a></li>
+          <li><a href="https://www.linkedin.com/in/josue-ortega-caro-652a1a56" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="https://x.com/josueortc" target="_blank" rel="noopener">X</a></li>
+          <li><a href="files/josue_ortegacaro_CV.pdf">CV (PDF)</a></li>
+        </ul>
       </div>
-      <div class="footer__bottom">
-        &copy; 2025 Josue Ortega Caro
-      </div>
+      <p class="footer__meta">© 2026 Josué Ortega Caro · Last updated September 2026</p>
     </div>
   </footer>
 
-  <script src="js/main.js"></script>
+  <script src="js/main.js" defer></script>
 </body>
 </html>
